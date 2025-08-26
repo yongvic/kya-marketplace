@@ -1,0 +1,9 @@
+@import "tailwindcss";
+
+@theme inline {
+  --font-sans: var(--font-libre-franklin);
+}
+
+body {
+  font-family: var(--font-libre-franklin), Arial, Helvetica, sans-serif;
+}
