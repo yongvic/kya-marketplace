@@ -1,5 +1,15 @@
 {
     "HomePage": {
         "title": "Bonjour le monde!"
+    },
+    "Header": {
+        "m-acceuil": "Accueil",
+        "m-logiciel": "Logiciels",
+        "m-a-propos": "A-propos"
+    },
+    "PubSection": {
+        "title": "Promo sur les KYA-Solar Pack!",
+        "subtitle": "Jusqu’au 30 Septembre obtenez nos KYA-SoP à cout réduit",
+        "button": "Découvrir l’offre"
     }
 }
