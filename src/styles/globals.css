@@ -2,8 +2,21 @@
 
 @theme inline {
   --font-sans: var(--font-libre-franklin);
+
+
+  /* Ajout de nos animations et keyframes personnalisés */
+  --animate-slide: slide 20s linear infinite;
 }
 
 body {
   font-family: var(--font-libre-franklin), Arial, Helvetica, sans-serif;
+}
+
+@keyframes slide {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
 }
