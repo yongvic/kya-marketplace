@@ -50,23 +50,23 @@ const UserTestimonials = () => {
 
                         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 sm:w-96 sm:h-96 z-10">
                             {/* Cercles de fond */}
-                            <div className="w-full h-full rounded-full border-[12px] border-orange-300 opacity-15 flex items-center justify-center animate-spin-slow">
-                                <div className="w-[85%] h-[85%] rounded-full border-[12px] border-yellow-300 bg-purple-50/60" />
+                            <div className="w-full h-full rounded-full border-[12px] border-kya-orange opacity-15 flex items-center justify-center animate-spin-slow">
+                                <div className="w-[85%] h-[85%] rounded-full border-[12px] border-kya-yellow bg-purple-50/60" />
                             </div>
 
                             {/* NOUVEAU: Conteneur pour l'orbite des 3 points */}
                             <div className="absolute inset-0 animate-reverse-orbit">
                                 {/* Point 1 (en haut) */}
                                 <div className="absolute inset-0">
-                                    <div className="absolute top-0 left-1/2 -translate-x-1/2 w-5 h-5 bg-kya-orange opa rounded-full" />
+                                    <div className="absolute top-0 left-1/2 -translate-x-1/2 w-5 h-5 bg-kya-yellow opa rounded-full" />
                                 </div>
                                 {/* Point 2 (120 degrés) */}
                                 <div className="absolute inset-0 rotate-[120deg]">
-                                    <div className="absolute top-0 left-1/2 -translate-x-1/2 w-5 h-5 bg-kya-orange rounded-full" />
+                                    <div className="absolute top-0 left-1/2 -translate-x-1/2 w-5 h-5 bg-kya-yellow rounded-full" />
                                 </div>
                                 {/* Point 3 (240 degrés) */}
                                 <div className="absolute inset-0 rotate-[240deg]">
-                                    <div className="absolute top-0 left-1/2 -translate-x-1/2 w-5 h-5 bg-kya-orange rounded-full" />
+                                    <div className="absolute top-0 left-1/2 -translate-x-1/2 w-5 h-5 bg-kya-yellow rounded-full" />
                                 </div>
                             </div>
                         </div>
@@ -74,7 +74,7 @@ const UserTestimonials = () => {
                         <div className="absolute -top-14 left-1/2 -translate-x-1/2 z-20">
                             {/* ... Figure du profil utilisateur (inchangé) ... */}
                             <figure className="flex flex-col items-center text-center">
-                                <div className="p-2 bg-yellow-200 rounded-full shadow-xl border-4 border-white transform transition hover:scale-110">
+                                <div className="p-2 bg-kya-yellow rounded-full shadow-xl border-4 border-white transform transition hover:scale-110">
                                     <activeTestimonial.icon className="w-16 h-16 text-gray-700 bg-white rounded-full p-3" />
                                 </div>
                                 <figcaption className="mt-2">
@@ -96,11 +96,11 @@ const UserTestimonials = () => {
                     </div>
 
                     {/* ... Boutons de navigation et pagination (inchangés) ... */}
-                    <button onClick={prevSlide} className="absolute top-1/2 -left-4 sm:-left-8 -translate-y-1/2 w-12 h-12 bg-orange-400 text-white rounded-full shadow-xl hover:bg-orange-500 transition transform hover:scale-110 flex items-center justify-center z-30"><ChevronLeft /></button>
-                    <button onClick={nextSlide} className="absolute top-1/2 -right-4 sm:-right-8 -translate-y-1/2 w-12 h-12 bg-orange-400 text-white rounded-full shadow-xl hover:bg-orange-500 transition transform hover:scale-110 flex items-center justify-center z-30"><ChevronRight /></button>
+                    <button onClick={prevSlide} className="absolute top-1/2 -left-4 sm:-left-8 -translate-y-1/2 w-12 h-12 bg-kya-orange text-white rounded-full shadow-xl hover:bg-kya-orange transition transform hover:scale-110 flex items-center justify-center z-30"><ChevronLeft /></button>
+                    <button onClick={nextSlide} className="absolute top-1/2 -right-4 sm:-right-8 -translate-y-1/2 w-12 h-12 bg-kya-orange text-white rounded-full shadow-xl hover:bg-kya-orange transition transform hover:scale-110 flex items-center justify-center z-30"><ChevronRight /></button>
                     <div className="flex justify-center items-center gap-3 mt-8">
                         {testimonialsData.map((_, index) => (
-                            <button key={index} onClick={() => goToSlide(index)} className={`w-3 h-3 rounded-full transition-all duration-300 ${activeIndex === index ? "bg-orange-500 scale-125" : "bg-gray-300 hover:bg-gray-400"}`} aria-label={`Go to slide ${index + 1}`} />
+                            <button key={index} onClick={() => goToSlide(index)} className={`w-3 h-3 rounded-full transition-all duration-300 ${activeIndex === index ? "bg-kya-orange scale-125" : "bg-gray-300 hover:bg-gray-400"}`} aria-label={`Go to slide ${index + 1}`} />
                         ))}
                     </div>
                 </div>
