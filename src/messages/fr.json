@@ -112,12 +112,16 @@
         }
     },
     "Footer": {
-        "slogan": "Votre partenaire pour une transition énergétique durable et responsable.",
-        "certification": "Certifié ISO 9001:2015",
-        "rights": "© 2025 KYA-Energy Group. Tous droits réservés.",
-        "newsletter": {
-            "placeholder": "Entrez votre Email",
-            "button": "Envoyer"
+        "description": "Votre partenaire pour une transition énergétique durable et responsable.",
+        "iso_certified": "Certifié ISO 9001:2015",
+        "contact_title": "Contacte nous",
+        "email_placeholder": "Entrez votre Email",
+        "submit_button": "Envoyer",
+        "copyright": "KYA-Energy Group. Tous droits réservés.",
+        "links": {
+            "home": "Accueil",
+            "software": "Logiciels",
+            "about": "À Propos"
         }
     }
 }
