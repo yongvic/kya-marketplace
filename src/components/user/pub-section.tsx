@@ -10,10 +10,10 @@ const PubSection = () => {
     return (
         // L'overflow-hidden sur la section parente est crucial pour couper l'image qui dépasse.
         <section className="bg-white rounded-2xl mb-10 pb-10 sm:pb-20 overflow-hidden">
-            
+
             {/* Contenu principal */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center -mt-10">
-                
+
                 {/* Partie gauche - Texte */}
                 {/* Padding ajusté pour être moins important sur mobile */}
                 <div className="flex flex-col gap-6 text-center lg:text-left order-2 lg:order-1 px-4 sm:px-6 lg:pl-16 xl:pl-32 mt-4 lg:mt-0">
@@ -27,7 +27,7 @@ const PubSection = () => {
                     </p>
                     <div className="flex justify-center lg:justify-start mt-4">
                         {/* Taille du texte et padding du bouton réduits pour les petits écrans */}
-                        <Button className="font-semibold px-5 py-2.5 text-base sm:px-6 sm:py-3 sm:text-lg text-white">
+                        <Button className="font-semibold px-5 py-2.5 text-base sm:px-6 sm:py-3 sm:text-lg shadow-m text-white">
                             {p('button')}
                         </Button>
                     </div>

@@ -1,3 +1,4 @@
+// tailwind.config.ts
 import type { Config } from 'tailwindcss'
 
 const config: Config = {
@@ -9,18 +10,28 @@ const config: Config = {
   ],
   theme: {
     extend: {
-      // Ajout de nos animations et keyframes personnalisés
+      // Animations personnalisées
       animation: {
+        'fade-in': 'fadeIn 0.8s ease-in-out forwards',
         'slide': 'slide 20s linear infinite',
+        'orbit': 'spin 20s linear infinite',
       },
+      // Keyframes personnalisés
       keyframes: {
+        fadeIn: {
+          '0%': { opacity: '0', transform: 'translateY(10px)' },
+          '100%': { opacity: '1', transform: 'translateY(0)' },
+        },
+        'reverse-spin': {
+            from: { transform: 'rotate(0deg)' },
+            to: { transform: 'rotate(360deg)'},
+        },
         slide: {
           '0%': { transform: 'translateX(0)' },
           '100%': { transform: 'translateX(-50%)' },
         },
       },
-      // Vous pouvez ajouter d'autres extensions de thème ici
-      // par exemple, des couleurs, des polices, etc.
+      // Backgrounds personnalisés
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic':

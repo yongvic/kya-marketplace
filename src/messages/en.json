@@ -1,19 +1,112 @@
 {
     "HomePage": {
-        "title": "Hello world !"
+        "title": "Hello World!"
     },
     "Header": {
         "m-acceuil": "Home",
         "m-logiciel": "Software",
-        "m-a-propos": "About"
+        "m-a-propos": "About",
+        "m-contact": "Contact Us"
     },
     "PubSection": {
-        "title": "KYA-Solar Pack Promotion!",
-        "subtitle": "Get our KYA-SoP at a reduced cost until September 30th",
+        "title": "Special Offer on KYA-Solar Pack!",
+        "subtitle": "Until September 30, get our KYA-SoP at a reduced cost",
         "button": "Discover the offer"
     },
     "Client": {
         "title": "They already use our solutions",
-        "subtitle": "Individuals, businesses, and institutions trust KYA-Energy Group to learn, manage, and optimize their energy projects."
+        "subtitle": "Individuals, companies, and institutions trust KYA-Energy Group to learn, manage, and optimize their energy projects."
+    },
+    "SoftwareSection": {
+        "categoryTitle": "Software Categories",
+        "mainTitle": "Organize your projects with KYA-Energy Group software",
+        "subtitle": "Categorize and quickly find the right software for your needs.",
+        "categories": {
+            "monitoring": "Monitoring & Tracking",
+            "management": "Management & Optimization",
+            "reporting": "Documentation & Reports",
+            "collaboration": "Collaboration & Sharing"
+        },
+        "softwares": {
+            "kya-report": {
+                "name": "KYA-Report",
+                "description": "Generate clear and automated reports."
+            },
+            "kya-analytics": {
+                "name": "KYA-Analytics",
+                "description": "Analyze your data in real time and make informed decisions."
+            },
+            "kya-control": {
+                "name": "KYA-Control",
+                "description": "Optimize your energy distribution and reduce costs."
+            },
+            "kya-share": {
+                "name": "KYA-Share",
+                "description": "Securely share access with your team and partners."
+            }
+        },
+        "badges": {
+            "history": "History",
+            "report": "Report",
+            "lists": "Lists",
+            "realtime": "Real time",
+            "performance": "Performance",
+            "optimization": "Optimization",
+            "planning": "Planning",
+            "teams": "Teams",
+            "projects": "Projects"
+        }
+    },
+    "FeatureListSection": {
+        "features": {
+            "monitoring": {
+                "title": "Real-time monitoring",
+                "description": "Monitor your PV solar installations with accurate and up-to-date data."
+            },
+            "management": {
+                "title": "Load management",
+                "description": "Prioritize the power supply of your devices and optimize energy distribution."
+            },
+            "reporting": {
+                "title": "Smart reports",
+                "description": "Generate clear and detailed reports to analyze your performance."
+            },
+            "alerts": {
+                "title": "Alerts & Notifications",
+                "description": "Receive automatic alerts in case of anomalies or critical thresholds."
+            },
+            "collaboration": {
+                "title": "Secure collaboration",
+                "description": "Share software access with your team and partners securely."
+            },
+            "integration": {
+                "title": "External data integration",
+                "description": "Connect your KYA software with other data sources (files, sensors, etc.)."
+            },
+            "customization": {
+                "title": "Advanced customization",
+                "description": "Adjust your dashboards and themes for a tailored experience."
+            },
+            "export": {
+                "title": "Multi-format export",
+                "description": "Export your data in PDF, Excel, or CSV for analysis or presentations."
+            }
+        },
+        "cta": "Discover our software"
+    },
+    "Testimonial": {
+        "title": "What our users say",
+        "quote": "With KYA-FlexyControl, managing our solar installations is easier: real-time monitoring and automatic alerts help us work more efficiently.",
+        "author": "Young Vic",
+        "role": "Product Manager at KSA"
+    },
+    "Footer": {
+        "slogan": "Your partner for a sustainable and responsible energy transition.",
+        "certification": "ISO 9001:2015 Certified",
+        "rights": "© 2025 KYA-Energy Group. All rights reserved.",
+        "newsletter": {
+            "placeholder": "Enter your Email",
+            "button": "Send"
+        }
     }
 }

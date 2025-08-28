@@ -1,9 +1,12 @@
 @import "tailwindcss";
 
 @theme inline {
+  --color-kya-green: #1ca18c;
+  --color-kya-orange: #f99d32;
+  --color-kya-yellow: #e8e748;
+  --color-kya-coffee: #875028;
   --font-sans: var(--font-libre-franklin);
-
-
+  --animate-reverse-orbit: reverse-spin 20s linear infinite;
   /* Ajout de nos animations et keyframes personnalisés */
   --animate-slide: slide 20s linear infinite;
 }
@@ -16,7 +19,18 @@ body {
   0% {
     transform: translateX(0);
   }
+
   100% {
     transform: translateX(-50%);
+  }
+}
+
+@keyframes reverse-spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
   }
 }
