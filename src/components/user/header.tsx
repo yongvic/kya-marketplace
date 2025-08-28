@@ -34,7 +34,7 @@ const LanguageSwitcher = () => {
 		<div className="relative" ref={ref}>
 			<button
 				onClick={() => setIsOpen(!isOpen)}
-				className="flex items-center gap-1 hover:text-teal-500 transition-colors"
+				className="flex items-center gap-1 hover:text-kya-green transition-colors"
 				aria-label="Changer de langue"
 			>
 				<Globe size={24} />
@@ -82,7 +82,7 @@ export default function Header() {
 							key={link.textKey}
 							href={link.href}
 							target={link.isExternal ? '_blank' : '_self'}
-							className="flex items-center gap-2 hover:text-teal-500 transition-colors duration-300"
+							className="flex items-center gap-2 hover:text-kya-green transition-colors duration-300"
 						>
 							<span>{h(link.textKey)}</span>
 							{link.icon && <link.icon size={20} />}
@@ -92,8 +92,8 @@ export default function Header() {
 
 				{/* Icônes et Langue (Desktop) */}
 				<div className="hidden md:flex items-center gap-6">
-					<button className="hover:text-teal-500 transition-colors" aria-label="Recherche"><Search /></button>
-					<button className="hover:text-teal-500 transition-colors" aria-label="Compte utilisateur"><User /></button>
+					<button className="hover:text-kya-green transition-colors" aria-label="Recherche"><Search /></button>
+					<button className="hover:text-kya-green transition-colors" aria-label="Compte utilisateur"><User /></button>
 					<LanguageSwitcher />
 				</div>
 
@@ -116,7 +116,7 @@ export default function Header() {
 							key={link.textKey}
 							href={link.href}
 							target={link.isExternal ? '_blank' : '_self'}
-							className="flex items-center gap-2 hover:text-teal-500 transition-colors"
+							className="flex items-center gap-2 hover:text-kya-green transition-colors"
 							onClick={() => setIsMenuOpen(false)}
 						>
 							<span>{h(link.textKey)}</span>
@@ -125,8 +125,8 @@ export default function Header() {
 					))}
 					<div className="border-t border-gray-200 w-3/4 my-4" />
 					<div className="flex items-center gap-8">
-						<button className="hover:text-teal-500 transition-colors" aria-label="Recherche"><Search size={28} /></button>
-						<button className="hover:text-teal-500 transition-colors" aria-label="Compte utilisateur"><User size={28} /></button>
+						<button className="hover:text-kya-green transition-colors" aria-label="Recherche"><Search size={28} /></button>
+						<button className="hover:text-kya-green transition-colors" aria-label="Compte utilisateur"><User size={28} /></button>
 					</div>
 					<div className="mt-4">
 						<LanguageSwitcher />

@@ -77,7 +77,7 @@ const Footer = () => {
                         <p className="max-w-md text-slate-400">
                             {t('description')}
                         </p>
-                        <div className="flex items-center gap-2 text-teal-400 font-semibold">
+                        <div className="flex items-center gap-2 text-kya-green font-semibold">
                             <CheckCircle size={20} />
                             <span>{t('iso_certified')}</span>
                         </div>
@@ -112,7 +112,7 @@ const Footer = () => {
                                 key={label}
                                 href={href}
                                 aria-label={label}
-                                className="p-2 bg-slate-700 rounded-full hover:bg-teal-500 hover:scale-110 hover:-rotate-12 transition-all duration-300"
+                                className="p-2 bg-slate-700 rounded-full hover:bg-kya-green hover:scale-110 hover:-rotate-12 transition-all duration-300"
                             >
                                 <Icon size={20} />
                             </a>
@@ -124,7 +124,7 @@ const Footer = () => {
                             <a
                                 key={textKey}
                                 href={href}
-                                className="hover:text-teal-400 transition-colors flex items-center gap-1"
+                                className="hover:text-kya-green transition-colors flex items-center gap-1"
                             >
                                 {t(textKey)}
                                 {isExternal && <ExternalLink size={14} />}

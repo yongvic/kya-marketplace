@@ -110,7 +110,7 @@ const CategorieLogiciel = () => {
                         >
                             <div className={`
                                 flex items-center justify-center h-20 w-20 rounded-full transition-all duration-300
-                                ${activeCategory === cat.id ? 'bg-teal-500 text-white shadow-lg' : 'bg-gray-100 text-gray-600 group-hover:bg-gray-200'}
+                                ${activeCategory === cat.id ? 'bg-kya-green text-white shadow-lg' : 'bg-gray-100 text-gray-600 group-hover:bg-gray-200'}
                             `}>
                                 <cat.icon size={32} />
                             </div>
@@ -126,7 +126,7 @@ const CategorieLogiciel = () => {
 
                 {/* Section d'affichage dynamique */}
                 <div className="mt-20 relative">
-                    <p className="text-teal-500 font-bold text-xl">
+                    <p className="text-kya-green font-bold text-xl">
                         {t(activeSoftware.softwareNameKey)}
                     </p>
                     <p className="mt-2 text-lg text-gray-600 max-w-2xl mx-auto">

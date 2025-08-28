@@ -34,7 +34,7 @@ const PubSection = () => {
                 </div>
 
                 {/* Partie droite - Image produit */}
-                <div className="relative flex items-center justify-center lg:justify-end w-full h-64 sm:h-80 lg:h-full order-1 lg:order-2">
+                <div className="relative flex items-center justify-center lg:justify-end w-full h-64 sm:h-80 lg:h-full order-1 lg:order-2 pointer-events-none">
                     {/* Taille du conteneur de l'image réduite sur les petits écrans */}
                     <div className="relative w-[300px] h-[300px] sm:w-[400px] sm:h-[400px] lg:w-[600px] lg:h-[600px] xl:w-[800px] xl:h-[800px] lg:translate-x-[10%]">
                         <Image
@@ -58,7 +58,7 @@ const PubSection = () => {
                     <ChevronLeft size={20} className="sm:w-6 sm:h-6" />
                 </button>
                 <span className="text-gray-800 font-bold text-lg sm:text-xl">1/5</span>
-                <button className="p-2 sm:p-3 border-2 rounded-full bg-orange-500 text-white hover:bg-orange-300 transition">
+                <button className="p-2 sm:p-3 border-2 rounded-full bg-kya-orange text-white hover:bg-kya-orange/50 transition">
                     <ChevronRight size={20} className="sm:w-6 sm:h-6" />
                 </button>
             </div>
