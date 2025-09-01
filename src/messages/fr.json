@@ -6,7 +6,12 @@
         "m-acceuil": "Accueil",
         "m-logiciel": "Logiciels",
         "m-a-propos": "À propos",
-        "m-contact": "Contactez-nous"
+        "m-contact": "Contactez-nous",
+        "sh-features": "Fonctionnalités",
+        "sh-pricing": "Tarifs",
+        "sh-resources": "Ressources",
+        "sh-download": "Télécharger",
+        "link-logo": "kya-soldesign.png"
     },
     "PubSection": {
         "title": "Promo sur les KYA-Solar Pack!",

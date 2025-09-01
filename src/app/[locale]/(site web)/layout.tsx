@@ -1,11 +1,17 @@
-import Header from "@/components/user/header";
-import Footer from "@/components/user/footer";
+import Footer from '@/components/user/footer';
 
-export default function Layout({ children }: { children: React.ReactNode }) {
+// Ce layout est le conteneur principal pour les pages du site.
+// NE METTEZ PAS le composant <Header /> ici.
+export default function SiteWebLayout({
+    children,
+}: {
+    children: React.ReactNode;
+}) {
     return (
         <>
-            <Header />
+            {/* "children" représentera le contenu de chaque page, y compris leur propre header */}
             {children}
+
             <Footer />
         </>
     );

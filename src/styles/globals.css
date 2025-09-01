@@ -9,6 +9,7 @@
   --animate-reverse-orbit: reverse-spin 20s linear infinite;
   /* Ajout de nos animations et keyframes personnalisés */
   --animate-slide: slide 20s linear infinite;
+  --radius-wave: 100%;
 }
 
 body {
@@ -33,4 +34,8 @@ body {
   to {
     transform: rotate(360deg);
   }
+}
+
+.is-shrinking {
+  transform: scale(0.75);
 }

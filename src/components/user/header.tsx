@@ -5,9 +5,9 @@ import Image from "next/image";
 import Link from 'next/link';
 import { useTranslations, useLocale } from 'next-intl';
 import { usePathname, useRouter } from 'next/navigation';
-import { ChevronDown, Search, User, ExternalLink, Menu, X, Globe } from "lucide-react";
+import { Search, User, ExternalLink, Menu, X, Globe } from "lucide-react";
 
-// Sous-composant pour le sélecteur de langue
+// Le sélecteur de langue
 const LanguageSwitcher = () => {
 	const locale = useLocale();
 	const router = useRouter();
@@ -26,22 +26,23 @@ const LanguageSwitcher = () => {
 	}, []);
 
 	const switchLocale = (nextLocale: string) => {
-		// ⚠️ avec next/navigation, pas de { locale } dans les options
-		router.push(`/${nextLocale}${pathname}`);
+		const newPath = pathname.startsWith(`/${locale}`) ? pathname.substring(locale.length + 1) : pathname;
+		router.push(`/${nextLocale}${newPath}`);
+		setIsOpen(false);
 	};
 
 	return (
 		<div className="relative" ref={ref}>
 			<button
 				onClick={() => setIsOpen(!isOpen)}
-				className="flex items-center gap-1 hover:text-kya-green transition-colors"
+				className="flex items-center gap-1 hover:text-teal-500 transition-colors"
 				aria-label="Changer de langue"
 			>
 				<Globe size={24} />
 				<span className="font-semibold">{locale.toUpperCase()}</span>
 			</button>
 			{isOpen && (
-				<div className="absolute top-full right-0 mt-2 bg-white rounded-md shadow-lg border text-black">
+				<div className="absolute top-full right-0 mt-2 bg-white rounded-md shadow-lg border text-black z-10">
 					<button onClick={() => switchLocale('fr')} className="block w-full text-left px-4 py-2 text-sm hover:bg-gray-100">Français</button>
 					<button onClick={() => switchLocale('en')} className="block w-full text-left px-4 py-2 text-sm hover:bg-gray-100">English</button>
 				</div>
@@ -50,54 +51,56 @@ const LanguageSwitcher = () => {
 	);
 };
 
+// Le composant Header principal, sans positionnement fixe par défaut.
 export default function Header() {
 	const h = useTranslations('Header');
+	const pathname = usePathname();
+	const locale = useLocale();
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
 
 	const navLinks = [
 		{ href: '/', textKey: 'm-acceuil' },
-		{ href: '/logiciels', textKey: 'm-logiciel', icon: ChevronDown },
-		{ href: '/a-propos', textKey: 'm-a-propos', icon: ExternalLink, isExternal: true },
+		{ href: '/logiciels', textKey: 'm-logiciel' },
+		{ href: 'https://www.google.com', textKey: 'm-a-propos', icon: ExternalLink, isExternal: true },
 	];
 
+	const isLinkActive = (href: string) => {
+		const cleanedPathname = pathname.replace(`/${locale}`, '') || '/';
+		return cleanedPathname === href;
+	};
+
 	return (
-		<header className="fixed top-0 left-0 w-full z-50 bg-white shadow-md">
-			<div className="w-full h-24 flex justify-between items-center px-6 md:px-12 lg:px-18 border-b border-gray-200">
-				{/* Logo */}
-				<Link href="/">
+		<div className="w-full h-24 bg-white border-b border-gray-200">
+			<div className="w-full h-full flex justify-between items-center px-6 md:px-12 lg:px-18">
+				<Link href="/" className="transition-transform duration-300 hover:scale-105">
 					<Image
 						src={"/logo.png"}
-						alt="Logo"
-						width={130}
-						height={130}
-						className="w-auto h-auto"
-						priority
+						alt="KYA-Energy MARKET Logo"
+						width={130} height={60} priority
 					/>
 				</Link>
 
-				{/* Navigation Desktop */}
-				<nav className="hidden md:flex items-center gap-10 text-lg font-medium text-gray-700">
+				<nav className="hidden md:flex items-center gap-10 text-lg font-medium text-gray-800">
 					{navLinks.map((link) => (
 						<Link
 							key={link.textKey}
 							href={link.href}
 							target={link.isExternal ? '_blank' : '_self'}
-							className="flex items-center gap-2 hover:text-kya-green transition-colors duration-300"
+							className="relative flex items-center gap-2 py-2 transition-transform duration-300 ease-out hover:text-teal-500 hover:-translate-y-0.5"
 						>
 							<span>{h(link.textKey)}</span>
 							{link.icon && <link.icon size={20} />}
+							<span className={`absolute bottom-0 left-0 w-full h-0.5 bg-teal-500 transform origin-left transition-transform duration-300 ease-out ${isLinkActive(link.href) ? 'scale-x-100' : 'scale-x-0'}`}></span>
 						</Link>
 					))}
 				</nav>
 
-				{/* Icônes et Langue (Desktop) */}
-				<div className="hidden md:flex items-center gap-6">
-					<button className="hover:text-kya-green transition-colors" aria-label="Recherche"><Search /></button>
-					<button className="hover:text-kya-green transition-colors" aria-label="Compte utilisateur"><User /></button>
+				<div className="hidden md:flex items-center gap-4">
+					<button className="p-2 rounded-full text-gray-700 hover:bg-gray-100 hover:text-teal-500 transition-colors" aria-label="Recherche"><Search /></button>
+					<button className="p-2 rounded-full text-gray-700 hover:bg-gray-100 hover:text-teal-500 transition-colors" aria-label="Compte utilisateur"><User /></button>
 					<LanguageSwitcher />
 				</div>
 
-				{/* Bouton du Menu Mobile */}
 				<div className="md:hidden">
 					<button onClick={() => setIsMenuOpen(!isMenuOpen)} aria-label="Ouvrir le menu">
 						{isMenuOpen ? <X size={30} /> : <Menu size={30} />}
@@ -107,7 +110,7 @@ export default function Header() {
 
 			{/* Menu Mobile Overlay */}
 			<div className={`
-                md:hidden absolute top-24 left-0 w-full h-[calc(100vh-6rem)] bg-white transform transition-transform duration-300 ease-in-out
+                md:hidden fixed top-24 left-0 w-full h-[calc(100vh-6rem)] bg-white transform transition-transform duration-500 ease-in-out
                 ${isMenuOpen ? 'translate-x-0' : 'translate-x-full'}
             `}>
 				<nav className="flex flex-col items-center justify-center h-full gap-8 text-2xl font-medium">
@@ -116,7 +119,7 @@ export default function Header() {
 							key={link.textKey}
 							href={link.href}
 							target={link.isExternal ? '_blank' : '_self'}
-							className="flex items-center gap-2 hover:text-kya-green transition-colors"
+							className="flex items-center gap-2 hover:text-teal-500 transition-colors"
 							onClick={() => setIsMenuOpen(false)}
 						>
 							<span>{h(link.textKey)}</span>
@@ -125,14 +128,14 @@ export default function Header() {
 					))}
 					<div className="border-t border-gray-200 w-3/4 my-4" />
 					<div className="flex items-center gap-8">
-						<button className="hover:text-kya-green transition-colors" aria-label="Recherche"><Search size={28} /></button>
-						<button className="hover:text-kya-green transition-colors" aria-label="Compte utilisateur"><User size={28} /></button>
+						<button className="hover:text-teal-500 transition-colors" aria-label="Recherche"><Search size={28} /></button>
+						<button className="hover:text-teal-500 transition-colors" aria-label="Compte utilisateur"><User size={28} /></button>
 					</div>
 					<div className="mt-4">
 						<LanguageSwitcher />
 					</div>
 				</nav>
 			</div>
-		</header>
+		</div>
 	);
 }

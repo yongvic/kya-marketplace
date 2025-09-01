@@ -16,6 +16,9 @@ const config: Config = {
         'slide': 'slide 20s linear infinite',
         'orbit': 'spin 20s linear infinite',
       },
+      borderRadius: {
+        'wave': '100%'
+      },
       // Keyframes personnalisés
       keyframes: {
         fadeIn: {
