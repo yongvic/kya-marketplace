@@ -1,35 +1,16 @@
-import React from 'react'
+import HeroSection from "@/components/user/logiciels/heroSection";
+import FeaturesSection from "@/components/user/logiciels/featuresSection";
+import ResourcesSection from "@/components/user/logiciels/resourcesSection";
+import UserTestimonials from '@/components/user/testimonials';
 
-const page = () => {
+export default function LogicielsPage() {
     return (
-        <div>
-            Je suis là
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsa, dolorum deleniti ea omnis quas error ipsum odit temporibus! Nisi maxime, vitae sequi qui voluptatem laudantium quaerat eum nam nulla quasi.</p>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsa, dolorum deleniti ea omnis quas error ipsum odit temporibus! Nisi maxime, vitae sequi qui voluptatem laudantium quaerat eum nam nulla quasi.</p>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsa, dolorum deleniti ea omnis quas error ipsum odit temporibus! Nisi maxime, vitae sequi qui voluptatem laudantium quaerat eum nam nulla quasi.</p>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsa, dolorum deleniti ea omnis quas error ipsum odit temporibus! Nisi maxime, vitae sequi qui voluptatem laudantium quaerat eum nam nulla quasi.</p>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsa, dolorum deleniti ea omnis quas error ipsum odit temporibus! Nisi maxime, vitae sequi qui voluptatem laudantium quaerat eum nam nulla quasi.</p>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsa, dolorum deleniti ea omnis quas error ipsum odit temporibus! Nisi maxime, vitae sequi qui voluptatem laudantium quaerat eum nam nulla quasi.</p>
-
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsa, dolorum deleniti ea omnis quas error ipsum odit temporibus! Nisi maxime, vitae sequi qui voluptatem laudantium quaerat eum nam nulla quasi.</p>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsa, dolorum deleniti ea omnis quas error ipsum odit temporibus! Nisi maxime, vitae sequi qui voluptatem laudantium quaerat eum nam nulla quasi.</p>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsa, dolorum deleniti ea omnis quas error ipsum odit temporibus! Nisi maxime, vitae sequi qui voluptatem laudantium quaerat eum nam nulla quasi.</p>
-
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsa, dolorum deleniti ea omnis quas error ipsum odit temporibus! Nisi maxime, vitae sequi qui voluptatem laudantium quaerat eum nam nulla quasi.</p>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsa, dolorum deleniti ea omnis quas error ipsum odit temporibus! Nisi maxime, vitae sequi qui voluptatem laudantium quaerat eum nam nulla quasi.</p>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsa, dolorum deleniti ea omnis quas error ipsum odit temporibus! Nisi maxime, vitae sequi qui voluptatem laudantium quaerat eum nam nulla quasi.</p>
-
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsa, dolorum deleniti ea omnis quas error ipsum odit temporibus! Nisi maxime, vitae sequi qui voluptatem laudantium quaerat eum nam nulla quasi.</p>
-
-
-
-
-
-
-
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsa, dolorum deleniti ea omnis quas error ipsum odit temporibus! Nisi maxime, vitae sequi qui voluptatem laudantium quaerat eum nam nulla quasi.</p> <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsa, dolorum deleniti ea omnis quas error ipsum odit temporibus! Nisi maxime, vitae sequi qui voluptatem laudantium quaerat eum nam nulla quasi.</p> <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsa, dolorum deleniti ea omnis quas error ipsum odit temporibus! Nisi maxime, vitae sequi qui voluptatem laudantium quaerat eum nam nulla quasi.</p> <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsa, dolorum deleniti ea omnis quas error ipsum odit temporibus! Nisi maxime, vitae sequi qui voluptatem laudantium quaerat eum nam nulla quasi.</p> <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsa, dolorum deleniti ea omnis quas error ipsum odit temporibus! Nisi maxime, vitae sequi qui voluptatem laudantium quaerat eum nam nulla quasi.</p> <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsa, dolorum deleniti ea omnis quas error ipsum odit temporibus! Nisi maxime, vitae sequi qui voluptatem laudantium quaerat eum nam nulla quasi.</p> <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsa, dolorum deleniti ea omnis quas error ipsum odit temporibus! Nisi maxime, vitae sequi qui voluptatem laudantium quaerat eum nam nulla quasi.</p> <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsa, dolorum deleniti ea omnis quas error ipsum odit temporibus! Nisi maxime, vitae sequi qui voluptatem laudantium quaerat eum nam nulla quasi.</p>
-        </div>
-    )
+        // Le layout parent gère déjà le padding et le header, nous n'avons donc besoin que des sections.
+        <>
+            <HeroSection />
+            <FeaturesSection />
+            <ResourcesSection />
+            <UserTestimonials />
+        </>
+    );
 }
-
-export default page

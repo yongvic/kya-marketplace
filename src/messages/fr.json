@@ -128,5 +128,59 @@
             "software": "Logiciels",
             "about": "À Propos"
         }
+    },
+    "LogicielsPage": {
+        "hero": {
+            "preTitle": "Dimensionnement",
+            "title": "avec KYA-SolDesign",
+            "subtitle": "Un logiciel professionnel pour concevoir, simuler et dimensionner vos installations solaires avec précision et rapidité.",
+            "users": "Users",
+            "ctaOnline": "Essayer en ligne",
+            "ctaDownload": "Télécharger",
+            "ctaNote": "Teste et téléchargement gratuit après ma connexion"
+        },
+        "features": {
+            "mainTitle": "Fonctionnalités principales",
+            "subtitle": "KYA-SolDesign vous aide à modéliser, simuler et optimiser vos projets solaires, de l'idée à l'installation.",
+            "cards": {
+                "intuitiveDesign": {
+                    "title": "Conception intuitive",
+                    "description": "Un espace de travail clair et ergonomique pour dessiner vos projets solaires sans complexité."
+                },
+                "preciseSimulation": {
+                    "title": "Simulation précise",
+                    "description": "Analysez la production énergétique et visualisez les performances avant même l'installation."
+                },
+                "componentDatabase": {
+                    "title": "Base de données composants",
+                    "description": "Accédez à une bibliothèque de panneaux, onduleurs et batteries mise à jour pour des choix fiables."
+                },
+                "detailedReports": {
+                    "title": "Rapports détaillés",
+                    "description": "Générez automatiquement des rapports techniques et financiers prêts à partager avec vos clients."
+                },
+                "smartOptimization": {
+                    "title": "Optimisation intelligente",
+                    "description": "Des algorithmes avancés pour maximiser la rentabilité et l'efficacité énergétique de vos projets."
+                }
+            }
+        },
+        "resources": {
+            "mainTitle": "Ressources",
+            "subtitle": "Mettez la puissance de KYA-SolDesign entre vos mains grâce à nos documents de référence, guides pratiques et retours d'expérience.",
+            "documents": {
+                "title": "Documents",
+                "link1": "Fiche technique KYA-SolDesign",
+                "link2": "Guide utilisateur rapide",
+                "link3": "Documentation technique complète",
+                "link4": "Rapport d'accessibilité et de conformité"
+            },
+            "videos": {
+                "title": "Vidéos",
+                "playlistTitle": "Ressources vidéos",
+                "videoTitle": "Présentation de KYA-SolDesign en 2 minutes",
+                "videoDate": "25/08/25"
+            }
+        }
     }
 }
