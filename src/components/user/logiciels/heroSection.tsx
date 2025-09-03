@@ -3,21 +3,83 @@
 import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 import { motion } from 'framer-motion';
-import { Users, ArrowDown } from 'lucide-react';
+import { Users } from 'lucide-react'; // ❌ Supprimé ArrowDown (non utilisé)
+
+import AnimatedArrow from './animatedArrow';
+
+// Type pour les easing (optionnel, mais utile)
+type ValidEasing =
+    | 'linear'
+    | 'easeIn'
+    | 'easeOut'
+    | 'easeInOut'
+    | 'circIn'
+    | 'circOut'
+    | 'circInOut'
+    | 'backIn'
+    | 'backOut'
+    | 'backInOut'
+    | 'anticipate'
+    | [number, number, number, number];
+
+interface TransitionConfig {
+    duration: number;
+    delay: number;
+    ease: ValidEasing;
+}
 
 export default function HeroSection() {
     const t = useTranslations('LogicielsPage.hero');
 
+    // Définition des animations pour les flèches avec easing typé
+    const arrowVariants = {
+        left: {
+            initial: { opacity: 0, x: -50, y: -20 },
+            animate: { opacity: 1, x: 0, y: 0 },
+            transition: { duration: 0.6, delay: 0.5, ease: "easeOut" } as const satisfies TransitionConfig,
+        },
+        right: {
+            initial: { opacity: 0, x: 50, y: -20 },
+            animate: { opacity: 1, x: 0, y: 0 },
+            transition: { duration: 0.6, delay: 0.7, ease: "easeOut" } as const satisfies TransitionConfig,
+        },
+        bottomRight: {
+            initial: { opacity: 0, y: 50, x: 20 },
+            animate: { opacity: 1, y: 0, x: 0 },
+            transition: { duration: 0.8, delay: 1.0, ease: "easeOut" } as const satisfies TransitionConfig,
+        },
+    };
+
     return (
-        <section className="relative w-full bg-white pt-16 pb-20 overflow-hidden">
-            <div className="container mx-auto px-6 text-center">
+        <section className="relative w-full bg-white pt-16 pb-20 overflow-hidden min-h-[80vh] flex items-center">
+            <div className="container mx-auto px-6 text-center relative z-10">
+
+                {/* Flèches animées */}
+                <AnimatedArrow
+                    className="absolute top-20 left-10 md:left-24 -rotate-45"
+                    initial={arrowVariants.left.initial}
+                    animate={arrowVariants.left.animate}
+                    transition={arrowVariants.left.transition}
+                />
+                <AnimatedArrow
+                    className="absolute top-20 right-10 md:right-24 rotate-45 scale-x-[-1]"
+                    initial={arrowVariants.right.initial}
+                    animate={arrowVariants.right.animate}
+                    transition={arrowVariants.right.transition}
+                />
+                <AnimatedArrow
+                    className="absolute bottom-10 right-32 hidden md:block"
+                    initial={arrowVariants.bottomRight.initial}
+                    animate={arrowVariants.bottomRight.animate}
+                    transition={arrowVariants.bottomRight.transition}
+                />
 
                 {/* Indicateurs d'utilisateurs animés */}
                 <motion.div
                     initial={{ opacity: 0, scale: 0.5 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.5, delay: 0.8 }}
-                    className="absolute top-10 left-10 md:left-24 w-40 h-40 border-2 border-gray-200 rounded-full flex flex-col items-center justify-center"
+                    className="absolute top-10 left-10 md:left-24 w-40 h-40 border-2 border-gray-200 rounded-full flex flex-col items-center justify-center bg-white"
                 >
                     <Users className="text-gray-400" size={32} />
                     <span className="text-3xl font-bold text-gray-800 mt-2">{t('users')}</span>
@@ -27,7 +89,7 @@ export default function HeroSection() {
                     initial={{ opacity: 0, scale: 0.5 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.5, delay: 1.0 }}
-                    className="absolute top-10 right-10 md:right-24 w-40 h-40 border-2 border-gray-200 rounded-full flex flex-col items-center justify-center"
+                    className="absolute top-10 right-10 md:right-24 w-40 h-40 border-2 border-gray-200 rounded-full flex flex-col items-center justify-center bg-white"
                 >
                     <Users className="text-gray-400" size={32} />
                     <span className="text-3xl font-bold text-gray-800 mt-2">{t('users')}</span>
@@ -86,7 +148,7 @@ export default function HeroSection() {
                     className="mt-12 max-w-4xl mx-auto"
                 >
                     <Image
-                        src="/documentation-rapports.png" // <-- REMPLACEZ PAR LE CHEMIN DE VOTRE IMAGE
+                        src="/documentation-rapports.png" // 🔧 Remplacez par votre vrai chemin
                         alt="Aperçu du logiciel KYA-SolDesign"
                         width={1920}
                         height={1080}

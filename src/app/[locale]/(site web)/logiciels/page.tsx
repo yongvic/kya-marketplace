@@ -2,6 +2,7 @@ import HeroSection from "@/components/user/logiciels/heroSection";
 import FeaturesSection from "@/components/user/logiciels/featuresSection";
 import ResourcesSection from "@/components/user/logiciels/resourcesSection";
 import UserTestimonials from '@/components/user/testimonials';
+import TarifsSection from '@/components/user/logiciels/taifs-section';
 
 export default function LogicielsPage() {
     return (
@@ -9,6 +10,7 @@ export default function LogicielsPage() {
         <>
             <HeroSection />
             <FeaturesSection />
+            <TarifsSection />
             <ResourcesSection />
             <UserTestimonials />
         </>
