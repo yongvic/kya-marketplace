@@ -3,7 +3,7 @@
 import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 import { motion } from 'framer-motion';
-import { Users } from 'lucide-react'; // ❌ Supprimé ArrowDown (non utilisé)
+import { Users } from 'lucide-react'; // 
 
 import AnimatedArrow from './animatedArrow';
 
@@ -104,7 +104,7 @@ export default function HeroSection() {
                     className="text-5xl md:text-6xl font-bold text-gray-900"
                 >
                     {t('preTitle')}<br />
-                    <span className="text-orange-500">{t('title')}</span>
+                    <span className="text-kya-orange">{t('title')}</span>
                 </motion.h1>
 
                 {/* Sous-titre animé */}
@@ -124,7 +124,7 @@ export default function HeroSection() {
                     transition={{ duration: 0.5, delay: 0.4 }}
                     className="mt-8 flex justify-center items-center gap-4"
                 >
-                    <button className="bg-orange-500 text-white font-bold py-3 px-8 rounded-md transform transition-all duration-300 hover:bg-orange-600 hover:shadow-lg hover:scale-105">
+                    <button className="bg-kya-orange text-white font-bold py-3 px-8 rounded-md transform transition-all duration-300 hover:bg-kya-orange hover:shadow-lg hover:scale-105">
                         {t('ctaOnline')}
                     </button>
                     <button className="bg-white text-gray-800 font-bold py-3 px-8 rounded-md border-2 border-gray-300 transform transition-all duration-300 hover:bg-gray-100 hover:shadow-lg hover:scale-105">

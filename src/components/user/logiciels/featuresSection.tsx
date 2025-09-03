@@ -5,12 +5,12 @@ import { motion, Variants } from 'framer-motion';
 import { LayoutDashboard, BarChart3, Database, FileText, Sparkles, SlidersHorizontal } from 'lucide-react';
 
 const featuresList = [
-    { id: 'intuitiveDesign', icon: <LayoutDashboard size={40} className="text-orange-500" /> },
-    { id: 'preciseSimulation', icon: <BarChart3 size={40} className="text-orange-500" /> },
-    { id: 'componentDatabase', icon: <Database size={40} className="text-orange-500" /> },
-    { id: 'detailedReports', icon: <FileText size={40} className="text-orange-500" /> },
-    { id: 'smartOptimization', icon: <Sparkles size={40} className="text-orange-500" /> },
-    { id: 'intuitiveDesign2', icon: <SlidersHorizontal size={40} className="text-orange-500" />, duplicateOf: 'intuitiveDesign' },
+    { id: 'intuitiveDesign', icon: <LayoutDashboard size={40} className="text-kya-orange" /> },
+    { id: 'preciseSimulation', icon: <BarChart3 size={40} className="text-kya-orange" /> },
+    { id: 'componentDatabase', icon: <Database size={40} className="text-kya-orange" /> },
+    { id: 'detailedReports', icon: <FileText size={40} className="text-kya-orange" /> },
+    { id: 'smartOptimization', icon: <Sparkles size={40} className="text-kya-orange" /> },
+    { id: 'intuitiveDesign2', icon: <SlidersHorizontal size={40} className="text-kya-orange" />, duplicateOf: 'intuitiveDesign' },
 ];
 
 // Animation Variants pour le conteneur et les cartes
@@ -40,7 +40,7 @@ export default function FeaturesSection() {
     const t = useTranslations('LogicielsPage.features');
 
     return (
-        <section className="py-20 bg-orange-500">
+        <section className="py-20 bg-kya-orange">
             <div className="container mx-auto px-6 text-center">
                 <motion.h2
                     initial={{ opacity: 0, y: 20 }}
