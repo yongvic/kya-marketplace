@@ -116,6 +116,40 @@
             }
         }
     },
+    "TarifsSection": {
+        "title": "Comparez nos plans",
+        "subtitle": "Découvrez en un coup d’œil les tarifs de chaque plan ainsi que les fonctionnalités associées.",
+        "featureColumnHeader": "Fonctionnalité",
+        "ctaButton": "En profiter",
+        "plans": {
+            "commercial": {
+                "name": "Commerciale",
+                "duration": "1 an"
+            },
+            "academic": {
+                "name": "Académique",
+                "duration": "1 an"
+            },
+            "student": {
+                "name": "Étudiant",
+                "duration": "1 mois / 7 jours / 1 jour"
+            }
+        },
+        "features": [
+            "Génération de rapport général en PDF imagé",
+            "Génération de rapport général en Word",
+            "Génération de rapport général avec l'offre financière",
+            "Génération de facture proforma (en word)",
+            "Evaluation financière du système dimensionné",
+            "Génération de la vue synoptique du système dimensionné",
+            "Dimensionnement des sections de câbles",
+            "Dimensionnement des éléments de protection",
+            "Ajout de nouveaux composants (modules, batteries et onduleurs)",
+            "Dimensionnement avec onduleur all-in-one",
+            "Téléchargement des données météo de toute localité",
+            "Génération du profil de charge"
+        ]
+    },
     "Footer": {
         "description": "Votre partenaire pour une transition énergétique durable et responsable.",
         "iso_certified": "Certifié ISO 9001:2015",

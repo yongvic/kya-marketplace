@@ -6,25 +6,30 @@
         "m-acceuil": "Home",
         "m-logiciel": "Software",
         "m-a-propos": "About",
-        "m-contact": "Contact Us"
+        "m-contact": "Contact Us",
+        "sh-features": "Features",
+        "sh-pricing": "Pricing",
+        "sh-resources": "Resources",
+        "sh-download": "Download",
+        "link-logo": "kya-soldesign.png"
     },
     "PubSection": {
-        "title": "Promo on KYA-Solar Packs!",
-        "subtitle": "Get our KYA-SoP at a reduced cost until September 30th",
-        "button": "Discover the Offer"
+        "title": "Special Offer on KYA-Solar Packs!",
+        "subtitle": "Until September 30, get our KYA-SoP at reduced cost",
+        "button": "Discover the offer"
     },
     "Client": {
-        "title": "Already using our solutions",
+        "title": "They already use our solutions",
         "subtitle": "Individuals, companies, and institutions trust KYA-Energy Group to learn, manage, and optimize their energy projects."
     },
     "SoftwareSection": {
         "categoryTitle": "Software Categories",
         "mainTitle": "Organize your projects with KYA-Energy Group software",
-        "subtitle": "Categorize and quickly find the software suited to your needs.",
+        "subtitle": "Categorize and quickly find the software that fits your needs.",
         "categories": {
             "monitoring": "Monitoring & Tracking",
             "management": "Management & Optimization",
-            "reporting": "Documentation & Reports",
+            "reporting": "Documentation & Reporting",
             "collaboration": "Collaboration & Sharing"
         },
         "softwares": {
@@ -34,7 +39,7 @@
             },
             "kya-analytics": {
                 "name": "KYA-Analytics",
-                "description": "Analyze your data in real-time and make informed decisions."
+                "description": "Analyze your data in real time and make informed decisions."
             },
             "kya-control": {
                 "name": "KYA-Control",
@@ -65,11 +70,11 @@
             },
             "management": {
                 "title": "Load Management",
-                "description": "Prioritize device power and optimize energy distribution."
+                "description": "Prioritize power supply to your devices and optimize energy distribution."
             },
             "reporting": {
                 "title": "Smart Reports",
-                "description": "Generate clear, detailed reports to analyze your performance."
+                "description": "Generate clear and detailed reports to analyze your performance."
             },
             "alerts": {
                 "title": "Alerts & Notifications",
@@ -77,7 +82,7 @@
             },
             "collaboration": {
                 "title": "Secure Collaboration",
-                "description": "Share software access with your team and partners safely."
+                "description": "Share software access with your team and partners securely."
             },
             "integration": {
                 "title": "External Data Integration",
@@ -85,43 +90,131 @@
             },
             "customization": {
                 "title": "Advanced Customization",
-                "description": "Adjust dashboards and themes for an experience tailored to your needs."
+                "description": "Customize your dashboards and themes for an experience tailored to your needs."
             },
             "export": {
                 "title": "Multi-format Export",
-                "description": "Export your data in PDF, Excel, or CSV for analysis or presentations."
+                "description": "Export your data to PDF, Excel, or CSV for analysis or presentations."
             }
         },
-        "cta": "Discover our software"
+        "cta": "Explore our software"
     },
     "TestimonialSection": {
-        "title": "User Testimonials",
+        "title": "What our users say",
         "testimonials": {
             "user1": {
-                "title": "Product Manager at KSA",
-                "text": "With KYA-FlexyControl, managing our solar installations is easier: real-time monitoring and automatic alerts improve our efficiency."
+                "title": "Product Manager of KSA",
+                "text": "With KYA-FlexyControl, managing our solar installations is easier: real-time monitoring and automatic alerts have increased our efficiency."
             },
             "user2": {
                 "title": "Energy Project Manager, France",
-                "text": "The reporting tool is incredibly powerful. It helped us reduce report creation time by 50% and improved communication with our clients."
+                "text": "The reporting tool is incredibly powerful. It reduced our report creation time by 50% and improved communication with our clients."
             },
             "user3": {
                 "title": "Technical Director, Germany",
-                "text": "Dashboard customization is a real advantage. Every team member has a view suited to their needs, which optimizes daily operations."
+                "text": "Dashboard customization is a real advantage. Each team member has a view tailored to their needs, optimizing our daily operations."
             }
         }
+    },
+    "TarifsSection": {
+        "title": "Compare our plans",
+        "subtitle": "See at a glance the pricing and features of each plan.",
+        "featureColumnHeader": "Feature",
+        "ctaButton": "Take advantage",
+        "plans": {
+            "commercial": {
+                "name": "Commercial",
+                "duration": "1 year"
+            },
+            "academic": {
+                "name": "Academic",
+                "duration": "1 year"
+            },
+            "student": {
+                "name": "Student",
+                "duration": "1 month / 7 days / 1 day"
+            }
+        },
+        "features": [
+            "Generate general report in illustrated PDF",
+            "Generate general report in Word",
+            "Generate general report with financial offer",
+            "Generate proforma invoice (in Word)",
+            "Financial evaluation of the designed system",
+            "Generate synoptic view of the designed system",
+            "Cable section sizing",
+            "Protection components sizing",
+            "Add new components (modules, batteries, inverters)",
+            "Sizing with all-in-one inverter",
+            "Download weather data from any location",
+            "Generate load profile"
+        ]
     },
     "Footer": {
         "description": "Your partner for a sustainable and responsible energy transition.",
         "iso_certified": "ISO 9001:2015 Certified",
         "contact_title": "Contact Us",
-        "email_placeholder": "Enter your Email",
+        "email_placeholder": "Enter your email",
         "submit_button": "Send",
         "copyright": "KYA-Energy Group. All rights reserved.",
         "links": {
             "home": "Home",
             "software": "Software",
             "about": "About"
+        }
+    },
+    "LogicielsPage": {
+        "hero": {
+            "preTitle": "Sizing",
+            "title": "with KYA-SolDesign",
+            "subtitle": "A professional software to design, simulate, and size your solar installations with precision and speed.",
+            "users": "Users",
+            "ctaOnline": "Try Online",
+            "ctaDownload": "Download",
+            "ctaNote": "Free trial and download after login"
+        },
+        "features": {
+            "mainTitle": "Main Features",
+            "subtitle": "KYA-SolDesign helps you model, simulate, and optimize your solar projects, from idea to installation.",
+            "cards": {
+                "intuitiveDesign": {
+                    "title": "Intuitive Design",
+                    "description": "A clear and ergonomic workspace to draw your solar projects without complexity."
+                },
+                "preciseSimulation": {
+                    "title": "Precise Simulation",
+                    "description": "Analyze energy production and visualize performance before installation."
+                },
+                "componentDatabase": {
+                    "title": "Component Database",
+                    "description": "Access an updated library of panels, inverters, and batteries for reliable choices."
+                },
+                "detailedReports": {
+                    "title": "Detailed Reports",
+                    "description": "Automatically generate technical and financial reports ready to share with your clients."
+                },
+                "smartOptimization": {
+                    "title": "Smart Optimization",
+                    "description": "Advanced algorithms to maximize the profitability and energy efficiency of your projects."
+                }
+            }
+        },
+        "resources": {
+            "mainTitle": "Resources",
+            "subtitle": "Put the power of KYA-SolDesign in your hands with our reference documents, practical guides, and user feedback.",
+            "documents": {
+                "title": "Documents",
+                "link1": "KYA-SolDesign Technical Datasheet",
+                "link2": "Quick User Guide",
+                "link3": "Complete Technical Documentation",
+                "link4": "Accessibility and Compliance Report"
+            },
+            "videos": {
+                "title": "Videos",
+                "playlistTitle": "Video Resources",
+                "videoTitle": "KYA-SolDesign Presentation in 2 Minutes",
+                "videoDate": "08/25/25"
+            }
         }
     }
 }

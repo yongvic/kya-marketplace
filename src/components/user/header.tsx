@@ -42,7 +42,7 @@ const LanguageSwitcher = () => {
 				<span className="font-semibold">{locale.toUpperCase()}</span>
 			</button>
 			{isOpen && (
-				<div className="absolute top-full right-0 mt-2 bg-white rounded-md shadow-lg border text-black z-10">
+				<div className="absolute top-full right-0 mt-2 bg-white rounded-md shadow-lg border text-black z-50">
 					<button onClick={() => switchLocale('fr')} className="block w-full text-left px-4 py-2 text-sm hover:bg-gray-100">Français</button>
 					<button onClick={() => switchLocale('en')} className="block w-full text-left px-4 py-2 text-sm hover:bg-gray-100">English</button>
 				</div>

@@ -2,65 +2,73 @@
 
 import { motion } from 'framer-motion';
 import { FiCheckCircle, FiXCircle } from 'react-icons/fi';
+import { useTranslations } from 'next-intl';
 
-// Données des fonctionnalités
-const featuresData = {
-  headers: ['Essentiel', 'Pro', 'Entreprise'] as const,
-  rows: [
-    {
-      title: 'Génération de rapport général en PDF imagé',
-      values: [true, true, true] as const,
-    },
-    {
-      title: 'Génération de rapport général avec l\'offre financière',
-      values: [false, true, true] as const,
-    },
-    {
-      title: 'Évaluation financière du système dimensionné',
-      values: [false, true, true] as const,
-    },
-    {
-      title: 'Dimensionnement des sections de câbles',
-      values: [true, true, true] as const,
-    },
-    {
-      title: 'Ajout de nouveaux composants (modules, batteries, onduleurs)',
-      values: [true, true, true] as const,
-    },
-    {
-      title: 'Téléchargement des données météo de toute localité',
-      values: [true, true, true] as const,
-    },
-  ],
-};
+// Valeurs des fonctionnalités : [Commercial, Academic, Student]
+const featureValues = [
+  [true, false, true],
+  [true, true, false],
+  [true, false, false],
+  [true, false, false],
+  [true, false, false],
+  [true, true, true],
+  [true, true, true],
+  [true, true, true],
+  [true, true, true],
+  [true, true, true],
+  [true, true, true],
+  [true, true, true],
+];
 
-// Typage des lignes
-type FeatureRow = typeof featuresData.rows[number];
 
 const TarifsSection = () => {
-  // Animation du conteneur
+  const t = useTranslations('TarifsSection');
+
+  // ✅ Utilisation de t.raw() pour récupérer le tableau de fonctionnalités
+  const featureTitles = (t.raw('features') as string[]) || [];
+
+  const featuresData = {
+    headers: [
+      {
+        name: t('plans.commercial.name'),
+        duration: t('plans.commercial.duration'),
+      },
+      {
+        name: t('plans.academic.name'),
+        duration: t('plans.academic.duration'),
+      },
+      {
+        name: t('plans.student.name'),
+        duration: t('plans.student.duration'),
+      },
+    ],
+    rows: featureTitles.map((title, index) => ({
+      title,
+      values: featureValues[index] || [false, false, false], // protection contre index out of bounds
+    })),
+  };
+
+  type FeatureRow = (typeof featuresData.rows)[number];
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-      },
+      transition: { staggerChildren: 0.1 },
     },
   };
 
-  // Animation des éléments (avec delay personnalisé via `custom`)
   const itemVariants = {
     hidden: { opacity: 0, y: 20 },
     visible: (delay: number) => ({
       opacity: 1,
       y: 0,
       transition: {
-        type: 'spring' as const,
+        type: 'spring',
         stiffness: 80,
         damping: 15,
         delay,
-      },
+      } as const,
     }),
   };
 
@@ -72,13 +80,13 @@ const TarifsSection = () => {
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-14"
+          className="text-center mb-12"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900">
-            Des Fonctionnalités Puissantes à Votre Portée
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
+            {t('title')}
           </h2>
-          <p className="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
-            Comparez nos offres et trouvez celle qui correspond parfaitement à vos besoins.
+          <p className="mt-3 text-gray-600 max-w-2xl mx-auto text-lg">
+            {t('subtitle')}
           </p>
         </motion.div>
 
@@ -91,40 +99,43 @@ const TarifsSection = () => {
           viewport={{ once: true, amount: 0.1 }}
         >
           <div className="min-w-full inline-block align-middle bg-white rounded-2xl overflow-hidden">
-            {/* En-têtes */}
+            {/* En-tête */}
             <motion.div
               custom={0}
               variants={itemVariants}
-              className="grid grid-cols-4 gap-4 bg-white border-b border-gray-200"
+              className="grid grid-cols-4 gap-6 bg-gray-50 border-b border-gray-200 p-6"
             >
-              <div className="p-6 text-left font-semibold text-xl text-gray-800 self-end">
-                Fonctionnalités
+              <div className="col-span-1 text-left font-bold text-xl text-teal-700">
+                {t('featureColumnHeader')}
               </div>
               {featuresData.headers.map((header, index) => (
-                <div key={index} className="p-6">
-                  <h3 className="text-2xl font-bold text-teal-600">{header}</h3>
+                <div key={index} className="col-span-1 text-center">
+                  <h3 className="font-bold text-xl text-teal-700">{header.name}</h3>
+                  <p className="text-sm text-gray-500 mt-1">{header.duration}</p>
                   <motion.button
                     whileHover={{ scale: 1.05, boxShadow: '0 10px 20px rgba(20, 184, 166, 0.15)' }}
                     whileTap={{ scale: 0.98 }}
-                    className="mt-3 w-full bg-teal-50 text-teal-700 font-semibold py-3 px-5 rounded-xl border border-teal-100 hover:bg-teal-100 transition-colors duration-200"
+                    className="mt-4 w-full bg-teal-500 hover:bg-teal-600 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-200"
                   >
-                    En profiter
+                    {t('ctaButton')}
                   </motion.button>
                 </div>
               ))}
             </motion.div>
 
-            {/* Lignes */}
+            {/* Lignes des fonctionnalités */}
             {featuresData.rows.map((row: FeatureRow, rowIndex: number) => (
               <motion.div
                 key={rowIndex}
-                custom={0.1 + rowIndex * 0.08} // ← delay personnalisé
+                custom={0.1 + rowIndex * 0.08}
                 variants={itemVariants}
-                className="grid grid-cols-4 gap-4 items-center p-6 border-b border-gray-100 hover:bg-gray-50 transition-colors duration-200"
+                className="grid grid-cols-4 gap-6 items-center p-5 border-b border-gray-100 hover:bg-gray-25 transition-colors duration-200"
               >
-                <div className="text-left font-medium text-gray-800">{row.title}</div>
-                {row.values.map((value: boolean, valueIndex: number) => (
-                  <div key={valueIndex} className="flex justify-center">
+                <div className="col-span-1 text-left text-gray-800 font-medium">
+                  {row.title}
+                </div>
+                {row.values.map((value: boolean, colIndex: number) => (
+                  <div key={colIndex} className="col-span-1 flex justify-center">
                     <motion.span
                       initial={{ scale: 0 }}
                       animate={{ scale: 1 }}
@@ -133,7 +144,7 @@ const TarifsSection = () => {
                       {value ? (
                         <FiCheckCircle className="text-teal-500 text-2xl" />
                       ) : (
-                        <FiXCircle className="text-gray-300 text-2xl" />
+                        <FiXCircle className="text-red-500 text-2xl" />
                       )}
                     </motion.span>
                   </div>
