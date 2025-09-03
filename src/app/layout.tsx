@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
 import { Libre_Franklin } from "next/font/google";
 import "@/styles/globals.css";
-import { NextIntlClientProvider } from 'next-intl';
+import { NextIntlClientProvider } from "next-intl";
 
 const libreFranklin = Libre_Franklin({
-  subsets: ["latin"],
+  subsets: [
+    "latin",
+  ],
   variable: "--font-libre-franklin",
   display: "swap",
 });
@@ -21,10 +23,8 @@ export default function RootLayout({
 }>) {
   return (
     <html>
-      <body
-        className={`${libreFranklin.variable} antialiased`}
-      >
-        <NextIntlClientProvider>{children}</NextIntlClientProvider>
+      <body className={`${libreFranklin.variable} antialiased`}>
+        {children}
       </body>
     </html>
   );
