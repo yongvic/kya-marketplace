@@ -1,0 +1,248 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// -------------------
+// --- CORE MODELS ---
+// -------------------
+
+model User {
+  id            String    @id @default(uuid())
+  email         String?   @unique // Optional, some providers don't give email
+  emailVerified DateTime?
+  fullName      String?
+  image         String? // For profile pictures from providers
+
+  // Relations
+  accounts               Account[] // <-- ADDED: User can have multiple login methods
+  roles                  UserRole[]
+  orders                 Order[]
+  customerLicenses       CustomerLicense[]
+  specialLicenseRequests SpecialLicenseRequest[]
+}
+
+model Account {
+  id                String @id @default(cuid())
+  userId            String
+  type              String // The type of account (e.g., "oauth", "credentials", "email")
+  provider          String // The provider name (e.g., "google", "github", "credentials")
+  providerAccountId String // The user's ID from the provider
+
+  // For credentials type
+  password String? // <-- The hashed password now lives here!
+
+  // For oauth type
+  refresh_token String? @db.Text
+  access_token  String? @db.Text
+  expires_at    Int?
+  token_type    String?
+  scope         String?
+  id_token      String? @db.Text
+  session_state String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId]) // Ensures a user can only link a provider once
+}
+
+model Role {
+  id   String   @id @default(uuid())
+  name RoleName @unique // Using an enum for type safety
+
+  // Relations
+  users UserRole[]
+}
+
+// Join table for Many-to-Many relationship between User and Role
+model UserRole {
+  user   User   @relation(fields: [userId], references: [id])
+  userId String
+  role   Role   @relation(fields: [roleId], references: [id])
+  roleId String
+
+  @@id([userId, roleId]) // Composite primary key
+}
+
+model Product {
+  id          String   @id @default(uuid())
+  name        String
+  slug        String   @unique
+  description String
+  logoUrl     String?
+  pageConfig  Json // Configuration de la page produit
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relations
+  media    ProductMedia[]
+  updates  Update[]
+  licenses License[]
+}
+
+model ProductMedia {
+  id           String    @id @default(uuid())
+  mediaType    MediaType // 'image', 'video'
+  fileUrl      String
+  displayOrder Int
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+
+  // Relations
+  product   Product @relation(fields: [productId], references: [id])
+  productId String
+}
+
+model Update {
+  id            String    @id @default(uuid())
+  versionNumber String
+  changelog     String
+  downloadUrl   String
+  isLatest      Boolean   @default(false)
+  isPublic      Boolean   @default(true)
+  publishedAt   DateTime?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  product   Product @relation(fields: [productId], references: [id])
+  productId String
+}
+
+// -----------------------
+// --- LICENSING MODELS --
+// -----------------------
+
+model EditionType {
+  id            String   @id @default(uuid())
+  name          String
+  description   String?
+  requiresProof Boolean  @default(false)
+  displayOrder  Int
+  isPublic      Boolean  @default(true)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  // Relations
+  licenses License[]
+}
+
+model License {
+  id            String   @id @default(uuid())
+  name          String
+  priceInCents  Int
+  featureConfig Json
+  isPublic      Boolean  @default(true)
+  displayOrder  Int
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  // Relations
+  product                Product                 @relation(fields: [productId], references: [id])
+  productId              String
+  editionType            EditionType             @relation(fields: [editionTypeId], references: [id])
+  editionTypeId          String
+  customerLicenses       CustomerLicense[]
+  specialLicenseRequests SpecialLicenseRequest[]
+}
+
+model CustomerLicense {
+  id          String        @id @default(uuid())
+  licenseKey  String        @unique
+  status      LicenseStatus
+  expiresAt   DateTime?
+  extraConfig Json?
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+
+  // Relations
+  user        User         @relation(fields: [userId], references: [id])
+  userId      String
+  license     License      @relation(fields: [licenseId], references: [id])
+  licenseId   String
+  order       Order        @relation(fields: [orderId], references: [id])
+  orderId     String
+  activations Activation[]
+}
+
+model Activation {
+  id                 String   @id @default(uuid())
+  machineFingerprint String
+  activatedAt        DateTime @default(now())
+
+  // Relations
+  customerLicense   CustomerLicense @relation(fields: [customerLicenseId], references: [id])
+  customerLicenseId String
+}
+
+model SpecialLicenseRequest {
+  id                String        @id @default(uuid())
+  status            RequestStatus @default(PENDING)
+  justificationText String
+  proofFileUrl      String?
+  createdAt         DateTime      @default(now())
+  updatedAt         DateTime      @updatedAt
+
+  // Relations
+  user      User    @relation(fields: [userId], references: [id])
+  userId    String
+  license   License @relation(fields: [licenseId], references: [id])
+  licenseId String
+}
+
+// -------------------
+// --- ORDER MODELS --
+// -------------------
+
+model Order {
+  id                     String      @id @default(uuid())
+  totalAmount            Int
+  currency               String
+  status                 OrderStatus
+  paymentProviderDetails Json?
+  createdAt              DateTime    @default(now())
+  updatedAt              DateTime    @updatedAt
+
+  // Relations
+  user             User              @relation(fields: [userId], references: [id])
+  userId           String
+  customerLicenses CustomerLicense[]
+}
+
+enum RoleName {
+  ADMIN
+  CUSTOMER
+}
+
+enum MediaType {
+  IMAGE
+  VIDEO
+}
+
+enum LicenseStatus {
+  ACTIVE
+  EXPIRED
+  CANCELLED
+  PENDING
+}
+
+enum RequestStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
+
+enum OrderStatus {
+  PENDING
+  COMPLETED
+  FAILED
+  REFUNDED
+}
