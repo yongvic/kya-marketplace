@@ -97,7 +97,7 @@ export default function Header() {
 
 				<div className="hidden md:flex items-center gap-4">
 					<button className="p-2 rounded-full text-gray-700 hover:bg-gray-100 hover:text-teal-500 transition-colors" aria-label="Recherche"><Search /></button>
-					<button className="p-2 rounded-full text-gray-700 hover:bg-gray-100 hover:text-teal-500 transition-colors" aria-label="Compte utilisateur"><User /></button>
+					<Link href="/profile" className="p-2 rounded-full text-gray-700 hover:bg-gray-100 hover:text-teal-500 transition-colors" aria-label="Compte utilisateur"><User /></Link>
 					<LanguageSwitcher />
 				</div>
 
@@ -129,7 +129,7 @@ export default function Header() {
 					<div className="border-t border-gray-200 w-3/4 my-4" />
 					<div className="flex items-center gap-8">
 						<button className="hover:text-teal-500 transition-colors" aria-label="Recherche"><Search size={28} /></button>
-						<button className="hover:text-teal-500 transition-colors" aria-label="Compte utilisateur"><User size={28} /></button>
+						<Link href="/profile" className="hover:text-teal-500 transition-colors" aria-label="Compte utilisateur" onClick={() => setIsMenuOpen(false)}><User size={28} /></Link>
 					</div>
 					<div className="mt-4">
 						<LanguageSwitcher />

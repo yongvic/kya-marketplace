@@ -216,5 +216,48 @@
                 "videoDate": "08/25/25"
             }
         }
+    },
+    "ProfilePage": {
+        "sidebar": {
+            "greeting": "Hello",
+            "profile": "My Profile",
+            "security": "Security",
+            "history": "Purchase History"
+        },
+        "profileDetails": {
+            "title": "My Profile",
+            "subtitle": "Manage your profile information.",
+            "changeAvatar": "Change Photo",
+            "removeAvatar": "Remove",
+            "usernameLabel": "Username",
+            "emailLabel": "Email Address",
+            "saveButton": "Save Changes"
+        },
+        "securitySettings": {
+            "title": "Security",
+            "subtitle": "Change your password.",
+            "currentPasswordLabel": "Current Password",
+            "newPasswordLabel": "New Password",
+            "confirmPasswordLabel": "Confirm New Password",
+            "saveButton": "Change Password"
+        },
+        "purchaseHistory": {
+            "title": "Purchase History",
+            "subtitle": "Review and manage your software licenses.",
+            "searchPlaceholder": "Search for software...",
+            "filterAll": "All",
+            "filterActive": "Active Licenses",
+            "filterExpired": "Expired Licenses",
+            "tableHeaderSoftware": "Software",
+            "tableHeaderLicenseKey": "License Key",
+            "tableHeaderExpiry": "Expiry Date",
+            "tableHeaderStatus": "Status",
+            "tableHeaderAction": "Action",
+            "statusActive": "Active",
+            "statusExpired": "Expired",
+            "actionDetails": "Details",
+            "noResults": "No licenses match your search.",
+            "purchasedOn": "Purchased on"
+        }
     }
 }
