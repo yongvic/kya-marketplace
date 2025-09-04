@@ -216,5 +216,48 @@
                 "videoDate": "25/08/25"
             }
         }
+    },
+    "ProfilePage": {
+        "sidebar": {
+            "greeting": "Bonjour",
+            "profile": "Mon Profil",
+            "security": "Sécurité",
+            "history": "Historique d'achats"
+        },
+        "profileDetails": {
+            "title": "Mon Profil",
+            "subtitle": "Gérez les informations de votre profil.",
+            "changeAvatar": "Changer la photo",
+            "removeAvatar": "Supprimer",
+            "usernameLabel": "Nom d'utilisateur",
+            "emailLabel": "Adresse e-mail",
+            "saveButton": "Sauvegarder les changements"
+        },
+        "securitySettings": {
+            "title": "Sécurité",
+            "subtitle": "Modifiez votre mot de passe.",
+            "currentPasswordLabel": "Mot de passe actuel",
+            "newPasswordLabel": "Nouveau mot de passe",
+            "confirmPasswordLabel": "Confirmer le nouveau mot de passe",
+            "saveButton": "Changer le mot de passe"
+        },
+        "purchaseHistory": {
+            "title": "Historique d'achats",
+            "subtitle": "Consultez et gérez vos licences de logiciels.",
+            "searchPlaceholder": "Rechercher un logiciel...",
+            "filterAll": "Tous",
+            "filterActive": "Licences non épuisées",
+            "filterExpired": "Licences épuisées",
+            "tableHeaderSoftware": "Logiciel",
+            "tableHeaderLicenseKey": "Clé de Licence",
+            "tableHeaderExpiry": "Date d'expiration",
+            "tableHeaderStatus": "Statut",
+            "tableHeaderAction": "Action",
+            "statusActive": "Actif",
+            "statusExpired": "Épuisé",
+            "actionDetails": "Détails",
+            "noResults": "Aucune licence ne correspond à votre recherche.",
+            "purchasedOn": "Acheté le"
+        }
     }
 }
