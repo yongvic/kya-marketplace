@@ -1,6 +1,7 @@
 'use client';
 
-import { motion } from 'framer-motion';
+// CORRECTION : Importer le type "Variants"
+import { motion, Variants } from 'framer-motion';
 import { FiCheckCircle, FiXCircle } from 'react-icons/fi';
 import { useTranslations } from 'next-intl';
 
@@ -24,7 +25,6 @@ const featureValues = [
 const TarifsSection = () => {
   const t = useTranslations('TarifsSection');
 
-  // ✅ Utilisation de t.raw() pour récupérer le tableau de fonctionnalités
   const featureTitles = (t.raw('features') as string[]) || [];
 
   const featuresData = {
@@ -44,68 +44,63 @@ const TarifsSection = () => {
     ],
     rows: featureTitles.map((title, index) => ({
       title,
-      values: featureValues[index] || [false, false, false], // protection contre index out of bounds
+      values: featureValues[index] || [false, false, false],
     })),
   };
 
-  type FeatureRow = (typeof featuresData.rows)[number];
-
-  const containerVariants = {
+  // CORRECTION : Appliquer le type Variants
+  const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: { staggerChildren: 0.1 },
+      transition: { staggerChildren: 0.1, delayChildren: 0.2 },
     },
   };
 
-  const itemVariants = {
+  // CORRECTION : Appliquer le type Variants
+  const itemVariants: Variants = {
     hidden: { opacity: 0, y: 20 },
-    visible: (delay: number) => ({
+    visible: {
       opacity: 1,
       y: 0,
-      transition: {
-        type: 'spring',
-        stiffness: 80,
-        damping: 15,
-        delay,
-      } as const,
-    }),
+      transition: { type: 'spring', stiffness: 100, damping: 15 },
+    },
   };
 
   return (
-    <section className="py-20 px-4 bg-white">
+    <section className="py-16 md:py-20 px-4 bg-gray-50">
       <div className="max-w-7xl mx-auto">
         {/* Titre */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
           transition={{ duration: 0.6 }}
           className="text-center mb-12"
         >
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
             {t('title')}
           </h2>
-          <p className="mt-3 text-gray-600 max-w-2xl mx-auto text-lg">
+          <p className="mt-3 text-gray-600 max-w-2xl mx-auto text-base md:text-lg">
             {t('subtitle')}
           </p>
         </motion.div>
 
-        {/* Tableau */}
+        {/* ----- VUE DESKTOP (TABLEAU) ----- */}
         <motion.div
-          className="overflow-x-auto rounded-2xl shadow-lg"
+          className="hidden lg:block overflow-x-auto rounded-2xl shadow-xl"
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.1 }}
         >
           <div className="min-w-full inline-block align-middle bg-white rounded-2xl overflow-hidden">
-            {/* En-tête */}
+            {/* En-tête du tableau */}
             <motion.div
-              custom={0}
               variants={itemVariants}
-              className="grid grid-cols-4 gap-6 bg-gray-50 border-b border-gray-200 p-6"
+              className="grid grid-cols-4 gap-6 bg-gray-50/70 border-b border-gray-200 p-6"
             >
-              <div className="col-span-1 text-left font-bold text-xl text-teal-700">
+              <div className="col-span-1 flex items-center font-bold text-xl text-teal-700">
                 {t('featureColumnHeader')}
               </div>
               {featuresData.headers.map((header, index) => (
@@ -123,36 +118,74 @@ const TarifsSection = () => {
               ))}
             </motion.div>
 
-            {/* Lignes des fonctionnalités */}
-            {featuresData.rows.map((row: FeatureRow, rowIndex: number) => (
+            {/* Lignes du tableau */}
+            {featuresData.rows.map((row, rowIndex) => (
               <motion.div
                 key={rowIndex}
-                custom={0.1 + rowIndex * 0.08}
                 variants={itemVariants}
-                className="grid grid-cols-4 gap-6 items-center p-5 border-b border-gray-100 hover:bg-gray-25 transition-colors duration-200"
+                className="grid grid-cols-4 gap-6 items-center p-5 border-b border-gray-100 last:border-b-0 hover:bg-gray-50 transition-colors duration-200"
               >
                 <div className="col-span-1 text-left text-gray-800 font-medium">
                   {row.title}
                 </div>
-                {row.values.map((value: boolean, colIndex: number) => (
+                {row.values.map((value, colIndex) => (
                   <div key={colIndex} className="col-span-1 flex justify-center">
-                    <motion.span
-                      initial={{ scale: 0 }}
-                      animate={{ scale: 1 }}
-                      transition={{ type: 'spring', stiffness: 200, damping: 15 }}
-                    >
-                      {value ? (
-                        <FiCheckCircle className="text-teal-500 text-2xl" />
-                      ) : (
-                        <FiXCircle className="text-red-500 text-2xl" />
-                      )}
-                    </motion.span>
+                    {value ? (
+                      <FiCheckCircle className="text-teal-500 text-2xl" />
+                    ) : (
+                      <FiXCircle className="text-red-400 text-2xl" />
+                    )}
                   </div>
                 ))}
               </motion.div>
             ))}
           </div>
         </motion.div>
+
+        {/* ----- VUE MOBILE & TABLETTE (CARTES) ----- */}
+        <motion.div
+          className="block lg:hidden space-y-8"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.1 }}
+        >
+          {featuresData.headers.map((header, index) => (
+            <motion.div
+              key={index}
+              variants={itemVariants}
+              className="bg-white rounded-2xl shadow-xl overflow-hidden"
+            >
+              {/* En-tête de la carte */}
+              <div className="p-6 bg-gray-50/70 text-center">
+                <h3 className="font-bold text-xl text-teal-700">{header.name}</h3>
+                <p className="text-sm text-gray-500 mt-1">{header.duration}</p>
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.98 }}
+                  className="mt-4 w-full bg-teal-500 hover:bg-teal-600 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-200"
+                >
+                  {t('ctaButton')}
+                </motion.button>
+              </div>
+
+              {/* Liste des fonctionnalités de la carte */}
+              <div className="p-6 space-y-4">
+                {featuresData.rows.map((row, rowIndex) => (
+                  <div key={rowIndex} className="flex justify-between items-center text-sm">
+                    <span className="text-gray-700">{row.title}</span>
+                    {row.values[index] ? (
+                      <FiCheckCircle className="text-teal-500 text-xl flex-shrink-0" />
+                    ) : (
+                      <FiXCircle className="text-red-400 text-xl flex-shrink-0" />
+                    )}
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+          ))}
+        </motion.div>
+
       </div>
     </section>
   );

@@ -1,16 +1,15 @@
 import type { Metadata } from "next";
-import { Libre_Franklin } from "next/font/google";
+// import { Libre_Franklin } from "next/font/google";
 import { getLocale } from "next-intl/server";
 import { NextIntlClientProvider } from "next-intl";
 
-import "@/styles/globals.css";
 
-// 1. ✅ Police
-const libreFranklin = Libre_Franklin({
-    subsets: ["latin"],
-    variable: "--font-libre-franklin",
-    display: "swap",
-});
+//1. ✅ Police
+// const libreFranklin = Libre_Franklin({
+//     subsets: ["latin"],
+//     variable: "--font-libre-franklin",
+//     display: "swap",
+// });
 
 // 2. ✅ Métadonnées (SEO) — elles fonctionnent toujours ici
 export const metadata: Metadata = {
@@ -25,14 +24,14 @@ export default async function LocaleLayout({
     children: React.ReactNode;
 }) {
     const locale = await getLocale();
-    const messages = (await import(`@/messages/${locale}.json`)).default;
+    // const messages = (await import(`@/messages/${locale}.json`)).default;
 
     return (
         // 4. ✅ On garde la police via className
-        <html lang={locale} className={libreFranklin.variable} suppressHydrationWarning>
-            <body className="antialiased">
+        <html lang={locale} suppressHydrationWarning>
+            <body>
                 {/* 5. ✅ Fournisseur de traductions */}
-                <NextIntlClientProvider locale={locale} messages={messages}>
+                <NextIntlClientProvider>
                     {children}
                 </NextIntlClientProvider>
             </body>

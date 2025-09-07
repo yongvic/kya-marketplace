@@ -110,7 +110,7 @@ export default function Header() {
 
 			{/* Menu Mobile Overlay */}
 			<div className={`
-                md:hidden fixed top-24 left-0 w-full h-[calc(100vh-6rem)] bg-white transform transition-transform duration-500 ease-in-out
+                md:hidden fixed top-24 left-0 z-20 w-full h-[calc(100vh-6rem)] bg-white transform transition-transform duration-500 ease-in-out
                 ${isMenuOpen ? 'translate-x-0' : 'translate-x-full'}
             `}>
 				<nav className="flex flex-col items-center justify-center h-full gap-8 text-2xl font-medium">
