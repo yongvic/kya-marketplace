@@ -46,12 +46,16 @@ export const SignUpForm = () => {
       });
 
       if (result?.ok) {
-        redirect("/dashboard"); // Redirection vers le dashboard
+        redirect("/dashboard/user"); // Redirection vers le dashboard
       } else {
         throw new Error(result?.error || "Connexion automatique échouée.");
       }
-    } catch (err: any) {
-      setError(err.message);
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        setError(err.message);
+      } else {
+        setError("An unexpected error occurred");
+      }
     } finally {
       setIsLoading(false);
     }

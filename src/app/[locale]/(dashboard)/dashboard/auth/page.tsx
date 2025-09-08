@@ -123,7 +123,7 @@ export default function AuthPage() {
                     variant="light"
                     className="cursor-pointer underline"
                     onClick={() => setSelected("sign-up")}>
-                    S'inscrire
+                    S`inscrire
                   </Button>
                 </p>
                 <div className="flex gap-2 justify-end">
