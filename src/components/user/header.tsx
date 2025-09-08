@@ -217,7 +217,7 @@ export default function Header() {
 								value={searchQuery}
 								onChange={(e) => setSearchQuery(e.target.value)}
 								onFocus={() => setIsSearchActive(true)}
-								className={`w-full bg-transparent border-none focus:ring-0 transition-opacity duration-200 text-gray-800 ${isSearchActive ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
+								className={`w-full bg-transparent border-none focus:ring-0 transition-opacity outline-none duration-200 text-gray-800 ${isSearchActive ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
 							/>
 						</div>
 						{isSearchActive && <SearchResultsDropdown query={searchQuery} onResultClick={() => setIsSearchActive(false)} />}
@@ -271,7 +271,7 @@ export default function Header() {
 						</button>
 						<input
 							type="text"
-							placeholder="Rechercher sur la page..."
+							placeholder={h("searchPlaceholder")}
 							value={searchQuery}
 							onChange={(e) => setSearchQuery(e.target.value)}
 							className="w-full text-lg bg-transparent border-none focus:ring-0"

@@ -4,8 +4,10 @@ import React, { useState } from "react";
 import { Input, Button } from "@heroui/react";
 import { signIn } from "next-auth/react";
 import { redirect } from "next/navigation";
+import { useTranslations } from "next-intl";
 
 export const SignUpForm = () => {
+  const t = useTranslations("SignUpForm");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -35,7 +37,7 @@ export const SignUpForm = () => {
 
       if (!response.ok) {
         const errorData = await response.text();
-        throw new Error(errorData || "Échec de la création du compte.");
+        throw new Error(errorData || t("creationError"));
       }
 
       // **UX Améliorée : Connexion automatique après inscription réussie**
@@ -48,13 +50,13 @@ export const SignUpForm = () => {
       if (result?.ok) {
         redirect("/dashboard/user"); // Redirection vers le dashboard
       } else {
-        throw new Error(result?.error || "Connexion automatique échouée.");
+        throw new Error(result?.error || t("autoLoginError"));
       }
     } catch (err: unknown) {
       if (err instanceof Error) {
         setError(err.message);
       } else {
-        setError("An unexpected error occurred");
+        setError(t("unexpectedError"));
       }
     } finally {
       setIsLoading(false);
@@ -67,22 +69,22 @@ export const SignUpForm = () => {
       className="flex flex-col gap-4">
       <Input
         isRequired
-        label="Nom complet"
+        label={t("fullNameLabel")}
         name="fullName"
-        placeholder="Entrez votre nom complet"
+        placeholder={t("fullNamePlaceholder")}
       />
       <Input
         isRequired
-        label="Email"
+        label={t("emailLabel")}
         name="email"
-        placeholder="Entrez votre email"
+        placeholder={t("emailPlaceholder")}
         type="email"
       />
       <Input
         isRequired
-        label="Mot de passe"
+        label={t("passwordLabel")}
         name="password"
-        placeholder="8 caractères minimum"
+        placeholder={t("passwordPlaceholder")}
         type="password"
         minLength={8}
       />
@@ -97,7 +99,7 @@ export const SignUpForm = () => {
           color="primary"
           type="submit"
           isLoading={isLoading}>
-          Créer mon compte
+          {t("createAccountButton")}
         </Button>
       </div>
     </form>

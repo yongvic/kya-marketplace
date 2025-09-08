@@ -2,9 +2,11 @@
 import { Tabs, Tab } from "@heroui/react";
 import { redirect, usePathname } from "next/navigation";
 import { FaCog, FaDesktop, FaDownload, FaHome, FaKey } from "react-icons/fa";
+import { useTranslations } from "next-intl";
 
 export default function TabNavigation() {
   const pathname = usePathname();
+  const t = useTranslations("DashboardUser.tabNavigation");
 
   // Détermine l'onglet actif à partir de l'URL
   const currentTab = pathname.split("/").pop();
@@ -13,31 +15,31 @@ export default function TabNavigation() {
     {
       href: `/dashboard/user`,
       key: "overview",
-      title: "Vue d'ensemble",
+      title: t("overview"),
       icon: <FaHome />,
     },
     {
       href: `/dashboard/user/downloads`,
       key: "downloads",
-      title: "Téléchargements",
+      title: t("downloads"),
       icon: <FaDownload />,
     },
     {
       href: `/dashboard/user/licenses`,
       key: "licenses",
-      title: "Licences",
+      title: t("licenses"),
       icon: <FaKey />,
     },
     {
       href: `/dashboard/user/devices`,
       key: "devices",
-      title: "Appareils Activés",
+      title: t("devices"),
       icon: <FaDesktop />,
     },
     {
       href: `/dashboard/user/settings`,
       key: "settings",
-      title: "Paramètres",
+      title: t("settings"),
       icon: <FaCog />,
     },
   ];
@@ -53,7 +55,7 @@ export default function TabNavigation() {
 
   return (
     <Tabs
-      aria-label="Navigation du produit"
+      aria-label={t("ariaLabel")}
       className="w-full md:w-max"
       onSelectionChange={(key: any) => {
         const selectedTab = tabs.find((tab) => tab.key === key);

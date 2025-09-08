@@ -14,6 +14,7 @@ import { useRouter } from "next/navigation";
 import { signIn } from "next-auth/react";
 import type React from "react";
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 
 // Tu peux utiliser une librairie d'icônes comme react-icons
 // npm install react-icons
@@ -26,6 +27,7 @@ export default function AuthPage() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const router = useRouter();
+  const t = useTranslations("AuthPage");
 
   const handleOAuthSignIn = (provider: "google") => {
     signIn(provider, {
@@ -51,7 +53,6 @@ export default function AuthPage() {
         password,
         redirect: false, // On gère la redirection manuellement
       });
-
       if (result?.ok) {
         router.push("/dashboard/user"); // Redirection vers le dashboard
       } else {
@@ -60,9 +61,7 @@ export default function AuthPage() {
         setError(result?.error || null);
       }
     } catch {
-      setError(
-        "La connexion a échoué. Le nom d'utilisateur ou le mot de passe est invalide",
-      );
+      setError(t("loginError"));
     } finally {
       setIsLoading(false);
     }
@@ -79,8 +78,8 @@ export default function AuthPage() {
             height={128}
             className="object-cover"
           />
-          <h1 className="font-display text-2xl font-bold">KYA-Sol Design</h1>
-          <p className="text-sm text-default-500">Accédez à votre espace</p>
+          <h1 className="font-display text-2xl font-bold">{t("title")}</h1>
+          <p className="text-sm text-default-500">{t("subtitle")}</p>
         </CardHeader>
         <CardBody className="overflow-hidden">
           <Tabs
@@ -93,7 +92,7 @@ export default function AuthPage() {
             size="md">
             <Tab
               key="login"
-              title="Connexion">
+              title={t("loginTab")}>
               <form
                 className="flex flex-col gap-4"
                 onSubmit={handleCredentialsSubmit}>
@@ -104,26 +103,26 @@ export default function AuthPage() {
                 )}
                 <Input
                   isRequired
-                  label="Email"
+                  label={t("emailLabel")}
                   name="email"
-                  placeholder="Entrez votre email"
+                  placeholder={t("emailPlaceholder")}
                   type="email"
                 />
                 <Input
                   isRequired
-                  label="Mot de passe"
+                  label={t("passwordLabel")}
                   name="password"
-                  placeholder="Entrez votre mot de passe"
+                  placeholder={t("passwordPlaceholder")}
                   type="password"
                 />
                 <p className="text-center text-small">
-                  Besoin de créer un compte ?{" "}
+                  {t("needAccount")}{" "}
                   <Button
                     size="sm"
                     variant="light"
                     className="cursor-pointer underline"
                     onClick={() => setSelected("sign-up")}>
-                    S`inscrire
+                    {t("signupButton")}
                   </Button>
                 </p>
                 <div className="flex gap-2 justify-end">
@@ -132,21 +131,21 @@ export default function AuthPage() {
                     fullWidth
                     isLoading={isLoading}
                     type="submit">
-                    Se connecter
+                    {t("loginButton")}
                   </Button>
                 </div>
               </form>
             </Tab>
             <Tab
               key="sign-up"
-              title="Inscription">
+              title={t("signupTab")}>
               {/* Le formulaire d'inscription irait ici. Pour l'instant, on se concentre sur la connexion. */}
               <SignUpForm />
             </Tab>
           </Tabs>
           <div className="flex items-center gap-4 my-4">
             <hr className="flex-grow border-t border-default-200" />
-            <span className="text-xs text-default-500">OU</span>
+            <span className="text-xs text-default-500">{t("or")}</span>
             <hr className="flex-grow border-t border-default-200" />
           </div>
           <Button
@@ -154,7 +153,7 @@ export default function AuthPage() {
             onPress={() => handleOAuthSignIn("google")}
             startContent={<FcGoogle size={20} />}
             variant="bordered">
-            Continuer avec Google
+            {t("googleButton")}
           </Button>
         </CardBody>
       </Card>

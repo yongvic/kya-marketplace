@@ -1,12 +1,14 @@
 import { Avatar, Button, Chip } from "@heroui/react";
 import type React from "react";
 import TabNavigation from "@/components/dashboard/user/TabNavigation";
+import { getTranslations } from "next-intl/server";
 
 export default async function ProductLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const t = await getTranslations("DashboardUser.productLayout");
   return (
     <div className="p-4 md:p-8">
       {/* 1. Header du Produit */}
@@ -18,7 +20,7 @@ export default async function ProductLayout({
           />
           <div>
             <h1 className="text-2xl font-bold text-foreground">
-              KYA-Sol Design
+              {t("title")}
             </h1>
           </div>
         </div>
@@ -26,7 +28,7 @@ export default async function ProductLayout({
           <Chip
             color="success"
             variant="flat">
-            Dernière version: v7.2.3
+            {t("latestVersion")}
           </Chip>
         </div>
       </header>

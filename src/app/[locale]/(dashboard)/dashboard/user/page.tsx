@@ -9,6 +9,7 @@ import {
 } from "@heroui/react";
 import { differenceInDays } from "date-fns";
 import Link from "next/link";
+import { getTranslations } from "next-intl/server";
 
 // Simule la récupération de la licence active de l'utilisateur
 async function getActiveLicense() {
@@ -28,6 +29,7 @@ async function getActiveLicense() {
 }
 
 export default async function OverviewPage() {
+  const t = await getTranslations("DashboardUser.overviewPage");
   const license = await getActiveLicense();
   const daysRemaining = license
     ? differenceInDays(new Date(license.expiresAt), new Date())
@@ -36,10 +38,10 @@ export default async function OverviewPage() {
 
   return (
     <div>
-      <h1 className="text-2xl font-bold mb-6">Vue d'ensemble</h1>
+      <h1 className="text-2xl font-bold mb-6">{t("title")}</h1>
       <Card>
         <CardHeader>
-          <h2 className="text-lg font-semibold">Statut de votre Licence</h2>
+          <h2 className="text-lg font-semibold">{t("licenseStatusTitle")}</h2>
         </CardHeader>
         <Divider />
         <CardBody>
@@ -49,7 +51,7 @@ export default async function OverviewPage() {
                 <Chip
                   color="success"
                   variant="flat">
-                  Licence Active
+                  {t("activeLicense")}
                 </Chip>
                 <span className="text-default-500 text-sm">
                   {license.license.name}
@@ -58,15 +60,18 @@ export default async function OverviewPage() {
               <div>
                 <div className="flex justify-between mb-1">
                   <span className="text-base font-medium text-success">
-                    {daysRemaining} jours restants
+                    {t("daysRemaining", { days: daysRemaining })}
                   </span>
                   <span className="text-sm font-medium text-default-500">
-                    Expire le{" "}
-                    {new Date(license.expiresAt).toLocaleDateString("fr-FR")}
+                    {t("expiresOn", {
+                      date: new Date(license.expiresAt).toLocaleDateString(
+                        "fr-FR",
+                      ),
+                    })}
                   </span>
                 </div>
                 <Progress
-                  aria-label="Jours restants"
+                  aria-label={t("daysRemaining", { days: daysRemaining })}
                   value={(daysRemaining / totalDays) * 100}
                   color="success"
                   className="max-w-full"
@@ -75,14 +80,12 @@ export default async function OverviewPage() {
             </div>
           ) : (
             <div className="text-center py-4">
-              <p className="text-default-600 mb-4">
-                Vous n'avez aucune licence active.
-              </p>
+              <p className="text-default-600 mb-4">{t("noLicense")}</p>
               <Button
                 as={Link}
                 href="/user/licenses"
                 color="primary">
-                Acheter une licence
+                {t("buyLicenseButton")}
               </Button>
             </div>
           )}
@@ -96,7 +99,7 @@ export default async function OverviewPage() {
           color="primary"
           size="lg"
           fullWidth>
-          Télécharger la dernière version du logiciel
+          {t("downloadLatestButton")}
         </Button>
       </div>
     </div>

@@ -11,7 +11,16 @@
         "sh-pricing": "Tarifs",
         "sh-resources": "Ressources",
         "sh-download": "Télécharger",
-        "link-logo": "kya-soldesign.png"
+        "link-logo": "kya-soldesign.png",
+        "searchPlaceholder": "Rechercher sur la page...",
+        "searchResultsTitle": "Résultats sur cette page",
+        "noResultsFound": "Aucun résultat trouvé pour \"{query}\"",
+        "ariaChangeLanguage": "Changer de langue",
+        "ariaOpenSearch": "Ouvrir la recherche",
+        "ariaUserAccount": "Compte utilisateur",
+        "ariaOpenMenu": "Ouvrir le menu",
+        "ariaSearch": "Recherche",
+        "ariaReturn": "Retour"
     },
     "PubSection": {
         "title": "Promo sur les KYA-Solar Pack!",
@@ -168,10 +177,10 @@
             "preTitle": "Dimensionnement",
             "title": "avec KYA-SolDesign",
             "subtitle": "Un logiciel professionnel pour concevoir, simuler et dimensionner vos installations solaires avec précision et rapidité.",
-            "users": "Users",
+            "users": "Utilisateurs",
             "ctaOnline": "Essayer en ligne",
             "ctaDownload": "Télécharger",
-            "ctaNote": "Teste et téléchargement gratuit après ma connexion"
+            "ctaNote": "Essai et téléchargement gratuits après connexion"
         },
         "features": {
             "mainTitle": "Fonctionnalités principales",
@@ -258,6 +267,118 @@
             "actionDetails": "Détails",
             "noResults": "Aucune licence ne correspond à votre recherche.",
             "purchasedOn": "Acheté le"
+        }
+    },
+    "AuthPage": {
+        "title": "KYA-Sol Design",
+        "subtitle": "Accédez à votre espace",
+        "loginTab": "Connexion",
+        "signupTab": "Inscription",
+        "emailLabel": "Email",
+        "emailPlaceholder": "Entrez votre email",
+        "passwordLabel": "Mot de passe",
+        "passwordPlaceholder": "Entrez votre mot de passe",
+        "needAccount": "Besoin de créer un compte ?",
+        "signupButton": "S'inscrire",
+        "loginButton": "Se connecter",
+        "or": "OU",
+        "googleButton": "Continuer avec Google",
+        "loginError": "La connexion a échoué. Le nom d'utilisateur ou le mot de passe est invalide."
+    },
+    "SignUpForm": {
+        "fullNameLabel": "Nom complet",
+        "fullNamePlaceholder": "Entrez votre nom complet",
+        "emailLabel": "Email",
+        "emailPlaceholder": "Entrez votre email",
+        "passwordLabel": "Mot de passe",
+        "passwordPlaceholder": "8 caractères minimum",
+        "createAccountButton": "Créer mon compte",
+        "creationError": "Échec de la création du compte.",
+        "autoLoginError": "Connexion automatique échouée.",
+        "unexpectedError": "Une erreur inattendue est survenue"
+    },
+    "DashboardUser": {
+        "productLayout": {
+            "title": "KYA-Sol Design",
+            "latestVersion": "Dernière version: v7.2.3"
+        },
+        "tabNavigation": {
+            "ariaLabel": "Navigation du produit",
+            "overview": "Vue d'ensemble",
+            "downloads": "Téléchargements",
+            "licenses": "Licences",
+            "devices": "Appareils Activés",
+            "settings": "Paramètres"
+        },
+        "overviewPage": {
+            "title": "Vue d'ensemble",
+            "licenseStatusTitle": "Statut de votre Licence",
+            "activeLicense": "Licence Active",
+            "daysRemaining": "{days} jours restants",
+            "expiresOn": "Expire le {date}",
+            "noLicense": "Vous n'avez aucune licence active.",
+            "buyLicenseButton": "Acheter une licence",
+            "downloadLatestButton": "Télécharger la dernière version du logiciel"
+        },
+        "downloadsPage": {
+            "title": "Téléchargements",
+            "tableAriaLabel": "Versions du logiciel",
+            "versionColumn": "VERSION",
+            "releaseDateColumn": "DATE DE SORTIE",
+            "notesColumn": "NOTES",
+            "downloadColumn": "TÉLÉCHARGER",
+            "latestChip": "Dernière",
+            "viewNotesButton": "Voir",
+            "downloadButton": "Télécharger"
+        },
+        "devicesPage": {
+            "title": "Appareils Activés",
+            "subtitle": "Vous pouvez désactiver un appareil pour libérer une place sur votre licence.",
+            "tableAriaLabel": "Appareils activés",
+            "deviceColumn": "APPAREIL",
+            "activationDateColumn": "DATE D'ACTIVATION",
+            "licenseColumn": "LICENCE",
+            "actionsColumn": "ACTIONS",
+            "noDevices": "Aucun appareil activé.",
+            "deactivateTooltip": "Désactiver cet appareil"
+        },
+        "licensesPage": {
+            "title": "Licences & Facturation",
+            "buyLicenseButton": "Acheter une licence",
+            "myLicensesTab": "Mes Licences",
+            "billingHistoryTab": "Historique de Facturation",
+            "myLicensesTableAria": "Mes licences",
+            "licenseColumn": "LICENCE",
+            "keyColumn": "CLÉ",
+            "statusColumn": "STATUT",
+            "expiresOnColumn": "EXPIRE LE",
+            "noLicenses": "Vous n'avez aucune licence.",
+            "modalChooseTitle": "Choisir un type de licence",
+            "modalPurchaseTitle": "Achat - Licence {licenseType}",
+            "commercialType": "Commerciale",
+            "academicType": "Académique",
+            "studentType": "Étudiant",
+            "studentForm": {
+                "info": "Veuillez fournir un document prouvant votre statut d'étudiant (carte d'étudiant, certificat de scolarité...) datant de moins d'un an.",
+                "submitButton": "Soumettre ma demande",
+                "feedback": "Vous recevrez un email dès que votre demande aura été traitée."
+            },
+            "paymentForm": {
+                "info": "Intégration du formulaire de paiement (Stripe, etc.) ici.",
+                "payButton": "Payer {amount} €"
+            }
+        },
+        "settingsPage": {
+            "title": "Paramètres du Compte",
+            "profileInfoTitle": "Informations du profil",
+            "fullNameLabel": "Nom complet",
+            "emailLabel": "Email",
+            "saveChangesButton": "Enregistrer les modifications",
+            "changePasswordTitle": "Changer le mot de passe",
+            "currentPasswordLabel": "Mot de passe actuel",
+            "newPasswordLabel": "Nouveau mot de passe",
+            "confirmPasswordLabel": "Confirmer le nouveau mot de passe",
+            "changePasswordButton": "Changer le mot de passe"
         }
     }
 }

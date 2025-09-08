@@ -10,6 +10,7 @@ import {
   Tooltip,
 } from "@heroui/react";
 import { FaTrash } from "react-icons/fa";
+import { useTranslations } from "next-intl";
 
 async function getActivatedDevices() {
   // Remplace par ton appel Prisma
@@ -31,24 +32,22 @@ async function getActivatedDevices() {
 
 export default async function DevicesPage() {
   const devices = await getActivatedDevices();
+  const t = useTranslations("DashboardUser.devicesPage");
 
   return (
     <div>
-      <h1 className="text-2xl font-bold mb-6">Appareils Activés</h1>
-      <p className="text-sm text-default-600 mb-4">
-        Vous pouvez désactiver un appareil pour libérer une place sur votre
-        licence.
-      </p>
-      <Table aria-label="Appareils activés">
+      <h1 className="text-2xl font-bold mb-6">{t("title")}</h1>
+      <p className="text-sm text-default-600 mb-4">{t("subtitle")}</p>
+      <Table aria-label={t("tableAriaLabel")}>
         <TableHeader>
-          <TableColumn>APPAREIL</TableColumn>
-          <TableColumn>DATE D'ACTIVATION</TableColumn>
-          <TableColumn>LICENCE</TableColumn>
-          <TableColumn>ACTIONS</TableColumn>
+          <TableColumn>{t("deviceColumn")}</TableColumn>
+          <TableColumn>{t("activationDateColumn")}</TableColumn>
+          <TableColumn>{t("licenseColumn")}</TableColumn>
+          <TableColumn>{t("actionsColumn")}</TableColumn>
         </TableHeader>
         <TableBody
           items={devices}
-          emptyContent="Aucun appareil activé.">
+          emptyContent={t("noDevices")}>
           {(item) => (
             <TableRow key={item.id}>
               <TableCell>{item.machineFingerprint}</TableCell>
@@ -59,7 +58,7 @@ export default async function DevicesPage() {
               <TableCell>
                 <Tooltip
                   color="danger"
-                  content="Désactiver cet appareil">
+                  content={t("deactivateTooltip")}>
                   <Button
                     isIconOnly
                     variant="light"

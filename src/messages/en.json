@@ -11,7 +11,16 @@
         "sh-pricing": "Pricing",
         "sh-resources": "Resources",
         "sh-download": "Download",
-        "link-logo": "kya-soldesign.png"
+        "link-logo": "kya-soldesign.png",
+        "searchPlaceholder": "Search on the page...",
+        "searchResultsTitle": "Results on this page",
+        "noResultsFound": "No results found for \"{query}\"",
+        "ariaChangeLanguage": "Change language",
+        "ariaOpenSearch": "Open search",
+        "ariaUserAccount": "User account",
+        "ariaOpenMenu": "Open menu",
+        "ariaSearch": "Search",
+        "ariaReturn": "Return"
     },
     "PubSection": {
         "title": "Special Offer on KYA-Solar Packs!",
@@ -258,6 +267,118 @@
             "actionDetails": "Details",
             "noResults": "No licenses match your search.",
             "purchasedOn": "Purchased on"
+        }
+    },
+    "AuthPage": {
+        "title": "KYA-Sol Design",
+        "subtitle": "Access your space",
+        "loginTab": "Login",
+        "signupTab": "Sign Up",
+        "emailLabel": "Email",
+        "emailPlaceholder": "Enter your email",
+        "passwordLabel": "Password",
+        "passwordPlaceholder": "Enter your password",
+        "needAccount": "Need to create an account?",
+        "signupButton": "Sign Up",
+        "loginButton": "Log In",
+        "or": "OR",
+        "googleButton": "Continue with Google",
+        "loginError": "Login failed. The username or password is invalid."
+    },
+    "SignUpForm": {
+        "fullNameLabel": "Full Name",
+        "fullNamePlaceholder": "Enter your full name",
+        "emailLabel": "Email",
+        "emailPlaceholder": "Enter your email",
+        "passwordLabel": "Password",
+        "passwordPlaceholder": "8 characters minimum",
+        "createAccountButton": "Create my account",
+        "creationError": "Failed to create account.",
+        "autoLoginError": "Automatic login failed.",
+        "unexpectedError": "An unexpected error occurred"
+    },
+    "DashboardUser": {
+        "productLayout": {
+            "title": "KYA-Sol Design",
+            "latestVersion": "Latest version: v7.2.3"
+        },
+        "tabNavigation": {
+            "ariaLabel": "Product Navigation",
+            "overview": "Overview",
+            "downloads": "Downloads",
+            "licenses": "Licenses",
+            "devices": "Activated Devices",
+            "settings": "Settings"
+        },
+        "overviewPage": {
+            "title": "Overview",
+            "licenseStatusTitle": "Your License Status",
+            "activeLicense": "Active License",
+            "daysRemaining": "{days} days remaining",
+            "expiresOn": "Expires on {date}",
+            "noLicense": "You do not have an active license.",
+            "buyLicenseButton": "Buy a license",
+            "downloadLatestButton": "Download the latest version of the software"
+        },
+        "downloadsPage": {
+            "title": "Downloads",
+            "tableAriaLabel": "Software Versions",
+            "versionColumn": "VERSION",
+            "releaseDateColumn": "RELEASE DATE",
+            "notesColumn": "NOTES",
+            "downloadColumn": "DOWNLOAD",
+            "latestChip": "Latest",
+            "viewNotesButton": "View",
+            "downloadButton": "Download"
+        },
+        "devicesPage": {
+            "title": "Activated Devices",
+            "subtitle": "You can deactivate a device to free up a slot on your license.",
+            "tableAriaLabel": "Activated devices",
+            "deviceColumn": "DEVICE",
+            "activationDateColumn": "ACTIVATION DATE",
+            "licenseColumn": "LICENSE",
+            "actionsColumn": "ACTIONS",
+            "noDevices": "No activated devices.",
+            "deactivateTooltip": "Deactivate this device"
+        },
+        "licensesPage": {
+            "title": "Licenses & Billing",
+            "buyLicenseButton": "Buy a license",
+            "myLicensesTab": "My Licenses",
+            "billingHistoryTab": "Billing History",
+            "myLicensesTableAria": "My licenses",
+            "licenseColumn": "LICENSE",
+            "keyColumn": "KEY",
+            "statusColumn": "STATUS",
+            "expiresOnColumn": "EXPIRES ON",
+            "noLicenses": "You don't have any licenses.",
+            "modalChooseTitle": "Choose a license type",
+            "modalPurchaseTitle": "Purchase - {licenseType} License",
+            "commercialType": "Commercial",
+            "academicType": "Academic",
+            "studentType": "Student",
+            "studentForm": {
+                "info": "Please provide a document proving your student status (student card, school certificate...) less than one year old.",
+                "submitButton": "Submit my request",
+                "feedback": "You will receive an email as soon as your request has been processed."
+            },
+            "paymentForm": {
+                "info": "Payment form integration (Stripe, etc.) here.",
+                "payButton": "Pay {amount} €"
+            }
+        },
+        "settingsPage": {
+            "title": "Account Settings",
+            "profileInfoTitle": "Profile Information",
+            "fullNameLabel": "Full Name",
+            "emailLabel": "Email",
+            "saveChangesButton": "Save changes",
+            "changePasswordTitle": "Change Password",
+            "currentPasswordLabel": "Current password",
+            "newPasswordLabel": "New password",
+            "confirmPasswordLabel": "Confirm new password",
+            "changePasswordButton": "Change password"
         }
     }
 }

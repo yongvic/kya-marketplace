@@ -9,6 +9,7 @@ import {
   Chip,
   Button,
 } from "@heroui/react";
+import { useTranslations } from "next-intl";
 
 async function getPublicUpdates() {
   // Remplace par ton appel Prisma
@@ -32,16 +33,17 @@ async function getPublicUpdates() {
 
 export default async function DownloadsPage() {
   const updates = await getPublicUpdates();
+  const t = useTranslations("DashboardUser.downloadsPage");
 
   return (
     <div>
-      <h1 className="text-2xl font-bold mb-6">Téléchargements</h1>
-      <Table aria-label="Versions du logiciel">
+      <h1 className="text-2xl font-bold mb-6">{t("title")}</h1>
+      <Table aria-label={t("tableAriaLabel")}>
         <TableHeader>
-          <TableColumn>VERSION</TableColumn>
-          <TableColumn>DATE DE SORTIE</TableColumn>
-          <TableColumn>NOTES</TableColumn>
-          <TableColumn>TÉLÉCHARGER</TableColumn>
+          <TableColumn>{t("versionColumn")}</TableColumn>
+          <TableColumn>{t("releaseDateColumn")}</TableColumn>
+          <TableColumn>{t("notesColumn")}</TableColumn>
+          <TableColumn>{t("downloadColumn")}</TableColumn>
         </TableHeader>
         <TableBody items={updates}>
           {(item) => (
@@ -53,7 +55,7 @@ export default async function DownloadsPage() {
                     <Chip
                       color="success"
                       size="sm">
-                      Dernière
+                      {t("latestChip")}
                     </Chip>
                   )}
                 </div>
@@ -65,14 +67,14 @@ export default async function DownloadsPage() {
                 <Button
                   variant="light"
                   size="sm">
-                  Voir
+                  {t("viewNotesButton")}
                 </Button>
               </TableCell>
               <TableCell>
                 <Button
                   color="primary"
                   variant="flat">
-                  Télécharger
+                  {t("downloadButton")}
                 </Button>
               </TableCell>
             </TableRow>
