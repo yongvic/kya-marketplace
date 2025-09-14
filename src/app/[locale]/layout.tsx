@@ -4,12 +4,7 @@ import { getLocale } from "next-intl/server";
 import { NextIntlClientProvider } from "next-intl";
 
 
-//1. ✅ Police
-// const libreFranklin = Libre_Franklin({
-//     subsets: ["latin"],
-//     variable: "--font-libre-franklin",
-//     display: "swap",
-// });
+
 
 // 2. ✅ Métadonnées (SEO) — elles fonctionnent toujours ici
 export const metadata: Metadata = {
@@ -17,14 +12,13 @@ export const metadata: Metadata = {
     description: "Votre partenaire pour une transition énergétique durable",
 };
 
-// 3. ✅ Layout localisé
 export default async function LocaleLayout({
     children,
 }: {
     children: React.ReactNode;
 }) {
     const locale = await getLocale();
-    // const messages = (await import(`@/messages/${locale}.json`)).default;
+
 
     return (
         // 4. ✅ On garde la police via className

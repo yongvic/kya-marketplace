@@ -10,31 +10,10 @@ const config: Config = {
   ],
   theme: {
     extend: {
-      // Animations personnalisées
-      animation: {
-        'fade-in': 'fadeIn 0.8s ease-in-out forwards',
-        'slide': 'slide 20s linear infinite',
-        'orbit': 'spin 20s linear infinite',
-      },
-      borderRadius: {
-        'wave': '100%'
-      },
-      // Keyframes personnalisés
-      keyframes: {
-        fadeIn: {
-          '0%': { opacity: '0', transform: 'translateY(10px)' },
-          '100%': { opacity: '1', transform: 'translateY(0)' },
-        },
-        'reverse-spin': {
-            from: { transform: 'rotate(0deg)' },
-            to: { transform: 'rotate(360deg)'},
-        },
-        slide: {
-          '0%': { transform: 'translateX(0)' },
-          '100%': { transform: 'translateX(-50%)' },
-        },
-      },
-      // Backgrounds personnalisés
+      // Nous laissons cette section vide car vos animations
+      // et keyframes sont définis dans votre fichier CSS principal, ce qui est parfait.
+
+      // Vous pouvez garder cette partie si vous en avez besoin ailleurs
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic':

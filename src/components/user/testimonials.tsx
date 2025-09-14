@@ -16,7 +16,7 @@ const testimonialsData = [
 const UserTestimonials = () => {
     const t = useTranslations("TestimonialSection");
     const [activeIndex, setActiveIndex] = useState(0);
-    const [isPaused, setIsPaused] = useState(false);
+    const [isPaused] = useState(false);
     const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
     const ref = useRef(null);

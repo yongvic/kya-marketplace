@@ -3,6 +3,7 @@ import FeaturesSection from "@/components/user/logiciels/featuresSection";
 import ResourcesSection from "@/components/user/logiciels/resourcesSection";
 import UserTestimonials from '@/components/user/testimonials';
 import TarifsSection from '@/components/user/logiciels/taifs-section';
+import ClientSection from '@/components/user/client-section';
 
 export default function LogicielsPage() {
     return (
@@ -12,6 +13,7 @@ export default function LogicielsPage() {
             <FeaturesSection />
             <TarifsSection />
             <ResourcesSection />
+            <ClientSection />
             <UserTestimonials />
         </>
     );

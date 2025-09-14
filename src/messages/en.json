@@ -5,6 +5,7 @@
     "Header": {
         "m-acceuil": "Home",
         "m-logiciel": "Software",
+        "m-blog": "Blog",
         "m-a-propos": "About",
         "m-contact": "Contact Us",
         "sh-features": "Features",
@@ -133,30 +134,41 @@
         "plans": {
             "commercial": {
                 "name": "Commercial",
-                "duration": "1 year"
+                "duration": "1 year",
+                "price": "100,000 FCFA"
             },
             "academic": {
                 "name": "Academic",
-                "duration": "1 year"
+                "duration": "1 year",
+                "price": "80,000 FCFA"
             },
             "student": {
                 "name": "Student",
-                "duration": "1 month / 7 days / 1 day"
+                "options": {
+                    "month": "1 month",
+                    "week": "7 days",
+                    "day": "1 day"
+                },
+                "prices": {
+                    "month": "5,000 FCFA",
+                    "week": "2,500 FCFA",
+                    "day": "1,000 FCFA"
+                }
             }
         },
         "features": [
-            "Generate general report in illustrated PDF",
-            "Generate general report in Word",
-            "Generate general report with financial offer",
-            "Generate proforma invoice (in Word)",
-            "Financial evaluation of the designed system",
-            "Generate synoptic view of the designed system",
-            "Cable section sizing",
-            "Protection components sizing",
-            "Add new components (modules, batteries, inverters)",
+            "Generation of the synoptic view of the sized system",
+            "Sizing of cable sections",
+            "Sizing of protection elements",
+            "Addition of new components (modules, batteries, and inverters)",
             "Sizing with all-in-one inverter",
-            "Download weather data from any location",
-            "Generate load profile"
+            "Download of weather data for any location",
+            "Generation of the load profile",
+            "Generation of general report in illustrated PDF",
+            "Generation of general report in Word",
+            "Generation of general report with financial offer",
+            "Generation of proforma invoice (in Word)",
+            "Financial evaluation of the sized system"
         ]
     },
     "Footer": {
@@ -380,5 +392,10 @@
             "confirmPasswordLabel": "Confirm new password",
             "changePasswordButton": "Change password"
         }
+    },
+    "BlogPage": {
+        "views": "Views",
+        "likes": "Likes",
+        "readArticle": "Read article"
     }
 }

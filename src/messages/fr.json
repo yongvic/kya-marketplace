@@ -5,6 +5,7 @@
     "Header": {
         "m-acceuil": "Accueil",
         "m-logiciel": "Logiciels",
+        "m-blog": "Blog",
         "m-a-propos": "À propos",
         "m-contact": "Contactez-nous",
         "sh-features": "Fonctionnalités",
@@ -56,7 +57,7 @@
             },
             "kya-share": {
                 "name": "KYA-Share",
-                "description": "Pour partager l'accès avec votre équipe et vos partenaires en toute sécurité."
+                "description": "Pour partager l’accès avec votre équipe et vos partenaires en toute sécurité."
             }
         },
         "badges": {
@@ -121,7 +122,7 @@
             },
             "user3": {
                 "title": "Directeur Technique, Allemagne",
-                "text": "La personnalisation des tableaux de bord est un vrai plus. Chaque membre de l'équipe a une vue adaptée à ses besoins, ce qui optimise nos opérations au quotidien."
+                "text": "La personnalisation des tableaux de bord est un vrai plus. Chaque membre de l’équipe a une vue adaptée à ses besoins, ce qui optimise nos opérations au quotidien."
             }
         }
     },
@@ -133,30 +134,41 @@
         "plans": {
             "commercial": {
                 "name": "Commerciale",
-                "duration": "1 an"
+                "duration": "1 an",
+                "price": "100 000 FCFA"
             },
             "academic": {
                 "name": "Académique",
-                "duration": "1 an"
+                "duration": "1 an",
+                "price": "80 000 FCFA"
             },
             "student": {
                 "name": "Étudiant",
-                "duration": "1 mois / 7 jours / 1 jour"
+                "options": {
+                    "month": "1 mois",
+                    "week": "7 jours",
+                    "day": "1 jour"
+                },
+                "prices": {
+                    "month": "5 000 FCFA",
+                    "week": "2 500 FCFA",
+                    "day": "1 000 FCFA"
+                }
             }
         },
         "features": [
-            "Génération de rapport général en PDF imagé",
-            "Génération de rapport général en Word",
-            "Génération de rapport général avec l'offre financière",
-            "Génération de facture proforma (en word)",
-            "Evaluation financière du système dimensionné",
             "Génération de la vue synoptique du système dimensionné",
             "Dimensionnement des sections de câbles",
             "Dimensionnement des éléments de protection",
             "Ajout de nouveaux composants (modules, batteries et onduleurs)",
             "Dimensionnement avec onduleur all-in-one",
             "Téléchargement des données météo de toute localité",
-            "Génération du profil de charge"
+            "Génération du profil de charge",
+            "Génération de rapport général en PDF imagé",
+            "Génération de rapport général en Word",
+            "Génération de rapport général avec l'offre financière",
+            "Génération de facture proforma (en word)",
+            "Evaluation financière du système dimensionné"
         ]
     },
     "Footer": {
@@ -380,5 +392,10 @@
             "confirmPasswordLabel": "Confirmer le nouveau mot de passe",
             "changePasswordButton": "Changer le mot de passe"
         }
+    },
+    "BlogPage": {
+        "views": "Vues",
+        "likes": "J'aime",
+        "readArticle": "Lire l'article"
     }
 }

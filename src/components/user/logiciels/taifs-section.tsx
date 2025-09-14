@@ -1,45 +1,50 @@
 'use client';
 
-// CORRECTION : Importer le type "Variants"
+import { useState } from 'react';
 import { motion, Variants } from 'framer-motion';
 import { FiCheckCircle, FiXCircle } from 'react-icons/fi';
 import { useTranslations } from 'next-intl';
+import { ChevronDown } from 'lucide-react';
 
-// Valeurs des fonctionnalités : [Commercial, Academic, Student]
 const featureValues = [
+  [true, true, true],
+  [true, true, true],
+  [true, true, true],
+  [true, true, true],
+  [true, true, true],
+  [true, true, true],
+  [true, true, true],
   [true, false, true],
   [true, true, false],
   [true, false, false],
   [true, false, false],
   [true, false, false],
-  [true, true, true],
-  [true, true, true],
-  [true, true, true],
-  [true, true, true],
-  [true, true, true],
-  [true, true, true],
-  [true, true, true],
 ];
-
 
 const TarifsSection = () => {
   const t = useTranslations('TarifsSection');
+  const [studentPlan, setStudentPlan] = useState('month');
 
   const featureTitles = (t.raw('features') as string[]) || [];
+
+  const studentPrices: { [key: string]: string; } = t.raw('plans.student.prices');
 
   const featuresData = {
     headers: [
       {
         name: t('plans.commercial.name'),
         duration: t('plans.commercial.duration'),
+        price: t('plans.commercial.price'),
       },
       {
         name: t('plans.academic.name'),
         duration: t('plans.academic.duration'),
+        price: t('plans.academic.price'),
       },
       {
         name: t('plans.student.name'),
-        duration: t('plans.student.duration'),
+        duration: t('plans.student.options.' + studentPlan),
+        price: studentPrices[studentPlan],
       },
     ],
     rows: featureTitles.map((title, index) => ({
@@ -48,7 +53,6 @@ const TarifsSection = () => {
     })),
   };
 
-  // CORRECTION : Appliquer le type Variants
   const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
@@ -57,7 +61,6 @@ const TarifsSection = () => {
     },
   };
 
-  // CORRECTION : Appliquer le type Variants
   const itemVariants: Variants = {
     hidden: { opacity: 0, y: 20 },
     visible: {
@@ -67,10 +70,26 @@ const TarifsSection = () => {
     },
   };
 
+  const StudentPlanSelector = ({ isMobile = false }) => (
+    <div className="relative mt-1">
+      <select
+        className={`w-full appearance-none bg-white border border-gray-200 rounded-md py-2 pl-3 pr-10 text-sm ${isMobile ? 'text-gray-500' : 'text-gray-500'} focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500`}
+        value={studentPlan}
+        onChange={(e) => setStudentPlan(e.target.value)}
+      >
+        <option value="month">{t('plans.student.options.month')}</option>
+        <option value="week">{t('plans.student.options.week')}</option>
+        <option value="day">{t('plans.student.options.day')}</option>
+      </select>
+      <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+        <ChevronDown size={16} />
+      </div>
+    </div>
+  );
+
   return (
     <section className="py-16 md:py-20 px-4 bg-gray-50">
       <div className="max-w-7xl mx-auto">
-        {/* Titre */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -86,7 +105,6 @@ const TarifsSection = () => {
           </p>
         </motion.div>
 
-        {/* ----- VUE DESKTOP (TABLEAU) ----- */}
         <motion.div
           className="hidden lg:block overflow-x-auto rounded-2xl shadow-xl"
           variants={containerVariants}
@@ -95,7 +113,6 @@ const TarifsSection = () => {
           viewport={{ once: true, amount: 0.1 }}
         >
           <div className="min-w-full inline-block align-middle bg-white rounded-2xl overflow-hidden">
-            {/* En-tête du tableau */}
             <motion.div
               variants={itemVariants}
               className="grid grid-cols-4 gap-6 bg-gray-50/70 border-b border-gray-200 p-6"
@@ -106,7 +123,12 @@ const TarifsSection = () => {
               {featuresData.headers.map((header, index) => (
                 <div key={index} className="col-span-1 text-center">
                   <h3 className="font-bold text-xl text-teal-700">{header.name}</h3>
-                  <p className="text-sm text-gray-500 mt-1">{header.duration}</p>
+                  {header.name === 'Student' || header.name === 'Étudiant' ? (
+                    <StudentPlanSelector />
+                  ) : (
+                    <p className="text-sm text-gray-500 mt-1 h-9 flex items-center justify-center">{header.duration}</p>
+                  )}
+                  <p className="font-bold text-2xl text-gray-800 my-2">{header.price}</p>
                   <motion.button
                     whileHover={{ scale: 1.05, boxShadow: '0 10px 20px rgba(20, 184, 166, 0.15)' }}
                     whileTap={{ scale: 0.98 }}
@@ -118,7 +140,6 @@ const TarifsSection = () => {
               ))}
             </motion.div>
 
-            {/* Lignes du tableau */}
             {featuresData.rows.map((row, rowIndex) => (
               <motion.div
                 key={rowIndex}
@@ -142,7 +163,6 @@ const TarifsSection = () => {
           </div>
         </motion.div>
 
-        {/* ----- VUE MOBILE & TABLETTE (CARTES) ----- */}
         <motion.div
           className="block lg:hidden space-y-8"
           variants={containerVariants}
@@ -156,10 +176,14 @@ const TarifsSection = () => {
               variants={itemVariants}
               className="bg-white rounded-2xl shadow-xl overflow-hidden"
             >
-              {/* En-tête de la carte */}
               <div className="p-6 bg-gray-50/70 text-center">
                 <h3 className="font-bold text-xl text-teal-700">{header.name}</h3>
-                <p className="text-sm text-gray-500 mt-1">{header.duration}</p>
+                {header.name === 'Student' || header.name === 'Étudiant' ? (
+                  <StudentPlanSelector isMobile={true} />
+                ) : (
+                  <p className="text-sm text-gray-500 mt-1">{header.duration}</p>
+                )}
+                <p className="font-bold text-2xl text-gray-800 my-2">{header.price}</p>
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.98 }}
@@ -169,7 +193,6 @@ const TarifsSection = () => {
                 </motion.button>
               </div>
 
-              {/* Liste des fonctionnalités de la carte */}
               <div className="p-6 space-y-4">
                 {featuresData.rows.map((row, rowIndex) => (
                   <div key={rowIndex} className="flex justify-between items-center text-sm">

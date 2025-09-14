@@ -24,7 +24,7 @@ export default function LogicielsLayoutClient({ children }: { children: React.Re
 
             {/* 2. Le Header des Logiciels est dans un wrapper "sticky". */}
             {/* Il restera à sa place jusqu'à ce que le défilement le pousse vers le haut, puis il se "collera" à top: 0. */}
-            <header className={`sticky top-0 z-40 transition-shadow duration-300 ${isSticky ? 'shadow-md' : ''}`}>
+            <header className={`sticky top-0 z-30 transition-shadow duration-300 ${isSticky ? 'shadow-md' : ''}`}>
                 <HeaderScroll />
             </header>
 

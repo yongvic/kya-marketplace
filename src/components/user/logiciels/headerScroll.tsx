@@ -53,7 +53,7 @@ export default function HeaderScroll() {
 
             {/* Le header est maintenant rendu en permanence */}
             <motion.header
-                className="w-full h-24 bg-white/80 backdrop-blur-lg border-b border-gray-200  left-0 z-30"
+                className="w-full h-24 bg-white/80 backdrop-blur-lg border-b border-gray-200  left-0 z-10"
                 initial="hidden"
                 animate="visible"
                 variants={headerVariants}
