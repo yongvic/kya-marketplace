@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { gsap } from 'gsap';
 import { useGSAP } from '@gsap/react';
 import ArrowIcon from './ArrowIcon';
+import { useTranslations } from 'next-intl';
 
 const EyeIcon = (props: React.SVGProps<SVGSVGElement>) => (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" {...props}>
@@ -22,6 +23,7 @@ export default function PostCard({ post, priority = false }: { post: Post; prior
     const cardRef = useRef<HTMLDivElement>(null);
     const [isLiked, setIsLiked] = useState(false);
     const [likeCount, setLikeCount] = useState(post.likes);
+    const t = useTranslations('BlogPage');
 
     const handleLike = (e: React.MouseEvent) => {
         e.stopPropagation();
@@ -61,7 +63,7 @@ export default function PostCard({ post, priority = false }: { post: Post; prior
                 </div>
                 <div className="mt-6 pt-4 border-t border-gray-100 flex justify-between items-center text-gray-500">
                     <span className="font-semibold text-kya-green flex items-center gap-2">
-                        Lire l&apos;article <ArrowIcon className="w-5 h-5 transition-transform duration-300 arrow-icon" />
+                        {t('readArticle')} <ArrowIcon className="w-5 h-5 transition-transform duration-300 arrow-icon" />
                     </span>
                     <div className="flex items-center gap-4">
                         <div className="flex items-center gap-1">

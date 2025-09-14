@@ -4,11 +4,13 @@ import Image from 'next/image';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
+import { useTranslations } from 'next-intl';
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function NewsletterCTA() {
     const containerRef = useRef<HTMLDivElement>(null);
+    const t = useTranslations('BlogPage');
 
     useGSAP(() => {
         const el = containerRef.current;
@@ -33,11 +35,11 @@ export default function NewsletterCTA() {
                     <Image src="/images2.jpeg" alt="Personne utilisant un ordinateur portable" fill className="object-cover" sizes="50vw" />
                 </div>
                 <div className="text-white space-y-4">
-                    <h2 className="text-3xl font-bold">Abonnez-vous à notre newsletter</h2>
-                    <p>Recevez les dernières analyses et actualités sur le secteur de l&apos;énergie directement dans votre boîte de réception.</p>
+                    <h2 className="text-3xl font-bold">{t('newsletterTitle')}</h2>
+                    <p>{t('newsletterSubtitle')}</p>
                     <form className="flex flex-col sm:flex-row gap-3 mt-4">
-                        <input type="email" placeholder="Votre email" className="w-full px-4 py-3 rounded-lg text-gray-800" />
-                        <button type="submit" className="bg-kya-orange hover:bg-orange-500 text-white font-bold px-6 py-3 rounded-lg transition-colors">S&apos;abonner</button>
+                        <input type="email" placeholder={t('emailPlaceholder')} className="w-full px-4 py-3 rounded-lg text-gray-800" />
+                        <button type="submit" className="bg-kya-orange hover:bg-orange-500 text-white font-bold px-6 py-3 rounded-lg transition-colors">{t('subscribeButton')}</button>
                     </form>
                 </div>
             </div>

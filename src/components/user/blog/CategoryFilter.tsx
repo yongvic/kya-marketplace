@@ -3,6 +3,7 @@
 import { useRef, useEffect, useMemo } from 'react';
 import { gsap } from 'gsap';
 import { useGSAP } from '@gsap/react';
+import { useTranslations } from 'next-intl';
 
 interface CategoryFilterProps {
     categories: string[];
@@ -11,8 +12,9 @@ interface CategoryFilterProps {
 }
 
 export default function CategoryFilter({ categories, activeCategory, onCategoryChange }: CategoryFilterProps) {
+    const t = useTranslations('BlogPage');
     // --- CORRECTION ESLINT : useMemo ---
-    const allCategories = useMemo(() => ['Tout', ...categories], [categories]);
+    const allCategories = useMemo(() => [t('all'), ...categories], [categories, t]);
 
     const containerRef = useRef<HTMLDivElement>(null);
     const buttonRefs = useRef<(HTMLButtonElement | null)[]>([]);

@@ -1,12 +1,13 @@
 'use client';
 
 import { useState, useEffect, useMemo, useRef } from 'react';
-import { DUMMY_POSTS } from '@/lib/dummy-data';
-import HeroSection from '@/components/blog/HeroSection';
-import CategoryFilter from '@/components/blog/CategoryFilter';
-import PostGrid from '@/components/blog/PostGrid';
-import Pagination from '@/components/blog/Pagination';
-import NewsletterCTA from '@/components/blog/NewsletterCTA';
+import { getDummyPosts } from '@/lib/dummy-data';
+import HeroSection from '@/components/user/blog/HeroSection';
+import CategoryFilter from '@/components/user/blog/CategoryFilter';
+import PostGrid from '@/components/user/blog/PostGrid';
+import Pagination from '@/components/user/blog/Pagination';
+import NewsletterCTA from '@/components/user/blog/NewsletterCTA';
+import { useTranslations } from 'next-intl';
 
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -17,10 +18,11 @@ gsap.registerPlugin(ScrollTrigger);
 const POSTS_PER_PAGE = 6;
 
 export default function BlogPage() {
-    const allPosts = useMemo(() => DUMMY_POSTS, []);
+    const t = useTranslations('BlogPage');
+    const allPosts = useMemo(() => getDummyPosts(t), [t]);
     const allCategories = useMemo(() => [...new Set(allPosts.map(p => p.category))], [allPosts]);
 
-    const [activeCategory, setActiveCategory] = useState('Tout');
+    const [activeCategory, setActiveCategory] = useState(t('all'));
     const [currentPage, setCurrentPage] = useState(1);
 
     const gridRef = useRef<HTMLDivElement>(null);
@@ -28,18 +30,18 @@ export default function BlogPage() {
 
     // Gérer la réinitialisation de la page lors du changement de catégorie
     useEffect(() => {
-        const filtered = activeCategory === 'Tout'
+        const filtered = activeCategory === t('all')
             ? allPosts
             : allPosts.filter(p => p.category === activeCategory);
         const newTotalPages = Math.ceil(filtered.length / POSTS_PER_PAGE);
         if (currentPage > newTotalPages && newTotalPages > 0) {
             setCurrentPage(1);
         }
-    }, [activeCategory, allPosts, currentPage]);
+    }, [activeCategory, allPosts, currentPage, t]);
 
     // Dériver les posts filtrés et paginés
     const { posts: displayedPosts, totalPages } = useMemo(() => {
-        const filtered = activeCategory === 'Tout'
+        const filtered = activeCategory === t('all')
             ? allPosts
             : allPosts.filter(p => p.category === activeCategory);
 
@@ -48,7 +50,7 @@ export default function BlogPage() {
         const posts = filtered.slice(startIndex, startIndex + POSTS_PER_PAGE);
 
         return { posts, totalPages: total };
-    }, [activeCategory, currentPage, allPosts]);
+    }, [activeCategory, currentPage, allPosts, t]);
 
     useGSAP(() => {
         const sections = mainRef.current?.children;
@@ -78,7 +80,7 @@ export default function BlogPage() {
                 <HeroSection latestPost={allPosts[0]} topReads={allPosts.slice(1, 4)} />
                 <section>
                     <div className="space-y-6">
-                        <h2 className="text-3xl font-bold text-gray-800">Parcourir par catégories</h2>
+                        <h2 className="text-3xl font-bold text-gray-800">{t('browseByCategory')}</h2>
                         <div className='flex justify-center items-center'>
                             <CategoryFilter categories={allCategories} activeCategory={activeCategory} onCategoryChange={setActiveCategory} />
                         </div>

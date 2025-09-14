@@ -2,8 +2,10 @@ import { Post } from "@/lib/types";
 import Image from "next/image";
 import Link from "next/link";
 import ArrowIcon from "./ArrowIcon";
+import { useTranslations } from "next-intl";
 
 export default function HeroSection({ latestPost, topReads }: { latestPost: Post, topReads: Post[] }) {
+    const t = useTranslations('BlogPage');
     return (
         <section className="grid lg:grid-cols-2 gap-12 ">
             {/* Latest Post */}
@@ -14,12 +16,12 @@ export default function HeroSection({ latestPost, topReads }: { latestPost: Post
                 <h2 className="text-3xl md:text-4xl font-bold text-gray-800 group-hover:text-kya-green transition-colors duration-300">{latestPost.title}</h2>
                 <p className="text-gray-600">{latestPost.excerpt}</p>
                 <span className="font-bold text-kya-green flex items-center gap-2">
-                    Continuer la lecture <ArrowIcon className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
+                    {t('continueReading')} <ArrowIcon className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
                 </span>
             </div>
             {/* Top Reads */}
             <div className="space-y-6">
-                <h3 className="text-2xl font-bold text-gray-800">Les plus lus</h3>
+                <h3 className="text-2xl font-bold text-gray-800">{t('topReads')}</h3>
                 {topReads.map((post) => (
                     <Link key={post.id} href={`/blog/${post.slug}`} className="hero-top-read-item flex items-center gap-4 group">
                         <div className="relative w-24 h-24 rounded-lg overflow-hidden flex-shrink-0">

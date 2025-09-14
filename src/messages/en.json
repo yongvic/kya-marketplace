@@ -396,6 +396,124 @@
     "BlogPage": {
         "views": "Views",
         "likes": "Likes",
-        "readArticle": "Read article"
+        "readArticle": "Read article",
+        "all": "All",
+        "browseByCategory": "Browse by category",
+        "continueReading": "Continue reading",
+        "topReads": "Top reads",
+        "newsletterTitle": "Subscribe to our newsletter",
+        "newsletterSubtitle": "Receive the latest analysis and news on the energy sector directly in your inbox.",
+        "emailPlaceholder": "Your email",
+        "subscribeButton": "Subscribe",
+        "previous": "Previous",
+        "next": "Next",
+        "categories": {
+            "solar": "Solar",
+            "innovation": "Innovation",
+            "sustainability": "Sustainability",
+            "transport": "Transport"
+        },
+        "posts": {
+            "post1": {
+                "title": "The Bright Future of Solar Photovoltaic Energy",
+                "excerpt": "Recent technological advances in photovoltaic cells promise increased efficiency and reduced costs, positioning solar as a pillar of the global energy transition."
+            },
+            "post2": {
+                "title": "Energy Storage: The Challenge of Tomorrow's Batteries",
+                "excerpt": "How will new battery innovations, beyond lithium-ion, revolutionize our ability to store renewable energy and stabilize electrical grids?"
+            },
+            "post3": {
+                "title": "Green Hydrogen: Utopia or Energy Revolution?",
+                "excerpt": "Hydrogen produced by water electrolysis from renewable energies is at the heart of decarbonization strategies. Let's analyze its potential and the obstacles to overcome."
+            },
+            "post4": {
+                "title": "Offshore Wind: The Wind of the Energy Revolution",
+                "excerpt": "With increasingly powerful turbines, offshore wind is becoming an essential solution to meet the growing energy demand."
+            },
+            "post5": {
+                "title": "Smart Grids: Intelligence at the Service of Energy",
+                "excerpt": "Smart grids allow for dynamic energy management, improving stability and reducing losses."
+            },
+            "post6": {
+                "title": "Biomass: An Often Underestimated Green Energy",
+                "excerpt": "Biomass plays a major role in the sustainable energy mix. Focus on its advantages and limitations."
+            },
+            "post7": {
+                "title": "The Revolution of Flexible Solar Panels",
+                "excerpt": "Flexible solar panels open the way to new applications, from architecture to connected objects."
+            },
+            "post8": {
+                "title": "Small-Scale Hydroelectricity: The Future of Rivers",
+                "excerpt": "Small hydroelectric plants represent a local and sustainable solution for communities."
+            },
+            "post9": {
+                "title": "Artificial Intelligence at the Service of Energy",
+                "excerpt": "From predictive maintenance to consumption forecasts, AI is transforming the way we produce and consume energy."
+            },
+            "post10": {
+                "title": "Geothermal Energy: The Hidden Energy Beneath Our Feet",
+                "excerpt": "The Earth's heat is an abundant and stable resource, still under-exploited."
+            },
+            "post11": {
+                "title": "Recycling Solar Panels: A Challenge to Be Met",
+                "excerpt": "As installations age, managing photovoltaic waste becomes a crucial issue."
+            },
+            "post12": {
+                "title": "Energy Microgrids: Local Autonomy",
+                "excerpt": "Microgrids allow isolated or urban areas to ensure increased energy resilience."
+            },
+            "post13": {
+                "title": "The Energy Transition in Africa",
+                "excerpt": "The African continent is positioning itself as a potential leader thanks to its abundant natural resources."
+            },
+            "post14": {
+                "title": "Green Cities and Urban Energy Management",
+                "excerpt": "Smart cities rely on innovative technologies to reduce their energy footprint."
+            },
+            "post15": {
+                "title": "Electric Mobility: Challenges and Opportunities",
+                "excerpt": "Electric vehicles are gradually establishing themselves, but their deployment raises new energy challenges."
+            },
+            "post16": {
+                "title": "Blockchain and Energy: Towards Decentralized Transactions",
+                "excerpt": "The blockchain promises to revolutionize the management and exchange of energy between producers and consumers."
+            },
+            "post17": {
+                "title": "Agrivoltaics: Cultivating and Producing Energy",
+                "excerpt": "Agrivoltaics combines agriculture and solar panels for an optimization of space and resources."
+            },
+            "post18": {
+                "title": "Energy and Big Data: A Strategic Alliance",
+                "excerpt": "Massive data analysis makes it possible to predict energy demand and optimize production."
+            },
+            "post19": {
+                "title": "The Challenges of Hydrogen Transport",
+                "excerpt": "Transporting green hydrogen remains a logistical and economic challenge to overcome."
+            },
+            "post20": {
+                "title": "Energy and the Social and Solidarity Economy",
+                "excerpt": "Local energy cooperatives allow for greater citizen involvement in the transition."
+            },
+            "post21": {
+                "title": "Urban Solar: Integrating Energy into the Heart of Cities",
+                "excerpt": "Building-integrated panels are becoming an essential component of sustainable urban planning."
+            },
+            "post22": {
+                "title": "Artificial Intelligence and Electric Transport",
+                "excerpt": "AI optimizes charging flows and improves the efficiency of electric vehicle fleets."
+            },
+            "post23": {
+                "title": "Concentrated Solar Power: When Light Becomes Heat",
+                "excerpt": "Concentrated solar power plants use mirrors to concentrate light and produce energy."
+            },
+            "post24": {
+                "title": "Innovation in Energy Storage Materials",
+                "excerpt": "New materials like graphene open up new prospects for batteries."
+            },
+            "post25": {
+                "title": "Sustainability and Renewable Energies: A Winning Duo",
+                "excerpt": "Combining sustainability and energy production is essential to ensure a viable future."
+            }
+        }
     }
 }
