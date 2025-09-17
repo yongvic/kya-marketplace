@@ -15,7 +15,7 @@ export default function HeaderScroll() {
     const scrollNavLinks = [
         { href: '/fonctionnalites', textKey: 'sh-features' },
         { href: '/tarifs', textKey: 'sh-pricing' },
-        { href: '/ressources', textKey: 'sh-resources' },
+        { href: '/logiciels/resources', textKey: 'sh-resources' },
     ];
 
     // Verrouille le scroll du body quand le menu mobile est ouvert

@@ -11,6 +11,7 @@
         "sh-features": "Features",
         "sh-pricing": "Pricing",
         "sh-resources": "Resources",
+        "sh-resources": "Resources",
         "sh-download": "Download",
         "link-logo": "kya-soldesign.png",
         "searchPlaceholder": "Search on the page...",
@@ -515,5 +516,9 @@
                 "excerpt": "Combining sustainability and energy production is essential to ensure a viable future."
             }
         }
+    },
+    "Resources": {
+        "title": "Developer Resources",
+        "description": "Tutorials, documentation, and videos to help you master our tools."
     }
 }

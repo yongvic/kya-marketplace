@@ -515,5 +515,9 @@
                 "excerpt": "Associer durabilité et production énergétique est essentiel pour assurer un avenir viable."
             }
         }
+    },
+    "Resources": {
+        "title": "Ressources pour les développeurs",
+        "description": "Tutoriels, documentations et vidéos pour vous aider à maîtriser nos outils."
     }
 }
