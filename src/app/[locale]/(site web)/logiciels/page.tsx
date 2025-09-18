@@ -1,7 +1,7 @@
 import HeroSection from "@/components/user/logiciels/heroSection";
 import FeaturesSection from "@/components/user/logiciels/featuresSection";
 import ResourcesSection from "@/components/user/logiciels/resourcesSection";
-import UserTestimonials from '@/components/user/testimonials';
+import Testimonials from '@/components/user/logiciels/Testimonials';
 import TarifsSection from '@/components/user/logiciels/taifs-section';
 import ClientSection from '@/components/user/client-section';
 
@@ -14,7 +14,7 @@ export default function LogicielsPage() {
             <TarifsSection />
             <ResourcesSection />
             <ClientSection />
-            <UserTestimonials />
+            <Testimonials />
         </>
     );
 }

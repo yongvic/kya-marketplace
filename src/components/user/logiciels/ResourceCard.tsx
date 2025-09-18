@@ -31,7 +31,7 @@ const ResourceCard: React.FC<ResourceCardProps> = ({ title, category, descriptio
           />
         </div>
         <div className="p-6">
-          <p className="text-sm text-blue-500 dark:text-blue-400 font-semibold mb-2">{category}</p>
+          <p className="text-sm text-kya-green dark:text-kya-green font-semibold mb-2">{category}</p>
           <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">{title}</h3>
           <p className="text-gray-600 dark:text-gray-300 text-base">{description}</p>
         </div>

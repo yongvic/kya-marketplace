@@ -76,7 +76,7 @@ const ResourcesClientPage = ({ resources, categories, locale }: ResourcesClientP
                                 key={category}
                                 onClick={() => setSelectedCategory(category)}
                                 className={`px-4 py-2 text-sm md:text-base font-medium rounded-full transition-colors duration-300 whitespace-nowrap ${selectedCategory === category
-                                    ? 'bg-blue-600 text-white shadow-lg'
+                                    ? 'bg-kya-green text-white shadow-lg'
                                     : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700'
                                     }`}
                                 whileHover={{ scale: 1.05 }}
