@@ -22,7 +22,7 @@ export const SignUpForm = () => {
     const password = formData.get("password") as string;
 
     try {
-      // Appeler notre API d'inscription
+      // Step 1: Attempt to register the new user via the registration API endpoint.
       const response = await fetch("/api/auth/register", {
         method: "POST",
         headers: {
@@ -40,16 +40,19 @@ export const SignUpForm = () => {
         throw new Error(errorData || t("creationError"));
       }
 
-      // **UX Améliorée : Connexion automatique après inscription réussie**
+      // Step 2: For a better user experience, automatically sign the user in
+      // after a successful registration.
       const result = await signIn("credentials", {
-        redirect: false,
+        redirect: false, // Prevent NextAuth from automatically redirecting.
         email,
         password,
       });
 
       if (result?.ok) {
-        redirect("/dashboard/user"); // Redirection vers le dashboard
+        // Manually redirect to the user dashboard upon successful sign-in.
+        redirect("/dashboard/user");
       } else {
+        // If auto-login fails, inform the user. They might need to log in manually.
         throw new Error(result?.error || t("autoLoginError"));
       }
     } catch (err: unknown) {

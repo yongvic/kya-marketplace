@@ -5,10 +5,12 @@ import { useTranslations } from 'next-intl';
 import { BarChart, Clock, FileText, Users } from 'lucide-react';
 import Image from 'next/image';
 
-// Définition des types TypeScript pour garantir la cohérence des données
+import Image from 'next/image';
+
+// Define TypeScript types for robust data structures.
 type Badge = {
-    textKey: string;
-    position: string; // Classes Tailwind pour le positionnement
+    textKey: string; // Translation key for the badge text.
+    position: string; // Tailwind CSS classes for positioning.
 };
 
 type SoftwareCategory = {
@@ -21,8 +23,8 @@ type SoftwareCategory = {
     badges: Badge[];
 };
 
-// Centralisation des données pour chaque catégorie.
-// C'est ici que vous pourrez facilement changer les images, textes, etc.
+// Centralized data for each software category.
+// This makes it easy to update content like images, text keys, etc.
 const softwareData: SoftwareCategory[] = [
     {
         id: 'monitoring',
@@ -30,7 +32,7 @@ const softwareData: SoftwareCategory[] = [
         titleKey: 'categories.monitoring',
         softwareNameKey: 'softwares.kya-analytics.name',
         descriptionKey: 'softwares.kya-analytics.description',
-        imageSrc: '/monitoring-image.png', // À REMPLIR
+        imageSrc: '/monitoring-image.png', // TODO: Replace with actual image path
         badges: [
             { textKey: 'badges.realtime', position: 'top-10 -left-10' },
             { textKey: 'badges.performance', position: 'bottom-20 -right-16' },
@@ -42,7 +44,7 @@ const softwareData: SoftwareCategory[] = [
         titleKey: 'categories.management',
         softwareNameKey: 'softwares.kya-control.name',
         descriptionKey: 'softwares.kya-control.description',
-        imageSrc: '/management-image.png', // À REMPLIR
+        imageSrc: '/management-image.png', // TODO: Replace with actual image path
         badges: [
             { textKey: 'badges.optimization', position: 'top-1/4 -left-12' },
             { textKey: 'badges.planning', position: 'bottom-1/4 -right-12' },
@@ -54,7 +56,7 @@ const softwareData: SoftwareCategory[] = [
         titleKey: 'categories.reporting',
         softwareNameKey: 'softwares.kya-report.name',
         descriptionKey: 'softwares.kya-report.description',
-        imageSrc: '/documentation-rapports.png', // Image de la maquette
+        imageSrc: '/documentation-rapports.png', // Mockup image
         badges: [
             { textKey: 'badges.history', position: 'top-[20%] -left-24' },
             { textKey: 'badges.report', position: 'top-1/2 -right-24' },
@@ -67,7 +69,7 @@ const softwareData: SoftwareCategory[] = [
         titleKey: 'categories.collaboration',
         softwareNameKey: 'softwares.kya-share.name',
         descriptionKey: 'softwares.kya-share.description',
-        imageSrc: '/collaboration-image.png', // À REMPLIR
+        imageSrc: '/collaboration-image.png', // TODO: Replace with actual image path
         badges: [
             { textKey: 'badges.teams', position: 'top-16 -left-12' },
             { textKey: 'badges.projects', position: 'bottom-16 -right-16' },
@@ -77,19 +79,21 @@ const softwareData: SoftwareCategory[] = [
 
 
 const CategorieLogiciel = () => {
-    // On spécifie que la traduction concerne la section "SoftwareSection"
+    // Hook for accessing translations under the "SoftwareSection" namespace.
     const t = useTranslations('SoftwareSection');
+    // State to track the currently selected software category.
     const [activeCategory, setActiveCategory] = useState<SoftwareCategory['id']>('reporting');
 
-    // On trouve les données du logiciel à afficher en fonction de la catégorie active
+    // Find the data object for the currently active software category.
     const activeSoftware = softwareData.find(s => s.id === activeCategory);
 
-    if (!activeSoftware) return null; // Sécurité
+    // Safety check: if no active software is found, render nothing.
+    if (!activeSoftware) return null;
 
     return (
         <section className="py-16 sm:py-24 bg-white overflow-hidden">
             <div className="container mx-auto px-4 text-center">
-                {/* Titres de la section */}
+                {/* Section Titles */}
                 <h2 className="text-gray-500 font-semibold text-lg uppercase tracking-wider">
                     {t('categoryTitle')}
                 </h2>
@@ -100,7 +104,7 @@ const CategorieLogiciel = () => {
                     {t('subtitle')}
                 </p>
 
-                {/* Grille des 4 catégories cliquables */}
+                {/* Clickable Category Selection Grid */}
                 <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-x-8 gap-y-12 max-w-4xl mx-auto">
                     {softwareData.map((cat) => (
                         <div
@@ -124,7 +128,7 @@ const CategorieLogiciel = () => {
                     ))}
                 </div>
 
-                {/* Section d'affichage dynamique */}
+                {/* Dynamic Display Section */}
                 <div className="mt-20 relative">
                     <p className="text-kya-green font-bold text-xl">
                         {t(activeSoftware.softwareNameKey)}
@@ -134,7 +138,7 @@ const CategorieLogiciel = () => {
                     </p>
 
                     <div className="mt-8 relative max-w-4xl mx-auto">
-                        {/* Image principale */}
+                        {/* Main Image */}
                         <div className="relative aspect-[16/10] w-full">
                             <Image
                                 src={activeSoftware.imageSrc}
@@ -145,11 +149,11 @@ const CategorieLogiciel = () => {
                             />
                         </div>
 
-                        {/* Badges flottants avec flèches SVG */}
+                        {/* Floating Badges with SVG Arrows */}
                         {activeSoftware.badges.map((badge, index) => (
                             <div key={index} className={`absolute transform -translate-y-1/2 ${badge.position} hidden md:block`}>
                                 <div className="relative">
-                                    {/* Flèche SVG courbée */}
+                                    {/* Decorative curved SVG arrow */}
                                     <svg width="80" height="60" viewBox="0 0 80 60" className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -z-10 text-gray-300/80">
                                         <path d="M70 30 C 40 30, 40 30, 10 30" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeDasharray="4 4" />
                                     </svg>

@@ -13,17 +13,22 @@ interface CategoryFilterProps {
 
 export default function CategoryFilter({ categories, activeCategory, onCategoryChange }: CategoryFilterProps) {
     const t = useTranslations('BlogPage');
-    // --- CORRECTION ESLINT : useMemo ---
+    // Memoize the list of categories to prevent re-computation on every render.
+    // This includes the "All" category, which is dynamically translated.
     const allCategories = useMemo(() => [t('all'), ...categories], [categories, t]);
 
     const containerRef = useRef<HTMLDivElement>(null);
     const buttonRefs = useRef<(HTMLButtonElement | null)[]>([]);
-    buttonRefs.current = []; // Vider le tableau à chaque rendu
+    // Clear the refs array on each render to ensure it's always up-to-date.
+    buttonRefs.current = [];
 
+    // GSAP animation for the active category pill.
+    // This effect runs whenever the active category changes.
     useGSAP(() => {
         const activeIndex = allCategories.indexOf(activeCategory);
         const activeButton = buttonRefs.current[activeIndex];
         if (activeButton) {
+            // Animate the pill to the position and width of the active button.
             gsap.to('.active-pill', {
                 x: activeButton.offsetLeft,
                 width: activeButton.offsetWidth,
@@ -33,11 +38,14 @@ export default function CategoryFilter({ categories, activeCategory, onCategoryC
         }
     }, { dependencies: [activeCategory, allCategories], scope: containerRef });
 
+    // Effect to handle window resizing.
+    // This ensures the active pill stays correctly positioned when the viewport changes.
     useEffect(() => {
         const handleResize = () => {
             const activeIndex = allCategories.indexOf(activeCategory);
             const activeButton = buttonRefs.current[activeIndex];
             if (activeButton) {
+                // Instantly set the pill's position and width without animation.
                 gsap.set('.active-pill', {
                     x: activeButton.offsetLeft,
                     width: activeButton.offsetWidth,
@@ -45,10 +53,14 @@ export default function CategoryFilter({ categories, activeCategory, onCategoryC
             }
         };
         window.addEventListener('resize', handleResize);
+        // Set initial position on mount.
         handleResize();
+        // Cleanup the event listener on component unmount.
         return () => window.removeEventListener('resize', handleResize);
     }, [activeCategory, allCategories]);
 
+    // Function to add button elements to the refs array.
+    // This is used in the `ref` prop of the button elements.
     const addToRefs = (el: HTMLButtonElement | null) => {
         if (el && !buttonRefs.current.includes(el)) {
             buttonRefs.current.push(el);
@@ -60,7 +72,7 @@ export default function CategoryFilter({ categories, activeCategory, onCategoryC
             <div className="active-pill absolute top-2 left-0 h-10 bg-kya-green rounded-full shadow-md" />
             {allCategories.map((category) => (
                 <button
-                    // --- CORRECTION TYPESCRIPT : ref ---
+                    // The ref callback populates the buttonRefs array.
                     ref={addToRefs}
                     key={category}
                     onClick={() => onCategoryChange(category)}

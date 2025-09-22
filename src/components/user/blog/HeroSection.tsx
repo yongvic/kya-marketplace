@@ -8,7 +8,7 @@ export default function HeroSection({ latestPost, topReads }: { latestPost: Post
     const t = useTranslations('BlogPage');
     return (
         <section className="grid lg:grid-cols-2 gap-12 ">
-            {/* Latest Post */}
+            {/* Main featured post, taking up the left column. */}
             <div className="hero-main-post space-y-5 cursor-pointer group">
                 <div className="relative aspect-[16/10] rounded-2xl overflow-hidden shadow-lg">
                     <Image src={latestPost.imageUrl} alt={latestPost.title} fill sizes="100vw" className="object-cover group-hover:scale-105 transition-transform duration-500 ease-out" priority />
@@ -19,7 +19,7 @@ export default function HeroSection({ latestPost, topReads }: { latestPost: Post
                     {t('continueReading')} <ArrowIcon className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
                 </span>
             </div>
-            {/* Top Reads */}
+            {/* Sidebar-style list of top-read articles. */}
             <div className="space-y-6">
                 <h3 className="text-2xl font-bold text-gray-800">{t('topReads')}</h3>
                 {topReads.map((post) => (

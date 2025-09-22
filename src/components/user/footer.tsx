@@ -13,27 +13,30 @@ import {
     Youtube,
     ExternalLink
 } from 'lucide-react';
-import Button from '../button' // Assurez-vous que le chemin est correct
+import Button from '../button'; // Ensure the path is correct
 
-// Hook personnalisé pour détecter quand un élément entre dans le viewport
+// Custom hook to detect when a component enters the viewport.
 const useInView = (options: IntersectionObserverInit) => {
     const ref = useRef<HTMLDivElement>(null);
     const [isInView, setIsInView] = useState(false);
 
     useEffect(() => {
         const observer = new IntersectionObserver(([entry]) => {
+            // When the element is intersecting the viewport, update the state.
             if (entry.isIntersecting) {
                 setIsInView(true);
+                // Stop observing once it's in view to prevent unnecessary checks.
                 observer.unobserve(entry.target);
             }
         }, options);
 
-        const currentRef = ref.current; // ✅ copie stable
+        const currentRef = ref.current; // Create a stable copy for the cleanup function.
 
         if (currentRef) {
             observer.observe(currentRef);
         }
 
+        // Cleanup function to unobserve the element when the component unmounts.
         return () => {
             if (currentRef) {
                 observer.unobserve(currentRef);
@@ -46,6 +49,7 @@ const useInView = (options: IntersectionObserverInit) => {
 
 const Footer = () => {
     const t = useTranslations('Footer');
+    // Use the custom hook to trigger a fade-in animation when the footer is scrolled into view.
     const { ref, isInView } = useInView({ threshold: 0.1 });
 
     const socialLinks = [
@@ -69,9 +73,9 @@ const Footer = () => {
                 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
         >
             <div className="container mx-auto px-6 py-12">
-                {/* Section supérieure */}
+                {/* Top Section: Logo/Description and Contact Form */}
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-24">
-                    {/* Partie gauche */}
+                    {/* Left Side */}
                     <div className="flex flex-col gap-4 items-center text-center lg:items-start lg:text-left">
                         <Image src="/logo.png" alt="KYA-Energy Market Logo" width={150} height={50} />
                         <p className="max-w-md text-slate-400">
@@ -82,7 +86,7 @@ const Footer = () => {
                             <span>{t('iso_certified')}</span>
                         </div>
                     </div>
-                    {/* Partie droite */}
+                    {/* Right Side */}
                     <div className="flex flex-col gap-4 flex-end lg:items-start">
                         <h3 className="font-bold text-lg">{t('contact_title')}</h3>
                         <div className="relative w-full max-w-sm">
@@ -99,10 +103,10 @@ const Footer = () => {
                     </div>
                 </div>
 
-                {/* Séparateur */}
+                {/* Divider */}
                 <div className="border-t border-slate-700 my-10" />
 
-                {/* Section inférieure */}
+                {/* Bottom Section: Copyright, Social Links, and Nav Links */}
                 <div className="flex flex-col-reverse md:flex-row items-center justify-between gap-6">
                     <p className="text-slate-500 text-sm">&copy; {new Date().getFullYear()} {t('copyright')}</p>
 

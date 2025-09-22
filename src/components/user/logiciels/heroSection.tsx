@@ -7,7 +7,7 @@ import { Users } from 'lucide-react';
 
 import AnimatedArrow from './animatedArrow';
 
-// Type pour les easing
+// Define a specific type for easing functions to ensure type safety.
 type ValidEasing =
     | 'linear'
     | 'easeIn'
@@ -22,6 +22,7 @@ type ValidEasing =
     | 'anticipate'
     | [number, number, number, number];
 
+// Define a strict type for transition configurations.
 interface TransitionConfig {
     duration: number;
     delay: number;
@@ -31,6 +32,8 @@ interface TransitionConfig {
 export default function HeroSection() {
     const t = useTranslations('LogicielsPage.hero');
 
+    // Variants for the decorative animated arrows.
+    // Each arrow has its own initial, animate, and transition properties.
     const arrowVariants = {
         left: {
             initial: { opacity: 0, x: -50, y: -20 },
@@ -53,7 +56,7 @@ export default function HeroSection() {
         <section className="relative w-full bg-white pt-24 pb-20 md:pt-28 lg:pt-16 md:pb-20 overflow-hidden min-h-[90vh] md:min-h-[80vh] flex items-center">
             <div className="container mx-auto px-4 sm:px-6 text-center relative z-10">
 
-                {/* Flèches animées */}
+                {/* Animated decorative arrows for larger screens. */}
                 <AnimatedArrow
                     className="absolute top-12 left-4 sm:left-10 lg:left-24 -rotate-45 hidden lg:block"
                     initial={arrowVariants.left.initial}
@@ -73,12 +76,12 @@ export default function HeroSection() {
                     transition={arrowVariants.bottomRight.transition}
                 />
 
-                {/* Indicateurs d'utilisateurs animés - Positionnement et taille affinés pour les écrans moyens */}
+                {/* Animated user count indicators, positioned for medium screens and up. */}
                 <motion.div
                     initial={{ opacity: 0, scale: 0.5 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.5, delay: 0.8 }}
-                    // AJUSTEMENT ICI : Position et taille pour tablettes (md)
+                    // Responsive positioning and sizing for tablets and desktops.
                     className="absolute top-8 md:top-12 left-10 md:left-16 lg:left-24 w-36 h-36 lg:w-40 lg:h-40 border-2 border-gray-200 rounded-full hidden md:flex flex-col items-center justify-center bg-white bg-opacity-80 backdrop-blur-sm"
                 >
                     <Users className="text-gray-400 w-8" />
@@ -89,7 +92,7 @@ export default function HeroSection() {
                     initial={{ opacity: 0, scale: 0.5 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.5, delay: 1.0 }}
-                    // AJUSTEMENT ICI : Position et taille pour tablettes (md)
+                    // Responsive positioning and sizing for tablets and desktops.
                     className="absolute top-8 md:top-12 right-10 md:right-16 lg:right-24 w-36 h-36 lg:w-40 lg:h-40 border-2 border-gray-200 rounded-full hidden md:flex flex-col items-center justify-center bg-white bg-opacity-80 backdrop-blur-sm"
                 >
                     <Users className="text-gray-400 w-8" />
@@ -97,7 +100,7 @@ export default function HeroSection() {
                     <span className="text-2xl lg:text-3xl font-bold text-gray-800">200+</span>
                 </motion.div>
 
-                {/* Titre principal animé - AJUSTEMENT ICI : Taille de police affinée pour md et lg */}
+                {/* Animated main title with responsive font sizes. */}
                 <motion.h1
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -108,7 +111,7 @@ export default function HeroSection() {
                     <span className="text-kya-orange">{t('title')}</span>
                 </motion.h1>
 
-                {/* Sous-titre animé */}
+                {/* Animated subtitle. */}
                 <motion.p
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -118,7 +121,7 @@ export default function HeroSection() {
                     {t('subtitle')}
                 </motion.p>
 
-                {/* Boutons d'action animés */}
+                {/* Animated call-to-action buttons. */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -141,7 +144,7 @@ export default function HeroSection() {
                     {t('ctaNote')}
                 </motion.p>
 
-                {/* Image du logiciel animée */}
+                {/* Animated software preview image. */}
                 <motion.div
                     initial={{ opacity: 0, y: 50, scale: 0.9 }}
                     animate={{ opacity: 1, y: 0, scale: 1 }}

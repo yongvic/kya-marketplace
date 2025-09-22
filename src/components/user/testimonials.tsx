@@ -6,8 +6,10 @@ import { useEffect, useRef, useState } from "react"; // Ligne d'import corrigée
 
 
 
+import { useEffect, useRef, useState } from "react"; // Corrected import line
+
+// Data for the testimonials.
 const testimonialsData = [
-    // ... vos données restent les mêmes
     { name: "Young Vic", titleKey: "testimonials.user1.title", testimonialKey: "testimonials.user1.text", icon: User },
     { name: "Jane Doe", titleKey: "testimonials.user2.title", testimonialKey: "testimonials.user2.text", icon: User },
     { name: "John Smith", titleKey: "testimonials.user3.title", testimonialKey: "testimonials.user3.text", icon: User },
@@ -16,6 +18,7 @@ const testimonialsData = [
 const UserTestimonials = () => {
     const t = useTranslations("TestimonialSection");
     const [activeIndex, setActiveIndex] = useState(0);
+    // State to pause the auto-play, can be implemented with onMouseEnter/onMouseLeave.
     const [isPaused] = useState(false);
     const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
@@ -23,22 +26,26 @@ const UserTestimonials = () => {
 
     const activeTestimonial = testimonialsData[activeIndex];
 
+    // Navigation functions for the carousel.
     const goToSlide = (index: number) => setActiveIndex(index);
     const nextSlide = () => setActiveIndex((prev) => (prev + 1) % testimonialsData.length);
     const prevSlide = () => setActiveIndex((prev) => (prev - 1 + testimonialsData.length) % testimonialsData.length);
 
+    // Effect to handle the auto-playing functionality of the carousel.
     useEffect(() => {
         if (!isPaused) {
-            intervalRef.current = setInterval(nextSlide, 7000);
+            intervalRef.current = setInterval(nextSlide, 7000); // Advance every 7 seconds.
         }
+        // Clean up the interval when the component unmounts or dependencies change.
         return () => {
             if (intervalRef.current) clearInterval(intervalRef.current);
         };
     }, [isPaused, activeIndex]);
 
     return (
-        // Padding de section ajusté pour être plus petit sur mobile
+        // Responsive padding for the section.
         <section ref={ref} className=" relative bg-gradient-to-b from-teal-500 via-teal-400 to-white pt-16 pb-24 sm:pt-20 sm:pb-32 overflow-hidden">
+            {/* Skewed background element for decorative effect. */}
             <div className="absolute top-0 left-0 w-full h-2/3 bg-teal-500 transform -skew-y-6 origin-top-left" />
 
             <div className="container mx-auto px-4 sm:px-6 relative z-10 text-center">
@@ -46,11 +53,10 @@ const UserTestimonials = () => {
                     {t("title")}
                 </h2>
 
-                {/* MODIFIÉ: Le conteneur du contenu est maintenant un 'motion.div' et applique le style 'scale' */}
                 <div
                     className="mt-12 sm:mt-16 max-w-3xl mx-auto relative">
                     <div className="relative bg-white rounded-3xl shadow-2xl pt-20 pb-12 px-4 sm:pt-24 sm:pb-16 sm:px-8 flex items-center justify-center min-h-[460px] sm:min-h-[480px]">
-                        {/* Le reste de votre JSX reste identique à l'intérieur */}
+                        {/* Decorative spinning rings in the background. */}
                         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-72 h-72 sm:w-80 sm:h-80 lg:w-96 lg:h-96 z-10">
                             <div className="w-full h-full rounded-full border-[10px] sm:border-[12px] border-kya-orange opacity-15 flex items-center justify-center animate-spin-slow">
                                 <div className="w-[85%] h-[85%] rounded-full border-[10px] sm:border-[12px] border-kya-yellow bg-purple-50/60" />
@@ -62,6 +68,7 @@ const UserTestimonials = () => {
                             </div>
                         </div>
 
+                        {/* User avatar and details, positioned above the main card. */}
                         <div className="absolute -top-12 sm:-top-14 left-1/2 -translate-x-1/2 z-20">
                             <figure className="flex flex-col items-center text-center">
                                 <div className="p-2 bg-kya-yellow rounded-full shadow-xl border-4 border-white transform transition hover:scale-110">
@@ -74,6 +81,7 @@ const UserTestimonials = () => {
                             </figure>
                         </div>
 
+                        {/* The main testimonial content with a fade-in animation on change. */}
                         <div key={activeIndex} className="relative z-10 text-center animate-fade-in max-w-md">
                             <Quote className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-56 w-56 text-purple-200/50 -z-20" />
                             <p className="text-base sm:text-lg font-medium text-gray-800 leading-relaxed px-2 sm:px-4">
@@ -84,9 +92,11 @@ const UserTestimonials = () => {
                         </div>
                     </div>
 
+                    {/* Previous/Next slide buttons. */}
                     <button onClick={prevSlide} className="absolute top-1/2 -left-2 sm:-left-4 md:-left-8 -translate-y-1/2 w-10 h-10 sm:w-12 sm:h-12 bg-kya-orange text-white rounded-full shadow-xl hover:bg-kya-orange transition transform hover:scale-110 flex items-center justify-center z-30"><ChevronLeft size={24} /></button>
                     <button onClick={nextSlide} className="absolute top-1/2 -right-2 sm:-right-4 md:-right-8 -translate-y-1/2 w-10 h-10 sm:w-12 sm:h-12 bg-kya-orange text-white rounded-full shadow-xl hover:bg-kya-orange transition transform hover:scale-110 flex items-center justify-center z-30"><ChevronRight size={24} /></button>
 
+                    {/* Pagination dots. */}
                     <div className="flex justify-center items-center gap-2 sm:gap-3 mt-6 sm:mt-8">
                         {testimonialsData.map((_, index) => (
                             <button key={index} onClick={() => goToSlide(index)} className={`w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full transition-all duration-300 ${activeIndex === index ? "bg-kya-orange scale-125" : "bg-gray-300 hover:bg-gray-400"}`} aria-label={`Go to slide ${index + 1}`} />

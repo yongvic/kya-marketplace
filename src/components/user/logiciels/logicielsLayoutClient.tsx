@@ -9,26 +9,27 @@ export default function LogicielsLayoutClient({ children }: { children: React.Re
 
     useEffect(() => {
         const handleScroll = () => {
-            // Le point de déclenchement est la hauteur du premier header (h-24 = 96px)
+            // The trigger point is the height of the main header (h-24 = 96px).
+            // When the user scrolls past this point, the secondary header becomes sticky.
             setIsSticky(window.scrollY > 96);
         };
         window.addEventListener('scroll', handleScroll);
+        // Cleanup the event listener on component unmount.
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
     return (
         <>
-            {/* 1. Le Header Principal est rendu normalement. Il n'a pas de position fixe ou sticky. */}
-            {/* Il défilera avec le reste de la page. */}
+            {/* 1. The main site header. It is rendered normally and scrolls with the page. */}
             <Header />
 
-            {/* 2. Le Header des Logiciels est dans un wrapper "sticky". */}
-            {/* Il restera à sa place jusqu'à ce que le défilement le pousse vers le haut, puis il se "collera" à top: 0. */}
+            {/* 2. The secondary software-specific header. It is wrapped in a sticky container. */}
+            {/* It will stick to the top of the viewport after the user scrolls past the main header. */}
             <header className={`sticky top-0 z-30 transition-shadow duration-300 ${isSticky ? 'shadow-md' : ''}`}>
                 <HeaderScroll />
             </header>
 
-            {/* 3. Le contenu de la page vient directement après. Pas besoin de padding-top car les headers sont dans le flux normal. */}
+            {/* 3. The page content. No extra padding is needed as the headers are handled in the normal document flow. */}
             <main>
                 {children}
             </main>

@@ -10,20 +10,24 @@ const featuresList = [
     { id: 'componentDatabase', icon: <Database size={40} className="text-kya-orange" /> },
     { id: 'detailedReports', icon: <FileText size={40} className="text-kya-orange" /> },
     { id: 'smartOptimization', icon: <Sparkles size={40} className="text-kya-orange" /> },
+    // This is a duplicate entry, likely for visual balance, using the same translation key.
     { id: 'intuitiveDesign2', icon: <SlidersHorizontal size={40} className="text-kya-orange" />, duplicateOf: 'intuitiveDesign' },
 ];
 
-// Animation Variants pour le conteneur et les cartes
+// Framer Motion variants for the main container of the features grid.
+// This orchestrates the animation of its children.
 const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
         opacity: 1,
         transition: {
+            // 'staggerChildren' creates a sequential animation effect for each child element.
             staggerChildren: 0.15,
         },
     },
 };
 
+// Framer Motion variants for each individual feature card.
 const itemVariants: Variants = {
     hidden: { y: 20, opacity: 0 },
     visible: {
@@ -31,7 +35,7 @@ const itemVariants: Variants = {
         opacity: 1,
         transition: {
             duration: 0.5,
-            ease: [0, 0, 0.2, 1], // ✅ équivalent à "easeOut"
+            ease: [0, 0, 0.2, 1], // A custom cubic bezier for a smooth ease-out effect.
         },
     },
 };
@@ -69,6 +73,7 @@ export default function FeaturesSection() {
                     className="mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
                 >
                     {featuresList.map((feature) => {
+                        // Use the 'duplicateOf' key if it exists, otherwise use the feature's own id for translations.
                         const key = feature.duplicateOf || feature.id;
                         return (
                             <motion.div

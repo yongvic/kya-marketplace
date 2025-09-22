@@ -18,19 +18,21 @@ export default function HeaderScroll() {
         { href: '/logiciels/resources', textKey: 'sh-resources' },
     ];
 
-    // Verrouille le scroll du body quand le menu mobile est ouvert
+    // Effect to lock body scroll when the mobile menu is open.
+    // This prevents the page from scrolling in the background.
     useEffect(() => {
         if (isMenuOpen) {
             document.body.style.overflow = 'hidden';
         } else {
             document.body.style.overflow = 'auto';
         }
+        // Cleanup function to restore scroll on component unmount.
         return () => {
             document.body.style.overflow = 'auto';
         };
     }, [isMenuOpen]);
 
-    // Variants pour les animations
+    // Framer Motion animation variants.
     const headerVariants: Variants = {
         hidden: { y: '-100%', opacity: 0 },
         visible: { y: '0%', opacity: 1, transition: { type: 'spring', stiffness: 100, damping: 20 } },
@@ -49,9 +51,7 @@ export default function HeaderScroll() {
 
     return (
         <>
-
-
-            {/* Le header est maintenant rendu en permanence */}
+            {/* This header is part of the sticky container in the parent layout. */}
             <motion.header
                 className="w-full h-24 bg-white/80 backdrop-blur-lg border-b border-gray-200  left-0 z-10"
                 initial="hidden"
@@ -67,7 +67,7 @@ export default function HeaderScroll() {
                         />
                     </Link>
 
-                    {/* Navigation Desktop */}
+                    {/* Desktop Navigation */}
                     <nav className="hidden md:flex items-center gap-10 text-lg font-medium text-gray-800">
                         {scrollNavLinks.map((link) => (
                             <Link
@@ -80,7 +80,7 @@ export default function HeaderScroll() {
                         ))}
                     </nav>
 
-                    {/* Bouton Desktop */}
+                    {/* Desktop Action Button */}
                     <div className="hidden md:flex items-center">
                         <Link href="/telecharger">
                             <Button className="text-white font-bold py-3 px-6 transform transition-all duration-300 hover:shadow-lg hover:scale-105">
@@ -89,9 +89,9 @@ export default function HeaderScroll() {
                         </Link>
                     </div>
 
-                    {/* Bouton Hamburger Mobile */}
+                    {/* Mobile Menu Toggle Button */}
                     <div className="md:hidden">
-                        <button onClick={() => setIsMenuOpen(!isMenuOpen)} aria-label="Ouvrir le menu">
+                        <button onClick={() => setIsMenuOpen(!isMenuOpen)} aria-label="Open menu">
                             <AnimatePresence mode="wait">
                                 <motion.div
                                     key={isMenuOpen ? 'close' : 'open'}
@@ -108,7 +108,7 @@ export default function HeaderScroll() {
                 </div>
             </motion.header>
 
-            {/* Panneau Menu Mobile */}
+            {/* Mobile Menu Panel */}
             <AnimatePresence>
                 {isMenuOpen && (
                     <motion.div

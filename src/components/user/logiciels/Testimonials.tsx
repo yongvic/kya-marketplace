@@ -3,8 +3,9 @@
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { FaStar } from 'react-icons/fa';
+import { useTranslations } from 'next-intl';
 
-// Définition du type pour un objet témoignage
+// Define the structure for a testimonial object.
 interface Testimonial {
     name: string;
     title: string;
@@ -13,53 +14,44 @@ interface Testimonial {
     comment: string;
 }
 
-// Données des témoignages
-const testimonialsData: Testimonial[] = [
-    {
-        name: 'Jean Dupont',
-        title: 'Propriétaire de maison, Paris',
-        image: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=1974&auto-format&fit=crop',
-        rating: 5,
-        comment: "L'installation de panneaux solaires par cette équipe a été un véritable jeu d'enfant. Non seulement je réduis ma facture d'électricité, mais je contribue aussi à un avenir plus vert. Un service impeccable et professionnel !",
-    },
-    {
-        name: 'Marie Claire',
-        title: 'Gérante d\'une PME',
-        image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=1976&auto=format&fit=crop',
-        rating: 5,
-        comment: "Passer à l'énergie solaire pour mon entreprise était une décision stratégique. L'équipe a su me conseiller et optimiser l'installation pour un rendement maximal. Je suis ravie des économies réalisées et de notre image éco-responsable.",
-    },
-    {
-        name: 'Lucas Martin',
-        title: 'Agriculteur',
-        image: 'https://images.unsplash.com/photo-1557862921-37829c790f19?q=80&w=2071&auto-format&fit=crop',
-        rating: 5,
-        comment: "Grâce à leurs solutions solaires, mon exploitation est devenue quasi autonome en énergie. La fiabilité du système, même par temps couvert, est impressionnante. Un investissement que je recommande à tous mes confrères.",
-    },
-    {
-        name: 'Sophie Dubois',
-        title: 'Architecte',
-        image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=1964&auto-format&fit=crop',
-        rating: 5,
-        comment: "J'ai intégré leurs solutions dans plusieurs de mes projets de construction durable. Leur expertise technique et la qualité des panneaux sont irréprochables. Un partenaire de confiance pour l'avenir.",
-    },
+// Static array of image URLs for the testimonials.
+// These are kept separate as they are not part of the internationalization content.
+const testimonialImages = [
+    'https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=1974&auto-format&fit=crop',
+    'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=1976&auto=format&fit=crop',
+    'https://images.unsplash.com/photo-1557862921-37829c790f19?q=80&w=2071&auto-format&fit=crop',
+    'https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=1964&auto-format&fit=crop',
 ];
 
 const Testimonials: React.FC = () => {
+    const t = useTranslations('Testimonials');
     const [currentIndex, setCurrentIndex] = useState<number>(0);
 
+    // Fetch the translatable parts of the testimonials from the intl provider.
+    const testimonialsData: Omit<Testimonial, 'image' | 'rating'>[] = t.raw('testimonials');
+
+    // Combine the translated text data with the static images and a fixed rating.
+    // This creates the complete testimonial objects for rendering.
+    const fullTestimonialsData: Testimonial[] = testimonialsData.map((testimonial, index) => ({
+        ...testimonial,
+        image: testimonialImages[index],
+        rating: 5, // The rating is currently static.
+    }));
+
+    // Effect to automatically advance to the next testimonial every 5 seconds.
     useEffect(() => {
         const timer = setTimeout(() => {
-            const nextIndex = (currentIndex + 1) % testimonialsData.length;
+            const nextIndex = (currentIndex + 1) % fullTestimonialsData.length;
             setCurrentIndex(nextIndex);
         }, 5000);
 
+        // Clean up the timer when the component unmounts or the index changes.
         return () => {
             clearTimeout(timer);
         };
-    }, [currentIndex]);
+    }, [currentIndex, fullTestimonialsData.length]);
 
-    const activeTestimonial = testimonialsData[currentIndex];
+    const activeTestimonial = fullTestimonialsData[currentIndex];
 
     return (
         <section className="relative bg-[#f99d32]">
@@ -82,10 +74,10 @@ const Testimonials: React.FC = () => {
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-28">
                 <div className="text-center mb-12">
                     <span className="inline-block px-4 py-2 bg-white text-[#f99d32] text-sm font-semibold rounded-full mb-4">
-                        Témoignages
+                        {t('sectionTitle')}
                     </span>
                     <h2 className="text-3xl md:text-4xl font-bold text-white">
-                        Ce que nos clients disent de nos services
+                        {t('mainTitle')}
                     </h2>
                 </div>
 
@@ -96,7 +88,7 @@ const Testimonials: React.FC = () => {
                                 <Image
                                     key={currentIndex}
                                     src={activeTestimonial.image}
-                                    alt={`Photo de ${activeTestimonial.name}`}
+                                    alt={t('ariaLabel', { name: activeTestimonial.name })}
                                     fill={true}
                                     style={{ objectFit: 'cover' }}
                                     className="border-4 border-gray-200 shadow-xl animate-fade-in"
@@ -126,15 +118,14 @@ const Testimonials: React.FC = () => {
                     </div>
 
                     <div className="flex justify-center items-center gap-4 mt-10">
-                        <span className="text-sm font-semibold text-white mr-2">Clients satisfaits :</span>
-                        {/* LIGNE CORRIGÉE ICI */}
-                        {testimonialsData.map((testimonial: Testimonial, index: number) => (
+                        <span className="text-sm font-semibold text-white mr-2">{t('satisfiedClients')}</span>
+                        {fullTestimonialsData.map((testimonial: Testimonial, index: number) => (
                             <button
                                 key={index}
                                 onClick={() => setCurrentIndex(index)}
                                 className={`relative w-12 h-12 rounded-full cursor-pointer overflow-hidden transition-all duration-300 ease-in-out focus:outline-none ${currentIndex === index ? 'ring-4 ring-white ring-offset-2 ring-offset-[#f99d32] scale-110' : 'hover:scale-110'
                                     }`}
-                                aria-label={`Voir le témoignage de ${testimonial.name}`}
+                                aria-label={t('ariaLabel', { name: testimonial.name })}
                             >
                                 <Image
                                     src={testimonial.image}

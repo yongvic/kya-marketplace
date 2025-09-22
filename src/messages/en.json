@@ -408,6 +408,7 @@
         "subscribeButton": "Subscribe",
         "previous": "Previous",
         "next": "Next",
+        "backButton": "Back to articles",
         "categories": {
             "solar": "Solar",
             "innovation": "Innovation",
@@ -520,5 +521,84 @@
     "Resources": {
         "title": "Developer Resources",
         "description": "Tutorials, documentation, and videos to help you master our tools."
+    },
+    "ResourcesPage": {
+        "title": "Developer Resources",
+        "description": "Your knowledge hub to master KYA. Tutorials, guides, and videos to help you get started and innovate.",
+        "allCategory": "All"
+    },
+    "ResourcesData": {
+        "categories": {
+            "all": "All",
+            "documentation": "Documentation",
+            "video": "Video",
+            "tutorial": "Tutorial"
+        },
+        "resources": [
+            {
+                "title": "Quickstart: KYA Installation Guide",
+                "description": "A comprehensive guide to installing and configuring your first instance of KYA Marketplace."
+            },
+            {
+                "title": "Video: Discover Key Features",
+                "description": "Explore the main features of KYA in under 10 minutes."
+            },
+            {
+                "title": "Tutorial: Customize Your Dashboard",
+                "description": "Learn how to tailor your dashboard for quick access to your favorite tools."
+            },
+            {
+                "title": "Best Practices for License Management",
+                "description": "Discover how to effectively manage software licenses for your team."
+            },
+            {
+                "title": "Webinar: Optimize Your Marketplace Sales",
+                "description": "A recording of our latest webinar with industry experts."
+            },
+            {
+                "title": "Tutorial: Integrating with Third-Party APIs",
+                "description": "Step-by-step guide to connecting KYA with your favorite external services."
+            },
+            {
+                "title": "Advanced User Guide",
+                "description": "Dive into the advanced features and configuration options of KYA."
+            },
+            {
+                "title": "Video: What's New in Version 2.0",
+                "description": "An overview of the latest improvements and new features of the platform."
+            },
+            {
+                "title": "Tutorial: Create and Publish Your First Software",
+                "description": "From creating your seller account to publishing your software."
+            }
+        ]
+    },
+    "Testimonials": {
+        "sectionTitle": "Testimonials",
+        "mainTitle": "What our clients say about our services",
+        "satisfiedClients": "Satisfied clients:",
+        "ariaLabel": "View testimonial from {name}",
+        "testimonials": [
+            {
+                "name": "John Doe",
+                "title": "Homeowner, Paris",
+                "comment": "The installation of solar panels by this team was a real breeze. Not only am I reducing my electricity bill, but I am also contributing to a greener future. Impeccable and professional service!"
+            },
+            {
+                "name": "Mary Claire",
+                "title": "SME Manager",
+                "comment": "Switching to solar energy for my business was a strategic decision. The team was able to advise me and optimize the installation for maximum efficiency. I am delighted with the savings and our eco-responsible image."
+            },
+            {
+                "name": "Luke Martin",
+                "title": "Farmer",
+                "comment": "Thanks to their solar solutions, my farm has become almost energy self-sufficient. The reliability of the system, even on cloudy days, is impressive. An investment I recommend to all my colleagues."
+            },
+            {
+                "name": "Sophia Dubois",
+                "title": "Architect",
+                "comment": "I have integrated their solutions into several of my sustainable construction projects. Their technical expertise and the quality of the panels are irreproachable. A trusted partner for the future."
+            }
+        ]
     }
 }

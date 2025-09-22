@@ -8,7 +8,10 @@ import { usePathname, useRouter } from 'next/navigation';
 import { Search, User, ExternalLink, Menu, X, Globe, Loader, ArrowLeft, ChevronDown } from "lucide-react";
 import { motion, AnimatePresence } from 'framer-motion';
 
-// --- SÉLECTEUR DE LANGUE ---
+import { Search, User, ExternalLink, Menu, X, Globe, Loader, ArrowLeft, ChevronDown } from "lucide-react";
+import { motion, AnimatePresence } from 'framer-motion';
+
+// --- LANGUAGE SWITCHER COMPONENT ---
 const LanguageSwitcher = () => {
 	const locale = useLocale();
 	const router = useRouter();
@@ -16,6 +19,7 @@ const LanguageSwitcher = () => {
 	const [isOpen, setIsOpen] = useState(false);
 	const ref = useRef<HTMLDivElement>(null);
 
+	// Close the dropdown if a click occurs outside of it.
 	useEffect(() => {
 		const handleClickOutside = (event: MouseEvent) => {
 			if (ref.current && !ref.current.contains(event.target as Node)) {
@@ -26,6 +30,7 @@ const LanguageSwitcher = () => {
 		return () => document.removeEventListener("mousedown", handleClickOutside);
 	}, []);
 
+	// Rebuilds the URL with the new locale and navigates.
 	const switchLocale = (nextLocale: string) => {
 		const newPath = pathname.startsWith(`/${locale}`) ? pathname.substring(locale.length + 1) : pathname;
 		router.push(`/${nextLocale}${newPath}`);
@@ -37,7 +42,7 @@ const LanguageSwitcher = () => {
 			<button
 				onClick={() => setIsOpen(!isOpen)}
 				className="flex items-center gap-1 hover:text-teal-500 transition-colors"
-				aria-label="Changer de langue"
+				aria-label="Change language"
 			>
 				<Globe size={24} />
 				<span className="font-semibold">{locale.toUpperCase()}</span>
@@ -52,11 +57,12 @@ const LanguageSwitcher = () => {
 	);
 };
 
-// --- COMPOSANT DE RÉSULTATS DE RECHERCHE ---
+// --- SEARCH RESULTS DROPDOWN COMPONENT ---
 const SearchResultsDropdown = ({ query, onResultClick }: { query: string, onResultClick: () => void }) => {
 	const [results, setResults] = useState<string[]>([]);
 	const [isLoading, setIsLoading] = useState(false);
 
+	// Debounced search effect.
 	useEffect(() => {
 		if (query.trim().length < 3) {
 			setResults([]);
@@ -65,6 +71,7 @@ const SearchResultsDropdown = ({ query, onResultClick }: { query: string, onResu
 
 		setIsLoading(true);
 		const searchTimeout = setTimeout(() => {
+			// Simple search implementation: scans the body text for the query.
 			const bodyText = document.body.innerText;
 			const regex = new RegExp(`.{0,50}${query}.{0,50}`, 'gi');
 			const matches = bodyText.match(regex);
@@ -93,7 +100,7 @@ const SearchResultsDropdown = ({ query, onResultClick }: { query: string, onResu
 			)}
 			{!isLoading && results.length > 0 && (
 				<ul>
-					<p className="px-4 pt-3 pb-1 text-xs font-semibold text-gray-400">Résultats sur cette page</p>
+					<p className="px-4 pt-3 pb-1 text-xs font-semibold text-gray-400">Results on this page</p>
 					{results.map((result, index) => (
 						<li key={index}>
 							<a
@@ -107,17 +114,18 @@ const SearchResultsDropdown = ({ query, onResultClick }: { query: string, onResu
 				</ul>
 			)}
 			{!isLoading && results.length === 0 && (
-				<p className="px-4 py-3 text-sm text-gray-500">Aucun résultat trouvé pour &quot;{query}&quot;.</p>
+				<p className="px-4 py-3 text-sm text-gray-500">No results found for &quot;{query}&quot;.</p>
 			)}
 		</div>
 	);
 };
 
-// --- DÉFINITION DES TYPES POUR LES LIENS DE NAVIGATION ---
+// --- NAVIGATION LINK TYPE DEFINITIONS ---
 type NavLinkBase = {
 	textKey: string;
 };
 
+// A standard link with an href.
 type StandardNavLink = NavLinkBase & {
 	href: string;
 	isDropdown?: false;
@@ -125,6 +133,7 @@ type StandardNavLink = NavLinkBase & {
 	isExternal?: boolean;
 };
 
+// A link that opens a dropdown menu.
 type DropdownNavLink = NavLinkBase & {
 	isDropdown: true;
 	dropdownItems: {
@@ -136,7 +145,7 @@ type DropdownNavLink = NavLinkBase & {
 type NavLink = StandardNavLink | DropdownNavLink;
 
 
-// --- HEADER PRINCIPAL ---
+// --- MAIN HEADER COMPONENT ---
 export default function Header() {
 	const h = useTranslations('Header');
 	const pathname = usePathname();
@@ -161,6 +170,7 @@ export default function Header() {
 		{ href: 'https://www.google.com', textKey: 'm-a-propos', icon: ExternalLink, isExternal: true },
 	];
 
+	// Determines if a navigation link should be styled as "active".
 	const isLinkActive = (href: string) => {
 		const cleanedPathname = pathname.replace(`/${locale}`, '') || '/';
 		if (href === '/') {
@@ -169,6 +179,7 @@ export default function Header() {
 		return cleanedPathname.startsWith(href);
 	};
 
+	// Effect to close the search bar when clicking outside of it.
 	useEffect(() => {
 		const handleClickOutside = (event: MouseEvent) => {
 			if (searchRef.current && !searchRef.current.contains(event.target as Node)) {
@@ -179,6 +190,7 @@ export default function Header() {
 		return () => document.removeEventListener("mousedown", handleClickOutside);
 	}, []);
 
+	// Effect to close search/menu on 'Escape' key press.
 	useEffect(() => {
 		const handleKeyDown = (event: KeyboardEvent) => {
 			if (event.key === 'Escape') {
@@ -206,6 +218,7 @@ export default function Header() {
 					</Link>
 				</div>
 
+				{/* Desktop Navigation */}
 				<nav className={`hidden md:flex justify-center items-center gap-10 text-lg font-medium text-gray-800 transition-opacity duration-300 ease-in-out ${isSearchActive ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
 					{navLinks.map((link) => (
 						link.isDropdown ? (
@@ -257,15 +270,16 @@ export default function Header() {
 					))}
 				</nav>
 
+				{/* Desktop Actions (Search, User, Language) */}
 				<div className="flex-1 hidden md:flex items-center justify-end gap-4">
 					<div ref={searchRef} className="relative flex items-center">
 						<div className={`flex items-center bg-gray-100 rounded-full transition-all duration-300 ease-in-out ${isSearchActive ? 'w-72 shadow-inner' : 'w-10'}`}>
-							<button onClick={() => setIsSearchActive(!isSearchActive)} className="p-2 flex-shrink-0" aria-label="Ouvrir la recherche">
+							<button onClick={() => setIsSearchActive(!isSearchActive)} className="p-2 flex-shrink-0" aria-label="Open search">
 								<Search className="text-gray-700 hover:text-teal-500" />
 							</button>
 							<input
 								type="text"
-								placeholder="Rechercher sur la page..."
+								placeholder="Search on this page..."
 								value={searchQuery}
 								onChange={(e) => setSearchQuery(e.target.value)}
 								onFocus={() => setIsSearchActive(true)}
@@ -274,24 +288,25 @@ export default function Header() {
 						</div>
 						{isSearchActive && <SearchResultsDropdown query={searchQuery} onResultClick={() => setIsSearchActive(false)} />}
 					</div>
-					<Link href="/dashboard/auth" className="p-2 rounded-full text-gray-700 hover:bg-gray-100 hover:text-teal-500 transition-colors" aria-label="Compte utilisateur"><User /></Link>
+					<Link href="/dashboard/auth" className="p-2 rounded-full text-gray-700 hover:bg-gray-100 hover:text-teal-500 transition-colors" aria-label="User account"><User /></Link>
 					<LanguageSwitcher />
 				</div>
 
+				{/* Mobile Menu Toggle */}
 				<div className="md:hidden flex-1 flex justify-end">
 					<button onClick={() => {
 						const newMenuState = !isMenuOpen;
 						setIsMenuOpen(newMenuState);
 						if (newMenuState) {
-							setIsMobileSearchOpen(false);
+							setIsMobileSearchOpen(false); // Ensure search is closed when menu opens.
 						}
-					}} aria-label="Ouvrir le menu">
+					}} aria-label="Open menu">
 						{isMenuOpen ? <X size={30} /> : <Menu size={30} />}
 					</button>
 				</div>
 			</div>
 
-			{/* Menu Mobile Overlay */}
+			{/* Mobile Menu Overlay */}
 			<div className={`md:hidden fixed top-24 left-0 z-30 w-full h-[calc(100vh-6rem)] bg-white transform transition-transform duration-500 ease-in-out ${isMenuOpen ? 'translate-x-0' : '-translate-x-full'}`}>
 				<nav className="flex flex-col items-center justify-center h-full gap-8 text-2xl font-medium">
 					{navLinks.map((link) => (
@@ -311,10 +326,10 @@ export default function Header() {
 						<button onClick={() => {
 							setIsMobileSearchOpen(true);
 							setIsMenuOpen(false);
-						}} className="hover:text-teal-500 transition-colors" aria-label="Recherche">
+						}} className="hover:text-teal-500 transition-colors" aria-label="Search">
 							<Search size={28} />
 						</button>
-						<Link href="/dashboard/auth" className="hover:text-teal-500 transition-colors" aria-label="Compte utilisateur" onClick={() => setIsMenuOpen(false)}><User size={28} /></Link>
+						<Link href="/dashboard/auth" className="hover:text-teal-500 transition-colors" aria-label="User account" onClick={() => setIsMenuOpen(false)}><User size={28} /></Link>
 					</div>
 					<div className="mt-4">
 						<LanguageSwitcher />
@@ -322,11 +337,11 @@ export default function Header() {
 				</nav>
 			</div>
 
-			{/* Overlay de Recherche pour Mobile */}
+			{/* Mobile Search Overlay */}
 			<div className={`md:hidden fixed top-0 left-0 z-40 w-full h-full bg-white transform transition-transform duration-300 ease-in-out ${isMobileSearchOpen ? 'translate-x-0' : 'translate-x-full'}`}>
 				<div className="flex flex-col h-full">
 					<div className="flex items-center p-4 border-b border-gray-200 flex-shrink-0">
-						<button onClick={() => setIsMobileSearchOpen(false)} className="p-2 mr-2" aria-label="Retour">
+						<button onClick={() => setIsMobileSearchOpen(false)} className="p-2 mr-2" aria-label="Back">
 							<ArrowLeft size={24} />
 						</button>
 						<input

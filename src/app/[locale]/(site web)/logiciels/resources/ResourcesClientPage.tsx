@@ -5,6 +5,7 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import ResourceCard from '@/components/user/logiciels/ResourceCard';
 import Testimonials from '@/components/user/logiciels/Testimonials';
+import { useTranslations } from 'next-intl';
 
 interface Resource {
     id: number;
@@ -21,13 +22,15 @@ interface ResourcesClientPageProps {
     locale: string;
 }
 
-const ResourcesClientPage = ({ resources, categories, locale }: ResourcesClientPageProps) => {
+const ResourcesClientPage = ({ resources, categories, }: ResourcesClientPageProps) => {
+    const t = useTranslations('ResourcesPage');
+
     // Définir la catégorie par défaut selon la langue
-    const defaultCategory = locale === 'fr' ? 'Tous' : 'All';
+    const defaultCategory = t('allCategory');
     const [selectedCategory, setSelectedCategory] = useState(defaultCategory);
 
     // Filtrer les ressources selon la catégorie sélectionnée
-    const filteredResources = selectedCategory === (locale === 'fr' ? 'Tous' : 'All')
+    const filteredResources = selectedCategory === defaultCategory
         ? resources
         : resources.filter(r => r.category === selectedCategory);
 
@@ -60,12 +63,10 @@ const ResourcesClientPage = ({ resources, categories, locale }: ResourcesClientP
                         className="text-center mb-12"
                     >
                         <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 dark:text-white mb-4">
-                            {locale === 'fr' ? 'Ressources pour Développeurs' : 'Developer Resources'}
+                            {t('title')}
                         </h1>
                         <p className="text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-                            {locale === 'fr'
-                                ? 'Votre centre de connaissances pour maîtriser KYA. Tutoriels, guides, et vidéos pour vous aider à démarrer et à innover.'
-                                : 'Your knowledge hub to master KYA. Tutorials, guides, and videos to help you get started and innovate.'}
+                            {t('description')}
                         </p>
                     </motion.div>
 

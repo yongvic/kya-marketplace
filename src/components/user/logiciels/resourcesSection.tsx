@@ -17,13 +17,15 @@ const itemVariants = {
 
 export default function ResourcesSection() {
     const t = useTranslations('LogicielsPage.resources');
+    // Keys for fetching translated document links from the intl provider.
     const documents = ['link1', 'link2', 'link3', 'link4'];
-    const videos = Array(4).fill(0); // Playlist
+    // Placeholder array for the video playlist.
+    const videos = Array(4).fill(0);
 
     return (
         <section className="py-20 bg-white">
             <div className="container mx-auto px-6">
-                {/* Titre principal */}
+                {/* Main section title */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -35,7 +37,7 @@ export default function ResourcesSection() {
                     <p className="mt-4 max-w-3xl mx-auto text-lg text-gray-600">{t('subtitle')}</p>
                 </motion.div>
 
-                {/* Section Documents */}
+                {/* Documents Section */}
                 <div className="mt-16">
                     <motion.h3
                         initial={{ opacity: 0, x: -20 }}
@@ -72,7 +74,7 @@ export default function ResourcesSection() {
                     </motion.div>
                 </div>
 
-                {/* Section Vidéos */}
+                {/* Videos Section */}
                 <div className="mt-20">
                     <motion.h3
                         initial={{ opacity: 0, x: -20 }}
@@ -90,7 +92,7 @@ export default function ResourcesSection() {
                         transition={{ duration: 0.8 }}
                         className="mt-8 flex flex-col md:flex-row gap-8"
                     >
-                        {/* Vidéo Principale */}
+                        {/* Main Featured Video */}
                         <a
                             href="/video.mp4"
                             target="_blank"
@@ -98,7 +100,7 @@ export default function ResourcesSection() {
                             className="w-full md:w-2/3 relative rounded-lg overflow-hidden group cursor-pointer"
                         >
                             <Image
-                                src="/im.jpg" // <-- Remplace par ton image
+                                src="/im.jpg" // Placeholder thumbnail image
                                 alt="Vidéo principale"
                                 width={1280}
                                 height={720}
@@ -112,7 +114,7 @@ export default function ResourcesSection() {
                             </div>
                         </a>
 
-                        {/* Playlist */}
+                        {/* Video Playlist */}
                         <div className="w-full md:w-1/3">
                             <h4 className="text-xl font-bold border-b-2 pb-2">{t('videos.playlistTitle')}</h4>
                             <div className="mt-4 space-y-4">
@@ -125,7 +127,7 @@ export default function ResourcesSection() {
                                         className="flex gap-4 items-center cursor-pointer group"
                                     >
                                         <Image
-                                            src="/im.jpg" // <-- Remplace par ton image
+                                            src="/im.jpg" // Placeholder thumbnail image
                                             alt={`Vidéo ${index + 1}`}
                                             width={150}
                                             height={84}

@@ -407,6 +407,7 @@
         "subscribeButton": "S'abonner",
         "previous": "Précédent",
         "next": "Suivant",
+        "backButton": "Retour aux articles",
         "categories": {
             "solar": "Solaire",
             "innovation": "Innovation",
@@ -519,5 +520,84 @@
     "Resources": {
         "title": "Ressources pour les développeurs",
         "description": "Tutoriels, documentations et vidéos pour vous aider à maîtriser nos outils."
+    },
+    "ResourcesPage": {
+        "title": "Ressources pour Développeurs",
+        "description": "Votre centre de connaissances pour maîtriser KYA. Tutoriels, guides, et vidéos pour vous aider à démarrer et à innover.",
+        "allCategory": "Tous"
+    },
+    "ResourcesData": {
+        "categories": {
+            "all": "Tous",
+            "documentation": "Documentation",
+            "video": "Vidéo",
+            "tutorial": "Tutoriel"
+        },
+        "resources": [
+            {
+                "title": "Démarrage rapide : Guide d'installation de KYA",
+                "description": "Un guide complet pour installer et configurer votre première instance de KYA Marketplace."
+            },
+            {
+                "title": "Vidéo : Découverte des fonctionnalités clés",
+                "description": "Explorez les fonctionnalités principales de KYA en moins de 10 minutes."
+            },
+            {
+                "title": "Tutoriel : Personnaliser votre tableau de bord",
+                "description": "Apprenez à adapter votre tableau de bord pour un accès rapide à vos outils préférés."
+            },
+            {
+                "title": "Bonnes pratiques pour la gestion des licences",
+                "description": "Découvrez comment gérer efficacement les licences logicielles pour votre équipe."
+            },
+            {
+                "title": "Webinaire : Optimiser vos ventes sur la Marketplace",
+                "description": "Un enregistrement de notre dernier webinaire avec des experts du secteur."
+            },
+            {
+                "title": "Tutoriel : Intégration avec des API tierces",
+                "description": "Guide pas à pas pour connecter KYA à vos services externes favoris."
+            },
+            {
+                "title": "Guide de l'utilisateur avancé",
+                "description": "Plongez dans les fonctionnalités avancées et les options de configuration de KYA."
+            },
+            {
+                "title": "Vidéo : Nouveautés de la version 2.0",
+                "description": "Un aperçu des dernières améliorations et nouvelles fonctionnalités de la plateforme."
+            },
+            {
+                "title": "Tutoriel : Créer et publier votre premier logiciel",
+                "description": "De la création de votre compte vendeur à la publication de votre logiciel."
+            }
+        ]
+    },
+    "Testimonials": {
+        "sectionTitle": "Témoignages",
+        "mainTitle": "Ce que nos clients disent de nos services",
+        "satisfiedClients": "Clients satisfaits :",
+        "ariaLabel": "Voir le témoignage de {name}",
+        "testimonials": [
+            {
+                "name": "Jean Dupont",
+                "title": "Propriétaire de maison, Paris",
+                "comment": "L'installation de panneaux solaires par cette équipe a été un véritable jeu d'enfant. Non seulement je réduis ma facture d'électricité, mais je contribue aussi à un avenir plus vert. Un service impeccable et professionnel !"
+            },
+            {
+                "name": "Marie Claire",
+                "title": "Gérante d'une PME",
+                "comment": "Passer à l'énergie solaire pour mon entreprise était une décision stratégique. L'équipe a su me conseiller et optimiser l'installation pour un rendement maximal. Je suis ravie des économies réalisées et de notre image éco-responsable."
+            },
+            {
+                "name": "Lucas Martin",
+                "title": "Agriculteur",
+                "comment": "Grâce à leurs solutions solaires, mon exploitation est devenue quasi autonome en énergie. La fiabilité du système, même par temps couvert, est impressionnante. Un investissement que je recommande à tous mes confrères."
+            },
+            {
+                "name": "Sophie Dubois",
+                "title": "Architecte",
+                "comment": "J'ai intégré leurs solutions dans plusieurs de mes projets de construction durable. Leur expertise technique et la qualité des panneaux sont irréprochables. Un partenaire de confiance pour l'avenir."
+            }
+        ]
     }
 }

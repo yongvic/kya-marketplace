@@ -6,10 +6,12 @@ import { FiCheckCircle, FiXCircle } from 'react-icons/fi';
 import { useTranslations } from 'next-intl';
 import { ChevronDown } from 'lucide-react';
 
+// A static matrix defining which features are available for each plan.
+// The order corresponds to [Commercial, Academic, Student].
 const featureValues = [
-  [true, true, true],
-  [true, true, true],
-  [true, true, true],
+  [true, true, true],   // Feature 1
+  [true, true, true],   // Feature 2
+  [true, true, true],   // ...
   [true, true, true],
   [true, true, true],
   [true, true, true],
@@ -18,17 +20,20 @@ const featureValues = [
   [true, true, false],
   [true, false, false],
   [true, false, false],
-  [true, false, false],
+  [true, false, false],  // Feature 12
 ];
 
 const TarifsSection = () => {
   const t = useTranslations('TarifsSection');
+  // State to manage the selected duration for the student plan (e.g., 'month', 'week', 'day').
   const [studentPlan, setStudentPlan] = useState('month');
 
+  // Fetch feature titles and student prices from the internationalization provider.
   const featureTitles = (t.raw('features') as string[]) || [];
-
   const studentPrices: { [key: string]: string; } = t.raw('plans.student.prices');
 
+  // Assemble the complete data structure for the pricing table.
+  // This combines translated text with the static feature matrix.
   const featuresData = {
     headers: [
       {
@@ -44,15 +49,16 @@ const TarifsSection = () => {
       {
         name: t('plans.student.name'),
         duration: t('plans.student.options.' + studentPlan),
-        price: studentPrices[studentPlan],
+        price: studentPrices[studentPlan], // Price dynamically changes based on state.
       },
     ],
     rows: featureTitles.map((title, index) => ({
       title,
-      values: featureValues[index] || [false, false, false],
+      values: featureValues[index] || [false, false, false], // Map to the corresponding feature row.
     })),
   };
 
+  // Framer Motion variants for staggered animations.
   const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
@@ -70,6 +76,7 @@ const TarifsSection = () => {
     },
   };
 
+  // A reusable component for the student plan duration selector.
   const StudentPlanSelector = ({ isMobile = false }) => (
     <div className="relative mt-1">
       <select
@@ -105,6 +112,7 @@ const TarifsSection = () => {
           </p>
         </motion.div>
 
+        {/* Desktop Pricing Table (visible on lg screens and up) */}
         <motion.div
           className="hidden lg:block overflow-x-auto rounded-2xl shadow-xl"
           variants={containerVariants}
@@ -163,6 +171,7 @@ const TarifsSection = () => {
           </div>
         </motion.div>
 
+        {/* Mobile Pricing Cards (hidden on lg screens and up) */}
         <motion.div
           className="block lg:hidden space-y-8"
           variants={containerVariants}

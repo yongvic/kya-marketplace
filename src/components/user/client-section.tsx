@@ -7,7 +7,7 @@ import Image from 'next/image';
 const ClientSection = () => {
   const c = useTranslations('Client');
 
-  // On duplique la liste pour assurer un défilement infini et fluide
+  // A list of partner logos.
   const partenaires = [
     "/partenaire.png",
     "/partenaire.png",
@@ -16,12 +16,14 @@ const ClientSection = () => {
     "/partenaire.png",
     "/partenaire.png",
   ];
-  const allLogos = [...partenaires, ...partenaires]; // Duplication pour l'effet de boucle
+  // Duplicate the list of logos to create a seamless, infinite scrolling effect.
+  // When the animation reaches the end of the first set, the second set is already in place.
+  const allLogos = [...partenaires, ...partenaires];
 
   return (
     <section className="bg-white py-12 sm:py-16">
       <div className="container mx-auto text-center px-4">
-        {/* Titres avec tailles de police responsives */}
+        {/* Responsive section titles */}
         <h2 className="text-3xl sm:text-4xl font-bold text-gray-800 mb-4">
           {c('title')}
         </h2>
@@ -29,9 +31,9 @@ const ClientSection = () => {
           {c('subtitle')}
         </p>
 
-        {/* Conteneur du carrousel avec une largeur responsive */}
+        {/* Carousel container with responsive width */}
         <div className="relative mx-auto w-full md:w-4/5 lg:w-2/3 overflow-hidden rounded-full">
-          {/* L'attribut `mask-image` crée un effet de fondu sur les côtés pour une meilleure intégration visuelle */}
+          {/* The 'mask-image' attribute creates a fade-out effect on the sides for a cleaner look. */}
           <div
             className="flex w-max animate-slide"
             style={{
@@ -40,13 +42,13 @@ const ClientSection = () => {
             }}
           >
             {allLogos.map((logo, index) => (
-              // Espacement et taille des logos responsifs
+              // Responsive spacing and sizing for logos
               <div key={index} className="flex-shrink-0 px-4 sm:px-8">
                 <Image
                   src={logo}
                   alt={`Partenaire ${index + 1}`}
-                  width={150} // La largeur peut être indicative, le style CSS primera
-                  height={80}  // La hauteur peut être indicative, le style CSS primera
+                  width={150} // Width is indicative; CSS classes will take precedence.
+                  height={80}  // Height is indicative; CSS classes will take precedence.
                   className="h-12 sm:h-16 lg:h-20 w-auto object-contain"
                 />
               </div>
